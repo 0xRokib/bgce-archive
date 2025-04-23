@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rbac - BGCE ARCHIVE</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">BGCE ARCHIVE</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/JsIqbal/bgce-archive" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p><strong>comprehensive and detailed RBAC permission list</strong> Golang Community Vault platform. This will allow <strong>fine-grained control</strong> for various roles across all the directories and content types outlined in README.</p>
+<hr />
+<h2 id="-universal-permission-categories-applicable-to-all-modules"><a class="header" href="#-universal-permission-categories-applicable-to-all-modules">🔒 Universal Permission Categories (Applicable to all modules)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>view:&lt;resource&gt;</code></td><td>Can view/read the resource (public or restricted)</td></tr>
+<tr><td><code>create:&lt;resource&gt;</code></td><td>Can create/upload new items</td></tr>
+<tr><td><code>edit:&lt;resource&gt;</code></td><td>Can update or modify existing items</td></tr>
+<tr><td><code>delete:&lt;resource&gt;</code></td><td>Can remove an item</td></tr>
+<tr><td><code>publish:&lt;resource&gt;</code></td><td>Can mark content as published (if there’s a review process)</td></tr>
+<tr><td><code>archive:&lt;resource&gt;</code></td><td>Can archive or unpublish without deletion</td></tr>
+<tr><td><code>feature:&lt;resource&gt;</code></td><td>Can mark content as featured</td></tr>
+<tr><td><code>comment:&lt;resource&gt;</code></td><td>Can comment on resource</td></tr>
+<tr><td><code>moderate:&lt;resource&gt;</code></td><td>Can manage others' comments and discussions</td></tr>
+<tr><td><code>rate:&lt;resource&gt;</code></td><td>Can give rating (if rating system exists)</td></tr>
+<tr><td><code>tag:&lt;resource&gt;</code></td><td>Can add/edit tags or metadata</td></tr>
+<tr><td><code>assign:&lt;resource&gt;</code></td><td>Can assign reviewers or contributors to a resource</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-resource-specific-permissions"><a class="header" href="#-resource-specific-permissions">🔖 Resource-Specific Permissions</a></h2>
+<p>Here's a breakdown by directory and subtype:</p>
+<hr />
+<h3 id="1-interview-qa"><a class="header" href="#1-interview-qa">1. <code>interview-qa/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>curate:interview_qa</code></td><td>Can organize, categorize, and reorder Q&amp;A content</td></tr>
+<tr><td><code>bulk_upload:interview_qa</code></td><td>Upload multiple Q&amp;As via CSV or UI</td></tr>
+<tr><td><code>label:difficulty_level</code></td><td>Can assign difficulty labels (easy/med/hard)</td></tr>
+<tr><td><code>verify:interview_qa</code></td><td>Trusted users can verify accuracy of Q&amp;A</td></tr>
+<tr><td><code>suggest_edit:interview_qa</code></td><td>Submit Q&amp;A revisions for approval</td></tr>
+<tr><td><code>link:qa_to_topic</code></td><td>Link questions across topic-wise and company-wise sections</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="2-class-notes"><a class="header" href="#2-class-notes">2. <code>class-notes/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>format:class_note</code></td><td>Format content (LaTeX, markdown support)</td></tr>
+<tr><td><code>translate:class_note</code></td><td>Upload alternate language versions</td></tr>
+<tr><td><code>rate:note_quality</code></td><td>Rate based on helpfulness/accuracy</td></tr>
+<tr><td><code>submit_note_review</code></td><td>Peer review notes</td></tr>
+<tr><td><code>merge_notes</code></td><td>Combine similar notes into one resource</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="3-project-archive"><a class="header" href="#3-project-archive">3. <code>project-archive/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>link:project_github</code></td><td>Attach GitHub repo link</td></tr>
+<tr><td><code>mark:project_stable</code></td><td>Certify project as stable/maintained</td></tr>
+<tr><td><code>fork:community_project</code></td><td>Duplicate project into sandbox for experimentation</td></tr>
+<tr><td><code>assign:maintainer</code></td><td>Assign project maintainers</td></tr>
+<tr><td><code>create:project_tags</code></td><td>Define tags like "CLI", "REST", "gRPC" etc.</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="4-image-infographic-archive"><a class="header" href="#4-image-infographic-archive">4. <code>image-infographic-archive/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>upload:image_infographic</code></td><td>Upload PNG/SVG/PDF</td></tr>
+<tr><td><code>optimize:image</code></td><td>Resize/compress for performance</td></tr>
+<tr><td><code>annotate:image</code></td><td>Add notes or highlight sections</td></tr>
+<tr><td><code>group:infographics</code></td><td>Create themes/sets (e.g., Goroutine Internals Set)</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="5-community-stories"><a class="header" href="#5-community-stories">5. <code>community-stories/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>submit:story</code></td><td>Submit a personal or experience story</td></tr>
+<tr><td><code>moderate:story</code></td><td>Approve or reject stories</td></tr>
+<tr><td><code>tag:story_category</code></td><td>Label stories (job hunt, rejections, etc.)</td></tr>
+<tr><td><code>feature:story</code></td><td>Highlight on community page</td></tr>
+<tr><td><code>approve:anonymous_story</code></td><td>Allow anonymous publishing</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="6-package-archive"><a class="header" href="#6-package-archive">6. <code>package-archive/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>upload:package_source</code></td><td>Upload zip/tarball or Git link</td></tr>
+<tr><td><code>verify:package_integrity</code></td><td>Ensure no malicious code</td></tr>
+<tr><td><code>test:package</code></td><td>Run CI on submitted code</td></tr>
+<tr><td><code>mark:package_deprecated</code></td><td>Deprecate old packages</td></tr>
+<tr><td><code>create:package_doc</code></td><td>Write documentation for package</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="7-community-blogs"><a class="header" href="#7-community-blogs">7. <code>community-blogs/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>submit:blog_post</code></td><td>Write and submit a blog</td></tr>
+<tr><td><code>edit:others_blog</code></td><td>Allow editing of other authors' blogs (moderator only)</td></tr>
+<tr><td><code>review:blog_post</code></td><td>Can review before publishing</td></tr>
+<tr><td><code>pin:blog_post</code></td><td>Pin post to top of page</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="8-news-events"><a class="header" href="#8-news-events">8. <code>news-events/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>submit:event</code></td><td>Submit conference or event</td></tr>
+<tr><td><code>create:event_recap</code></td><td>Summarize events</td></tr>
+<tr><td><code>organize:event_listing</code></td><td>Curate future/past events</td></tr>
+<tr><td><code>assign:event_host</code></td><td>Add moderators for meetups/hackathons</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="9-video-archive"><a class="header" href="#9-video-archive">9. <code>video-archive/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>embed:video_link</code></td><td>Attach YouTube or local hosted video</td></tr>
+<tr><td><code>transcribe:video</code></td><td>Add subtitle or transcript</td></tr>
+<tr><td><code>review:video_content</code></td><td>Moderate for quality or relevance</td></tr>
+<tr><td><code>feature:video</code></td><td>Spotlight video on homepage</td></tr>
+<tr><td><code>clip:video_segment</code></td><td>Create mini-clips or highlights</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="10-course-content"><a class="header" href="#10-course-content">10. <code>course-content/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>submit:course_module</code></td><td>Create lessons or sections</td></tr>
+<tr><td><code>assign:course_owner</code></td><td>Appoint course maintainer(s)</td></tr>
+<tr><td><code>review:course_content</code></td><td>Approve/reject modules</td></tr>
+<tr><td><code>track:course_progress</code></td><td>See student analytics (admin only)</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="11-link-resource-archive"><a class="header" href="#11-link-resource-archive">11. <code>link-resource-archive/</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>submit:link</code></td><td>Add blog/tool/documentation link</td></tr>
+<tr><td><code>validate:link</code></td><td>Check for broken/dead links</td></tr>
+<tr><td><code>approve:external_resource</code></td><td>Manual approval for outbound links</td></tr>
+<tr><td><code>organize:bookmark_list</code></td><td>Allow curating themed collections</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-bonus-system-permissions"><a class="header" href="#-bonus-system-permissions">✅ Bonus System Permissions</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Permission</th><th>Applies to</th></tr></thead><tbody>
+<tr><td><code>manage:users</code></td><td>Admin only — manage roles, bans, profile data</td></tr>
+<tr><td><code>manage:roles</code></td><td>Create/update roles and their permission sets</td></tr>
+<tr><td><code>audit:logs</code></td><td>View user activity logs</td></tr>
+<tr><td><code>backup:data</code></td><td>Export platform content</td></tr>
+<tr><td><code>toggle:maintenance_mode</code></td><td>Take platform down for maintenance</td></tr>
+<tr><td><code>view:analytics</code></td><td>See usage and traffic reports</td></tr>
+<tr><td><code>send:notifications</code></td><td>System-wide announcement access</td></tr>
+</tbody></table>
+</div>
+<hr />
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../mini-projects/ccwc/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../mini-projects/ccwc/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

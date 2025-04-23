@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Check Our Tech Stacks - BGCE ARCHIVE</title>
+        <title>Contributing - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -12,33 +12,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "";
+            const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="../toc.js"></script>
     </head>
     <body>
     <div id="body-container">
@@ -91,7 +91,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -126,7 +126,7 @@
                     <h1 class="menu-title">BGCE ARCHIVE</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/JsIqbal/bgce-archive" title="Git repository" aria-label="Git repository">
@@ -158,42 +158,78 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>🧩 Tech Stack (Future Web App Vision)
-This vault is powered by several modern tools and practices for collaboration, code sharing, and documentation. Feel free to explore more about our tech stack:</p>
-<p>If this turns into a community-driven web interface:</p>
-<pre><code class="language-bash">• Frontend: React / Svelte / Next.js / Vue
-• Backend: Go
-• Storage: GitHub + SQLite/Postgres
-• Auth: GitHub OAuth (optional)
-• Deployment: AWS
+                        <h2 id="-contribution-templates-for-golang-community-vault"><a class="header" href="#-contribution-templates-for-golang-community-vault">🧩 CONTRIBUTION TEMPLATES FOR GOLANG COMMUNITY VAULT</a></h2>
+<h4 id="welcome-to-the-golang-community-vault"><a class="header" href="#welcome-to-the-golang-community-vault">Welcome to the Golang Community Vault!</a></h4>
+<p>We’re excited to have your contributions. Here's how you can help:</p>
+<h4 id="-guidelines"><a class="header" href="#-guidelines">📌 Guidelines:</a></h4>
+<ul>
+<li><strong>Fork</strong> the repo and create a new branch (name it <code>feat/&lt;title&gt;</code> or <code>fix/&lt;title&gt;</code>).</li>
+<li>Add your Markdown files to the appropriate subfolder.</li>
+<li>Follow our <a href="../../README.html">README</a> For Complete Documentation.</li>
+<li>Ensure links are working and code is properly formatted.</li>
+<li>Commit strategy using our <a href="./COMMIT-STRATEGY.html">COMMIT-STRATEGY</a>.</li>
+<li>Submit a pull request using our <a href="./PR.html">PR Template</a>.</li>
+</ul>
+<h4 id="-folder-naming-convention"><a class="header" href="#-folder-naming-convention">📂 Folder Naming Convention:</a></h4>
+<ul>
+<li>All folders must use <code>kebab-case</code>.</li>
+<li>Use <code>README.md</code> inside folders for summaries.</li>
+</ul>
+<h4 id="-markdown-file-template"><a class="header" href="#-markdown-file-template">📝 Markdown File Template</a></h4>
+<pre><code class="language-md"># [Title]
+
+**Author:** @yourhandle
+**Date:** YYYY-MM-DD
+**Category:** e.g., interview-qa/topic-wise
+**Tags:** [go, concurrency, channels]
+
+---
+
+## 🧠 Summary
+
+_Brief explanation of the content._
+
+## 🧩 Content
+
+### Overview
+
+### Key Concepts
+
+### Code
+
+```go
+// Example snippet\`
+```
 </code></pre>
-<p>UI/UX ideas for the future web App</p>
-<pre><code class="language-bash">Most preferable one for now:
-1. Modern Library-Style UI
-   - Homepage: A clean, minimalist grid of featured archives with a search bar in the center.
-   - Filters &amp; Categories: Sidebar with quick access to categories (by year, author, tags, etc.).
-   - Reading Mode: Dark/light mode toggle, distraction-free fullscreen mode.
-   - Bookmarking &amp; Notes: Users can highlight text and add personal notes to archives.
-</code></pre>
-<p>Other types of UI</p>
-<pre><code class="language-bash">2. Timeline-Based UI
-3. Grid &amp; Gallery UI
-4. Terminal-Inspired UI
-5. Tag-Based UI
-6. Map-Based UI
-7. AI-Assisted UI
-8. Infinite Scroll vs. Pagination Debate
-</code></pre>
-<p>⸻</p>
+<h2 id="-resources"><a class="header" href="#-resources">📚 Resources</a></h2>
+<ul>
+<li><a href="">Link1</a></li>
+</ul>
+<pre><code>
+## ✅ Contribution Rules
+
+-   Must include summary, author, and tags
+-   Format code blocks
+-   External links must be verified
+
+## 🔗 Links
+
+-   [Templates](../templates)
+-   [Static Site Preview](../site)
+
+```</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="NO-CODE.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../contribution-guide/COMMIT-STRATEGY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next prefetch" href="../contribution-guide/NO-CODE.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -201,10 +237,13 @@ This vault is powered by several modern tools and practices for collaboration, c
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="NO-CODE.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../contribution-guide/COMMIT-STRATEGY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next prefetch" href="../contribution-guide/NO-CODE.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -217,13 +256,13 @@ This vault is powered by several modern tools and practices for collaboration, c
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 

@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Numbers - BGCE ARCHIVE</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">BGCE ARCHIVE</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/JsIqbal/bgce-archive" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> interview-qa/operators
+<strong>Tags:</strong> [go, operators, arithmetic, assignment]
+]</p>
+<h1 id="operators-are-used-to-perform-operations-on-variables-and-values"><a class="header" href="#operators-are-used-to-perform-operations-on-variables-and-values">Operators are used to perform operations on variables and values</a></h1>
+<h2 id="arithmetic-operators"><a class="header" href="#arithmetic-operators">Arithmetic Operators</a></h2>
+<h3 id="1-addition-the--operator-adds-two-operands-for-example-xy"><a class="header" href="#1-addition-the--operator-adds-two-operands-for-example-xy">1. Addition: The + operator adds two operands. For example, x+y.</a></h3>
+<h3 id="2-subtraction-the---operator-subtracts-two-operands-for-example-x-y"><a class="header" href="#2-subtraction-the---operator-subtracts-two-operands-for-example-x-y">2. Subtraction: The - operator subtracts two operands. For example, x-y.</a></h3>
+<h3 id="3-multiplication-the--operator-multiplies-two-operands-for-example-xy"><a class="header" href="#3-multiplication-the--operator-multiplies-two-operands-for-example-xy">3. Multiplication: The * operator multiplies two operands. For example, x*y.</a></h3>
+<h3 id="4-division-the--operator-divides-the-first-operand-by-the-second-for-example-xy"><a class="header" href="#4-division-the--operator-divides-the-first-operand-by-the-second-for-example-xy">4. Division: The / operator divides the first operand by the second. For example, x/y.</a></h3>
+<h3 id="5-modulus-returns-the-division-remainder"><a class="header" href="#5-modulus-returns-the-division-remainder">5. Modulus: Returns the division remainder</a></h3>
+<h3 id="6-increment-the--increases-the-value-of-a-variable-by-1"><a class="header" href="#6-increment-the--increases-the-value-of-a-variable-by-1">6. Increment: The ++ Increases the value of a variable by 1</a></h3>
+<h3 id="7-decrement-the----decreases-the-value-of-a-variable-by-1"><a class="header" href="#7-decrement-the----decreases-the-value-of-a-variable-by-1">7. Decrement: The -- Decreases the value of a variable by 1</a></h3>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	fmt.Println(2 + 2) // 4
+	fmt.Println(2 - 2) // 0
+	fmt.Println(2 * 2) // 4
+	fmt.Println(2 / 2) // 1
+	fmt.Println(2 % 2) // 0
+}
+</code></pre>
+<h3 id="increment"><a class="header" href="#increment">Increment</a></h3>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  x:= 10
+  x++ // Add one new value (increment)
+  fmt.Println(x)
+}
+</code></pre>
+<h3 id="decrement"><a class="header" href="#decrement">Decrement</a></h3>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  x:= 10
+  x-- // Remove one new value (decrement)
+  fmt.Println(x)
+}
+</code></pre>
+<h2 id="assignment-operators"><a class="header" href="#assignment-operators">Assignment Operators</a></h2>
+<h3 id="assignment-operators-are-used-to-assign-values-to-variables"><a class="header" href="#assignment-operators-are-used-to-assign-values-to-variables">Assignment operators are used to assign values to variables.</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Example</th><th>Same As</th></tr></thead><tbody>
+<tr><td>=</td><td>x = 5</td><td>x = 5</td></tr>
+<tr><td>+=</td><td>x += 3</td><td>x = x + 3</td></tr>
+<tr><td>-=</td><td>x -= 3</td><td>x = x - 3</td></tr>
+<tr><td>*=</td><td>x *= 3</td><td>x = x * 3</td></tr>
+<tr><td>/=</td><td>x /= 3</td><td>x = x / 3</td></tr>
+<tr><td>%=</td><td>x %= 3</td><td>x = x % 3</td></tr>
+</tbody></table>
+</div>
+<h2 id="questions-and-examples"><a class="header" href="#questions-and-examples">Questions and Examples</a></h2>
+<h3 id="1-create-a-variable-named-lgnumber-store-1000-as-a-value-and-perform-various-operations"><a class="header" href="#1-create-a-variable-named-lgnumber-store-1000-as-a-value-and-perform-various-operations">1. Create a variable named <code>lgNumber</code>, store 1000 as a value, and perform various operations.</a></h3>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  lgNumber := 1000
+
+  // Add that variable with itself
+  sum := lgNumber + lgNumber
+  fmt.Println("Addition:", sum) // 2000
+
+  // Subtract that variable by itself
+  difference := lgNumber - lgNumber
+  fmt.Println("Subtraction:", difference) // 0
+
+  // Multiply that variable with itself
+  product := lgNumber * lgNumber
+  fmt.Println("Multiplication:", product) // 1000000
+
+  // Divide that variable with itself
+  quotient := lgNumber / lgNumber
+  fmt.Println("Division:", quotient) // 1
+}
+</code></pre>
+<h2 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h2>
+<h3 id="1-how-do-you-perform-addition-and-subtraction-in-go"><a class="header" href="#1-how-do-you-perform-addition-and-subtraction-in-go">1. How do you perform addition and subtraction in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>+</code> operator for addition and <code>-</code> for subtraction.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    a, b := 10, 5
+    fmt.Println("Addition:", a+b) // 15
+    fmt.Println("Subtraction:", a-b) // 5
+}
+</code></pre>
+<h3 id="2-how-do-you-calculate-the-remainder-of-a-division-in-go"><a class="header" href="#2-how-do-you-calculate-the-remainder-of-a-division-in-go">2. How do you calculate the remainder of a division in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>%</code> operator for modulus.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    fmt.Println("Remainder:", 10%3) // 1
+}
+</code></pre>
+<h3 id="3-can-you-increment-a-variable-in-go"><a class="header" href="#3-can-you-increment-a-variable-in-go">3. Can you increment a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Yes, use <code>++</code> to increment a variable by 1.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    x := 5
+    x++
+    fmt.Println("Incremented Value:", x) // 6
+}
+</code></pre>
+<h3 id="4-how-do-you-assign-and-add-a-value-to-a-variable-in-go"><a class="header" href="#4-how-do-you-assign-and-add-a-value-to-a-variable-in-go">4. How do you assign and add a value to a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>+=</code> operator.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    x := 10
+    x += 5
+    fmt.Println("Updated Value:", x) // 15
+}
+</code></pre>
+<h3 id="5-how-do-you-multiply-and-assign-a-value-to-a-variable-in-go"><a class="header" href="#5-how-do-you-multiply-and-assign-a-value-to-a-variable-in-go">5. How do you multiply and assign a value to a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>*=</code> operator.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    x := 10
+    x *= 2
+    fmt.Println("Updated Value:", x) // 20
+}
+</code></pre>
+<h3 id="6-how-do-you-divide-and-assign-a-value-to-a-variable-in-go"><a class="header" href="#6-how-do-you-divide-and-assign-a-value-to-a-variable-in-go">6. How do you divide and assign a value to a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>/=</code> operator.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    x := 10
+    x /= 2
+    fmt.Println("Updated Value:", x) // 5
+}
+</code></pre>
+<h3 id="7-how-do-you-decrement-a-variable-in-go"><a class="header" href="#7-how-do-you-decrement-a-variable-in-go">7. How do you decrement a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use <code>--</code> to decrement a variable by 1.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    x := 5
+    x--
+    fmt.Println("Decremented Value:", x) // 4
+}
+</code></pre>
+<h3 id="8-how-do-you-perform-multiple-arithmetic-operations-in-one-line"><a class="header" href="#8-how-do-you-perform-multiple-arithmetic-operations-in-one-line">8. How do you perform multiple arithmetic operations in one line?</a></h3>
+<p><strong>Answer:</strong> Combine operators in a single expression.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    result := (10 + 5) * 2 - 3
+    fmt.Println("Result:", result) // 27
+}
+</code></pre>
+<h3 id="9-how-do-you-check-if-a-number-is-even-or-odd-in-go"><a class="header" href="#9-how-do-you-check-if-a-number-is-even-or-odd-in-go">9. How do you check if a number is even or odd in Go?</a></h3>
+<p><strong>Answer:</strong> Use the modulus operator <code>%</code>.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    num := 7
+    if num%2 == 0 {
+        fmt.Println("Even")
+    } else {
+        fmt.Println("Odd")
+    }
+}
+</code></pre>
+<h3 id="10-how-do-you-swap-two-numbers-without-using-a-third-variable-in-go"><a class="header" href="#10-how-do-you-swap-two-numbers-without-using-a-third-variable-in-go">10. How do you swap two numbers without using a third variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use arithmetic operations.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    a, b := 5, 10
+    a = a + b
+    b = a - b
+    a = a - b
+    fmt.Println("Swapped Values:", a, b) // 10, 5
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../interview-qna/topic-wise/Maps/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../../interview-qna/topic-wise/Slices/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../interview-qna/topic-wise/Maps/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../../interview-qna/topic-wise/Slices/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
