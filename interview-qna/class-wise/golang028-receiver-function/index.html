@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Landing Page - BGCE ARCHIVE</title>
+        <title>Golang028 Receiver Function - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -12,33 +12,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../";
+            const path_to_root = "../../../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc.js"></script>
+        <script src="../../../toc.js"></script>
     </head>
     <body>
     <div id="body-container">
@@ -91,7 +91,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../../../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -126,7 +126,7 @@
                     <h1 class="menu-title">BGCE ARCHIVE</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/JsIqbal/bgce-archive" title="Git repository" aria-label="Git repository">
@@ -158,85 +158,96 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="landing-project"><a class="header" href="#landing-project">Landing Project</a></h1>
-<p>This project is a web application built with Next.js. Below are the steps to install and run the project.</p>
-<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
-<p>Ensure you have the following installed on your system:</p>
+                        <h1 id="class-28-receiver-functions-in-go"><a class="header" href="#class-28-receiver-functions-in-go">Class 28: Receiver Functions in Go</a></h1>
+<h2 id="-key-concept-receiver-functions"><a class="header" href="#-key-concept-receiver-functions">🔑 Key Concept: Receiver Functions</a></h2>
+<p>In Go, a <strong>receiver function</strong> (also called a <strong>method</strong>) is a function that is associated with a particular <strong>type</strong> (usually a struct). It allows us to add behavior to data types, like attaching functions to objects in other languages (e.g., methods in OOP).</p>
+<hr />
+<h2 id="-what-is-a-receiver-function"><a class="header" href="#-what-is-a-receiver-function">🧠 What Is a Receiver Function?</a></h2>
+<p>A <strong>receiver function</strong> is defined like a normal function, but with a special receiver parameter placed between the <code>func</code> keyword and the function name.</p>
+<pre><code class="language-go">func (r ReceiverType) FunctionName(params) returnType {
+    // function body
+}
+</code></pre>
+<p>The receiver type can be:</p>
 <ul>
-<li>Node.js (v16 or later)</li>
-<li>npm or yarn (Node package managers)</li>
+<li>A <strong>value receiver</strong>: <code>(t Type)</code> → receives a copy</li>
+<li>A <strong>pointer receiver</strong>: <code>(t *Type)</code> → receives a reference (can modify original)</li>
 </ul>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
-<ol>
-<li>
-<p>Clone the repository:</p>
-<pre><code class="language-bash">git clone &lt;repository-url&gt;
+<hr />
+<h2 id="-from-the-project-code"><a class="header" href="#-from-the-project-code">🏗️ From the Project Code</a></h2>
+<pre><code class="language-go">func (todos *Todos) add(title string) {
+    todo := Todo{
+        Title: title,
+        Completed: false,
+        CompletedAt: nil,
+        CreatedAt: time.Now(),
+    }
+    *todos = append(*todos, todo)
+}
 </code></pre>
-</li>
-<li>
-<p>Navigate to the <code>landing</code> directory:</p>
-<pre><code class="language-bash">cd landing
-</code></pre>
-</li>
-<li>
-<p>Install dependencies:</p>
-<pre><code class="language-bash">npm install
-# or
-yarn install
-</code></pre>
-</li>
-</ol>
-<h2 id="running-the-project"><a class="header" href="#running-the-project">Running the Project</a></h2>
-<ol>
-<li>
-<p>Start the development server:</p>
-<pre><code class="language-bash">npm run dev
-# or
-yarn dev
-</code></pre>
-</li>
-<li>
-<p>Open your browser and navigate to <code>http://localhost:3000</code> to view the application.</p>
-</li>
-</ol>
-<h2 id="building-for-production"><a class="header" href="#building-for-production">Building for Production</a></h2>
-<p>To build the project for production, run:</p>
-<pre><code class="language-bash">npm run build
-# or
-yarn build
-</code></pre>
-<p>After building, you can start the production server with:</p>
-<pre><code class="language-bash">npm start
-# or
-yarn start
-</code></pre>
-<h2 id="additional-scripts"><a class="header" href="#additional-scripts">Additional Scripts</a></h2>
 <ul>
-<li>
-<p><strong>Linting:</strong></p>
-<pre><code class="language-bash">npm run lint
-# or
-yarn lint
-</code></pre>
-</li>
-<li>
-<p><strong>Formatting:</strong></p>
-<pre><code class="language-bash">npm run format
-# or
-yarn format
-</code></pre>
-</li>
+<li><code>todos *Todos</code> is the <strong>receiver</strong></li>
+<li>This method is attached to <code>Todos</code> (which is a custom type: <code>[]Todo</code>)</li>
+<li>The <code>*Todos</code> pointer allows modifications to the original slice</li>
 </ul>
+<p>Example usage from <code>main.go</code>:</p>
+<pre><code class="language-go">todos.add("Buy milk")
+</code></pre>
+<hr />
+<h2 id="-why-use-receiver-functions"><a class="header" href="#-why-use-receiver-functions">🔁 Why Use Receiver Functions?</a></h2>
+<ul>
+<li>Organize logic with the data it operates on ✅</li>
+<li>Achieve OOP-like behavior in Go ✅</li>
+<li>Maintain cleaner and modular code ✅</li>
+</ul>
+<hr />
+<h2 id="-extra-simple-example"><a class="header" href="#-extra-simple-example">💡 Extra Simple Example</a></h2>
+<pre><code class="language-go">type User struct {
+    Name string
+}
+
+// Value receiver (no change to original)
+func (u User) SayHi() {
+    fmt.Println("Hi, I am", u.Name)
+}
+
+// Pointer receiver (can change original)
+func (u *User) ChangeName(newName string) {
+    u.Name = newName
+}
+
+func main() {
+    user := User{Name: "Ruhin"}
+    user.SayHi() // Hi, I am Ruhin
+    user.ChangeName("Mukim")
+    user.SayHi() // Hi, I am Mukim
+}
+</code></pre>
+<hr />
+<h2 id="-summary"><a class="header" href="#-summary">⚙️ Summary</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>Receiver</td><td>The type a method is attached to (e.g., <code>*Todos</code>)</td></tr>
+<tr><td>Value Receiver</td><td>Gets a copy of the value; doesn't affect the original</td></tr>
+<tr><td>Pointer Receiver</td><td>Gets a reference; can modify the original</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-visualizing-it"><a class="header" href="#-visualizing-it">📘 Visualizing It</a></h2>
+<p>Think of <code>todos.add()</code> as calling a behavior of the object:</p>
+<pre><code class="language-go">object.method()
+</code></pre>
+<p>This pattern lets <code>Todos</code> have its own custom logic, like <code>add</code>, <code>delete</code>, <code>toggle</code>, <code>print</code>, etc., just like class methods in Python/Java.</p>
+<hr />
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../interview-qna/topic-wise/variadict-function.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../../interview-qna/class-wise/golang027-struct/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../link-resources/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../interview-qna/class-wise/golang029-array/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -246,11 +257,11 @@ yarn format
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../interview-qna/topic-wise/variadict-function.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../../interview-qna/class-wise/golang027-struct/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../link-resources/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../interview-qna/class-wise/golang029-array/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -265,13 +276,13 @@ yarn format
         </script>
 
 
-        <script src="../elasticlunr.min.js"></script>
-        <script src="../mark.min.js"></script>
-        <script src="../searcher.js"></script>
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
 
-        <script src="../clipboard.min.js"></script>
-        <script src="../highlight.js"></script>
-        <script src="../book.js"></script>
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
 
         <!-- Custom JS scripts -->
 

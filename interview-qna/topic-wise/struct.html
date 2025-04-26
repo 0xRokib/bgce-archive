@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Struct - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,197 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> e.g., interview-qa/topic_name
+<strong>Tags:</strong> [go, concurrency, channels]
+]</p>
+<h1 id="structs-structures"><a class="header" href="#structs-structures">Structs (Structures)</a></h1>
+<p>A struct is used to create a collection of members of different data types, into a single variable.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+type Person struct {
+  name string
+  age int
+  job string
+  salary int
+}
+
+func main() {
+  var userOne Person
+
+  userOne.name = "HuXn"
+  userOne.age = 18
+  userOne.job = "Programmer"
+  userOne.salary = 40000
+
+  fmt.Println(userOne)
+  fmt.Println("My name is", userOne.name, "I'm", userOne.age, "Years old", "My Profession is", userOne.job, "My salary is", userOne.salary)
+}
+</code></pre>
+<h2 id="frequently-asked-questions-faq"><a class="header" href="#frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</a></h2>
+<h3 id="1-what-is-a-struct-in-go"><a class="header" href="#1-what-is-a-struct-in-go">1. What is a struct in Go?</a></h3>
+<p><strong>Answer:</strong> A struct is a composite data type in Go that groups together variables under a single name. These variables can be of different types.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">type Person struct {
+  name string
+  age int
+}
+
+func main() {
+  p := Person{name: "Alice", age: 30}
+  fmt.Println(p)
+}
+</code></pre>
+<h3 id="2-how-do-you-define-and-initialize-a-struct-in-go"><a class="header" href="#2-how-do-you-define-and-initialize-a-struct-in-go">2. How do you define and initialize a struct in Go?</a></h3>
+<p><strong>Answer:</strong> You can define a struct using the <code>type</code> keyword and initialize it using a struct literal.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">type Car struct {
+  brand string
+  year  int
+}
+
+func main() {
+  c := Car{brand: "Toyota", year: 2020}
+  fmt.Println(c)
+}
+</code></pre>
+<h3 id="3-can-you-create-an-anonymous-struct-in-go"><a class="header" href="#3-can-you-create-an-anonymous-struct-in-go">3. Can you create an anonymous struct in Go?</a></h3>
+<p><strong>Answer:</strong> Yes, you can create an anonymous struct without defining a named type.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">func main() {
+  person := struct {
+    name string
+    age  int
+  }{
+    name: "John",
+    age: 25,
+  }
+  fmt.Println(person)
+}
+</code></pre>
+<h3 id="4-how-do-you-access-and-modify-struct-fields-in-go"><a class="header" href="#4-how-do-you-access-and-modify-struct-fields-in-go">4. How do you access and modify struct fields in Go?</a></h3>
+<p><strong>Answer:</strong> You can access and modify struct fields using the dot <code>.</code> operator.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">type Book struct {
+  title  string
+  author string
+}
+
+func main() {
+  b := Book{title: "Go Programming", author: "John Doe"}
+  b.title = "Advanced Go Programming"
+  fmt.Println(b)
+}
+</code></pre>
+<h3 id="5-can-structs-have-methods-in-go"><a class="header" href="#5-can-structs-have-methods-in-go">5. Can structs have methods in Go?</a></h3>
+<p><strong>Answer:</strong> Yes, you can define methods for structs.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">type Rectangle struct {
+  width, height float64
+}
+
+func (r Rectangle) Area() float64 {
+  return r.width * r.height
+}
+
+func main() {
+  rect := Rectangle{width: 10, height: 5}
+  fmt.Println("Area:", rect.Area())
+}
+</code></pre>
+<h3 id="6-what-is-the-difference-between-value-and-pointer-receivers-in-struct-methods"><a class="header" href="#6-what-is-the-difference-between-value-and-pointer-receivers-in-struct-methods">6. What is the difference between value and pointer receivers in struct methods?</a></h3>
+<p><strong>Answer:</strong> Value receivers operate on a copy of the struct, while pointer receivers operate on the original struct.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">type Counter struct {
+  count int
+}
+
+func (c *Counter) Increment() {
+  c.count++
+}
+
+func main() {
+  c := Counter{}
+  c.Increment()
+  fmt.Println(c.count)
+}
+</code></pre>
+<h3 id="7-can-structs-embed-other-structs-in-go"><a class="header" href="#7-can-structs-embed-other-structs-in-go">7. Can structs embed other structs in Go?</a></h3>
+<p><strong>Answer:</strong> Yes, Go supports struct embedding for composition.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">type Address struct {
+  city, state string
+}
+
+type Person struct {
+  name    string
+  address Address
+}
+
+func main() {
+  p := Person{name: "Alice", address: Address{city: "New York", state: "NY"}}
+  fmt.Println(p)
+}
+</code></pre>
+<h3 id="8-how-do-you-compare-two-structs-in-go"><a class="header" href="#8-how-do-you-compare-two-structs-in-go">8. How do you compare two structs in Go?</a></h3>
+<p><strong>Answer:</strong> You can compare structs using the <code>==</code> operator if all fields are comparable.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">type Point struct {
+  x, y int
+}
+
+func main() {
+  p1 := Point{x: 1, y: 2}
+  p2 := Point{x: 1, y: 2}
+  fmt.Println(p1 == p2) // true
+}
+</code></pre>
+<h3 id="9-can-you-use-structs-as-map-keys-in-go"><a class="header" href="#9-can-you-use-structs-as-map-keys-in-go">9. Can you use structs as map keys in Go?</a></h3>
+<p><strong>Answer:</strong> Yes, structs can be used as map keys if all their fields are comparable.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">type Point struct {
+  x, y int
+}
+
+func main() {
+  m := make(map[Point]string)
+  m[Point{x: 1, y: 2}] = "A Point"
+  fmt.Println(m)
+}
+</code></pre>
+<h3 id="10-how-do-you-iterate-over-struct-fields-in-go"><a class="header" href="#10-how-do-you-iterate-over-struct-fields-in-go">10. How do you iterate over struct fields in Go?</a></h3>
+<p><strong>Answer:</strong> You can use the <code>reflect</code> package to iterate over struct fields.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">import (
+  "fmt"
+  "reflect"
+)
+
+type Person struct {
+  Name string
+  Age  int
+}
+
+func main() {
+  p := Person{Name: "Alice", Age: 30}
+  v := reflect.ValueOf(p)
+  for i := 0; i &lt; v.NumField(); i++ {
+    fmt.Println(v.Type().Field(i).Name, v.Field(i))
+  }
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/string.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/switch-statement.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +358,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/string.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/switch-statement.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

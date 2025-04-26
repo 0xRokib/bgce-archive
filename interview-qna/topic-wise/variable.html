@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Variable - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,150 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> e.g., interview-qa/topic_name
+<strong>Tags:</strong> [go, concurrency, channels]
+]</p>
+<h1 id="variables-are-containers-for-storing-data-values"><a class="header" href="#variables-are-containers-for-storing-data-values">Variables are containers for storing data values</a></h1>
+<h2 id="in-go-there-are-two-ways-to-declare-a-variable"><a class="header" href="#in-go-there-are-two-ways-to-declare-a-variable">In Go, there are two ways to declare a variable</a></h2>
+<h3 id="1-use-the-var-keyword-followed-by-variable-name-and-type"><a class="header" href="#1-use-the-var-keyword-followed-by-variable-name-and-type">1. Use the var keyword, followed by variable name and type</a></h3>
+<pre><code class="language-go">package main
+import ("fmt")
+
+var name = "John Doe" // Variable One
+
+func main() {
+  var fruit = "Apple" // Variable Two
+  fmt.Println(name)
+  fmt.Println(fruit)
+}
+</code></pre>
+<h3 id="2-use-the--sign-followed-by-the-variable-value"><a class="header" href="#2-use-the--sign-followed-by-the-variable-value">2. Use the := sign, followed by the variable value</a></h3>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  varOne := 100
+  varTwo := 2
+  fmt.Println(varOne)
+  fmt.Println(varTwo)
+}
+</code></pre>
+<h2 id="frequently-asked-questions-faqs"><a class="header" href="#frequently-asked-questions-faqs">Frequently Asked Questions (FAQs)</a></h2>
+<h3 id="1-how-do-you-declare-a-constant-variable-in-go"><a class="header" href="#1-how-do-you-declare-a-constant-variable-in-go">1. How do you declare a constant variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>const</code> keyword to declare a constant variable. Constants cannot be changed after they are declared.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  const pi = 3.14
+  fmt.Println(pi)
+}
+</code></pre>
+<h3 id="2-can-you-declare-multiple-variables-in-a-single-line"><a class="header" href="#2-can-you-declare-multiple-variables-in-a-single-line">2. Can you declare multiple variables in a single line?</a></h3>
+<p><strong>Answer:</strong> Yes, you can declare multiple variables in a single line using the <code>var</code> keyword or <code>:=</code> syntax.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  var x, y, z int = 1, 2, 3
+  fmt.Println(x, y, z)
+}
+</code></pre>
+<h3 id="3-what-is-the-zero-value-of-a-variable-in-go"><a class="header" href="#3-what-is-the-zero-value-of-a-variable-in-go">3. What is the zero value of a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Variables in Go are automatically assigned a zero value if not explicitly initialized.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  var number int
+  fmt.Println(number) // Output: 0
+}
+</code></pre>
+<h3 id="4-how-do-you-declare-a-global-variable-in-go"><a class="header" href="#4-how-do-you-declare-a-global-variable-in-go">4. How do you declare a global variable in Go?</a></h3>
+<p><strong>Answer:</strong> Declare the variable outside of any function.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+var globalVar = "I am global"
+
+func main() {
+  fmt.Println(globalVar)
+}
+</code></pre>
+<h3 id="5-can-you-reassign-a-value-to-a-variable-declared-with-var"><a class="header" href="#5-can-you-reassign-a-value-to-a-variable-declared-with-var">5. Can you reassign a value to a variable declared with <code>var</code>?</a></h3>
+<p><strong>Answer:</strong> Yes, variables declared with <code>var</code> can be reassigned.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  var name = "John"
+  name = "Doe"
+  fmt.Println(name)
+}
+</code></pre>
+<h3 id="6-what-happens-if-you-declare-a-variable-but-do-not-use-it"><a class="header" href="#6-what-happens-if-you-declare-a-variable-but-do-not-use-it">6. What happens if you declare a variable but do not use it?</a></h3>
+<p><strong>Answer:</strong> Go does not allow unused variables and will throw a compile-time error.</p>
+<pre><code class="language-go">package main
+func main() {
+  var unusedVar = 10 // This will cause an error
+}
+</code></pre>
+<h3 id="7-how-do-you-declare-a-variable-with-a-specific-type"><a class="header" href="#7-how-do-you-declare-a-variable-with-a-specific-type">7. How do you declare a variable with a specific type?</a></h3>
+<p><strong>Answer:</strong> Use the <code>var</code> keyword followed by the type.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  var age int = 25
+  fmt.Println(age)
+}
+</code></pre>
+<h3 id="8-can-you-declare-a-variable-without-initializing-it"><a class="header" href="#8-can-you-declare-a-variable-without-initializing-it">8. Can you declare a variable without initializing it?</a></h3>
+<p><strong>Answer:</strong> Yes, but it will have a zero value.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  var name string
+  fmt.Println(name) // Output: ""
+}
+</code></pre>
+<h3 id="9-how-do-you-declare-a-variable-in-a-block"><a class="header" href="#9-how-do-you-declare-a-variable-in-a-block">9. How do you declare a variable in a block?</a></h3>
+<p><strong>Answer:</strong> Use the <code>var</code> keyword inside a block.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  var (
+    x int = 10
+    y string = "Hello"
+  )
+  fmt.Println(x, y)
+}
+</code></pre>
+<h3 id="10-what-is-the-difference-between-var-and-"><a class="header" href="#10-what-is-the-difference-between-var-and-">10. What is the difference between <code>var</code> and <code>:=</code>?</a></h3>
+<p><strong>Answer:</strong> <code>var</code> can be used globally and allows explicit type declaration, while <code>:=</code> is shorthand for local variable declaration and type inference.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  var name string = "John" // Explicit type
+  age := 30 // Type inferred
+  fmt.Println(name, age)
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/switch-statement.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/variadict-function.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +311,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/switch-statement.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/variadict-function.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Switch Statement - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,225 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> e.g., interview-qa/topic_name
+<strong>Tags:</strong> [go, concurrency, channels]
+]</p>
+<h1 id="the-switch-statement"><a class="header" href="#the-switch-statement">The switch Statement</a></h1>
+<h2 id="the-switch-statement-allows-us-to-execute-one-code-block-among-many-alternatives"><a class="header" href="#the-switch-statement-allows-us-to-execute-one-code-block-among-many-alternatives">The switch statement allows us to execute one code block among many alternatives.</a></h2>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  day := 8
+
+  switch day {
+  case 1:
+    fmt.Println("Monday")
+  case 2:
+    fmt.Println("Tuesday")
+  case 3:
+    fmt.Println("Wednesday")
+  case 4:
+    fmt.Println("Thursday")
+  case 5:
+    fmt.Println("Friday")
+  case 6:
+    fmt.Println("Saturday")
+  case 7:
+    fmt.Println("Sunday")
+  default:
+    fmt.Println("Not a weekday")
+  }
+}
+</code></pre>
+<h2 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h2>
+<h3 id="1-what-is-a-switch-statement-in-go"><a class="header" href="#1-what-is-a-switch-statement-in-go">1. What is a <code>switch</code> statement in Go?</a></h3>
+<p><strong>Answer:</strong> A <code>switch</code> statement is used to select one of many code blocks to execute. It is an alternative to using multiple <code>if-else</code> statements.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    num := 2
+    switch num {
+    case 1:
+        fmt.Println("One")
+    case 2:
+        fmt.Println("Two")
+    case 3:
+        fmt.Println("Three")
+    default:
+        fmt.Println("Other number")
+    }
+}
+</code></pre>
+<h3 id="2-can-we-use-multiple-values-in-a-single-case"><a class="header" href="#2-can-we-use-multiple-values-in-a-single-case">2. Can we use multiple values in a single <code>case</code>?</a></h3>
+<p><strong>Answer:</strong> Yes, multiple values can be grouped in a single <code>case</code>.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    char := 'a'
+    switch char {
+    case 'a', 'e', 'i', 'o', 'u':
+        fmt.Println("Vowel")
+    default:
+        fmt.Println("Consonant")
+    }
+}
+</code></pre>
+<h3 id="3-is-break-required-in-gos-switch-statement"><a class="header" href="#3-is-break-required-in-gos-switch-statement">3. Is <code>break</code> required in Go's <code>switch</code> statement?</a></h3>
+<p><strong>Answer:</strong> No, <code>break</code> is not required as Go automatically breaks out of the <code>switch</code> after executing a <code>case</code>.</p>
+<h3 id="4-how-to-use-fallthrough-in-a-switch-statement"><a class="header" href="#4-how-to-use-fallthrough-in-a-switch-statement">4. How to use <code>fallthrough</code> in a <code>switch</code> statement?</a></h3>
+<p><strong>Answer:</strong> The <code>fallthrough</code> keyword forces the execution of the next <code>case</code> even if the condition does not match.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    num := 1
+    switch num {
+    case 1:
+        fmt.Println("One")
+        fallthrough
+    case 2:
+        fmt.Println("Two")
+    default:
+        fmt.Println("Default")
+    }
+}
+</code></pre>
+<h3 id="5-can-switch-work-without-an-expression"><a class="header" href="#5-can-switch-work-without-an-expression">5. Can <code>switch</code> work without an expression?</a></h3>
+<p><strong>Answer:</strong> Yes, a <code>switch</code> can work without an expression, making it similar to a series of <code>if-else</code> statements.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    num := 10
+    switch {
+    case num &lt; 0:
+        fmt.Println("Negative")
+    case num == 0:
+        fmt.Println("Zero")
+    case num &gt; 0:
+        fmt.Println("Positive")
+    }
+}
+</code></pre>
+<h3 id="6-can-we-use-a-switch-statement-with-strings"><a class="header" href="#6-can-we-use-a-switch-statement-with-strings">6. Can we use a <code>switch</code> statement with strings?</a></h3>
+<p><strong>Answer:</strong> Yes, <code>switch</code> can be used with strings.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    color := "red"
+    switch color {
+    case "red":
+        fmt.Println("Stop")
+    case "yellow":
+        fmt.Println("Caution")
+    case "green":
+        fmt.Println("Go")
+    default:
+        fmt.Println("Unknown color")
+    }
+}
+</code></pre>
+<h3 id="7-can-switch-handle-type-assertions"><a class="header" href="#7-can-switch-handle-type-assertions">7. Can <code>switch</code> handle type assertions?</a></h3>
+<p><strong>Answer:</strong> Yes, <code>switch</code> can be used to handle type assertions.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    var x interface{} = 42
+    switch v := x.(type) {
+    case int:
+        fmt.Printf("%d is an int\n", v)
+    case string:
+        fmt.Printf("%s is a string\n", v)
+    default:
+        fmt.Println("Unknown type")
+    }
+}
+</code></pre>
+<h3 id="8-can-switch-be-used-with-functions"><a class="header" href="#8-can-switch-be-used-with-functions">8. Can <code>switch</code> be used with functions?</a></h3>
+<p><strong>Answer:</strong> Yes, you can use a function's return value in a <code>switch</code> statement.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func getNumber() int {
+    return 3
+}
+
+func main() {
+    switch getNumber() {
+    case 1:
+        fmt.Println("One")
+    case 2:
+        fmt.Println("Two")
+    case 3:
+        fmt.Println("Three")
+    default:
+        fmt.Println("Other number")
+    }
+}
+</code></pre>
+<h3 id="9-can-switch-be-nested"><a class="header" href="#9-can-switch-be-nested">9. Can <code>switch</code> be nested?</a></h3>
+<p><strong>Answer:</strong> Yes, <code>switch</code> statements can be nested.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    num := 2
+    switch num {
+    case 1:
+        fmt.Println("One")
+    case 2:
+        fmt.Println("Two")
+        switch num {
+        case 2:
+            fmt.Println("Nested switch")
+        }
+    default:
+        fmt.Println("Other number")
+    }
+}
+</code></pre>
+<h3 id="10-what-happens-if-no-case-matches-and-there-is-no-default"><a class="header" href="#10-what-happens-if-no-case-matches-and-there-is-no-default">10. What happens if no <code>case</code> matches and there is no <code>default</code>?</a></h3>
+<p><strong>Answer:</strong> If no <code>case</code> matches and there is no <code>default</code>, the <code>switch</code> statement does nothing.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    num := 5
+    switch num {
+    case 1:
+        fmt.Println("One")
+    case 2:
+        fmt.Println("Two")
+    }
+    // No output
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/struct.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/variable.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +386,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/struct.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/variable.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

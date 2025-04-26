@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Parameter Argument - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,164 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Argument vs Parameter
+<strong>Tags:</strong> [go, Parameter, Argument]
+]</p>
+<h2 id="difference-between-parameter-and-argument"><a class="header" href="#difference-between-parameter-and-argument">Difference between Parameter and Argument</a></h2>
+<h3 id="parameter"><a class="header" href="#parameter">Parameter</a></h3>
+<p>A <strong>parameter</strong> is a variable in the declaration of a function. It defines what kind of input a function will accept when it is called. It acts as a placeholder for the values that will be passed into the function.</p>
+<h3 id="argument"><a class="header" href="#argument">Argument</a></h3>
+<p>An <strong>argument</strong> is the actual value that is passed into the function when it is called. Arguments correspond to the parameters defined in the function signature. These are the real values provided to the function when executing the code.</p>
+<h3 id="example-code"><a class="header" href="#example-code">Example Code</a></h3>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Function with parameters 'a' and 'b'
+func add(a int, b int) int {
+    return a + b
+}
+
+func main() {
+    // Calling the function with arguments 5 and 3
+    result := add(5, 3)
+    fmt.Println("Result:", result) // Output: Result: 8
+}
+</code></pre>
+<p>In the above example:</p>
+<ul>
+<li><code>a</code> and <code>b</code> are <strong>parameters</strong> of the <code>add</code> function.</li>
+<li><code>5</code> and <code>3</code> are <strong>arguments</strong> passed to the <code>add</code> function when it is called in the <code>main</code> function.</li>
+</ul>
+<hr />
+<h3 id="further-explanation"><a class="header" href="#further-explanation">Further Explanation</a></h3>
+<p><strong>Parameters</strong> are declared within the function's signature. They provide the function with input values that can be used within the function's body.</p>
+<p><strong>Arguments</strong> are provided when the function is called. The values of these arguments are assigned to the corresponding parameters, allowing the function to perform its operation based on those values.</p>
+<h3 id="types-of-parameters"><a class="header" href="#types-of-parameters">Types of Parameters</a></h3>
+<ul>
+<li><strong>Formal Parameters</strong>: These are parameters that appear in the function definition. They are used to represent the expected values inside the function.</li>
+<li><strong>Actual Parameters</strong>: These are arguments that are passed during the function call.</li>
+</ul>
+<hr />
+<h3 id="interview-questions-and-answers"><a class="header" href="#interview-questions-and-answers">Interview Questions and Answers</a></h3>
+<h4 id="1-what-is-the-difference-between-pass-by-value-and-pass-by-reference-in-function-arguments"><a class="header" href="#1-what-is-the-difference-between-pass-by-value-and-pass-by-reference-in-function-arguments">1. What is the difference between pass-by-value and pass-by-reference in function arguments?</a></h4>
+<p><strong>Answer:</strong></p>
+<ul>
+<li><strong>Pass-by-value</strong>: The function gets a copy of the argument's value. Changes made to the parameter do not affect the original argument.</li>
+<li><strong>Pass-by-reference</strong>: The function gets a reference (memory address) to the argument, so any changes made to the parameter directly affect the original argument.</li>
+</ul>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Pass-by-value
+func modifyValue(x int) {
+    x = 20
+}
+
+// Pass-by-reference
+func modifyReference(x *int) {
+    *x = 20
+}
+
+func main() {
+    a := 10
+    modifyValue(a)
+    fmt.Println("After modifyValue:", a) // Output: 10 (no change)
+
+    modifyReference(&amp;a)
+    fmt.Println("After modifyReference:", a) // Output: 20 (value changed)
+}
+</code></pre>
+<h4 id="2-how-do-you-handle-default-arguments-in-go"><a class="header" href="#2-how-do-you-handle-default-arguments-in-go">2. How do you handle default arguments in Go?</a></h4>
+<p><strong>Answer:</strong>
+Go does not support default arguments directly. Instead, you can achieve default values using variadic functions or by explicitly checking if a value is provided.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func greet(name string, message string) {
+    if message == "" {
+        message = "Hello" // default message
+    }
+    fmt.Println(message, name)
+}
+
+func main() {
+    greet("John", "")  // Output: Hello John
+    greet("Jane", "Hi") // Output: Hi Jane
+}
+</code></pre>
+<h4 id="3-what-is-a-variadic-function-and-how-is-it-used"><a class="header" href="#3-what-is-a-variadic-function-and-how-is-it-used">3. What is a variadic function, and how is it used?</a></h4>
+<p><strong>Answer:</strong>
+A <strong>variadic function</strong> is a function that takes a variable number of arguments. It is defined using <code>...</code> in the parameter list. This allows you to pass any number of arguments.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func sum(numbers ...int) int {
+    total := 0
+    for _, num := range numbers {
+        total += num
+    }
+    return total
+}
+
+func main() {
+    fmt.Println(sum(1, 2, 3)) // Output: 6
+    fmt.Println(sum(10, 20, 30, 40)) // Output: 100
+}
+</code></pre>
+<h4 id="4-what-will-happen-if-a-function-is-called-with-more-arguments-than-its-parameters"><a class="header" href="#4-what-will-happen-if-a-function-is-called-with-more-arguments-than-its-parameters">4. What will happen if a function is called with more arguments than its parameters?</a></h4>
+<p><strong>Answer:</strong>
+In Go, if the number of arguments passed to a function exceeds the number of parameters declared, the code will result in a compile-time error. Go checks the number of arguments and parameters at compile-time, and any mismatch in the number of arguments will cause an error.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func greet(name string) {
+    fmt.Println("Hello, ", name)
+}
+
+func main() {
+    greet("John", "Doe") // Compile-time error: too many arguments
+}
+</code></pre>
+<h4 id="5-can-you-return-multiple-values-from-a-function-in-go"><a class="header" href="#5-can-you-return-multiple-values-from-a-function-in-go">5. Can you return multiple values from a function in Go?</a></h4>
+<p><strong>Answer:</strong>
+Yes, Go allows a function to return multiple values. You can return multiple values of different types from a function.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Function returning two values
+func divide(a, b int) (int, int) {
+    return a / b, a % b
+}
+
+func main() {
+    quotient, remainder := divide(10, 3)
+    fmt.Println("Quotient:", quotient)   // Output: Quotient: 3
+    fmt.Println("Remainder:", remainder) // Output: Remainder: 1
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/numbers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/receiver-function.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +325,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/numbers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/receiver-function.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

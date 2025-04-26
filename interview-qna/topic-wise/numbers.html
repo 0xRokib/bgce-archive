@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Array - BGCE ARCHIVE</title>
+        <title>Numbers - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -160,160 +160,208 @@
                     <main>
                         <p>[<strong>Author:</strong> @mdimamhosen
 <strong>Date:</strong> 2025-04-19
-<strong>Category:</strong> interview-qa/arrays
-<strong>Tags:</strong> [go, arrays, functions]
+<strong>Category:</strong> interview-qa/operators
+<strong>Tags:</strong> [go, operators, arithmetic, assignment]
 ]</p>
-<h1 id="arrays-in-go"><a class="header" href="#arrays-in-go">Arrays in Go</a></h1>
-<h2 id="declaring-arrays"><a class="header" href="#declaring-arrays">Declaring Arrays</a></h2>
-<p>You can declare an array in Go using the following syntax:</p>
-<pre><code class="language-go">var arrayName [size]elementType
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-go">var numbers [5]int
-</code></pre>
-<h2 id="initializing-arrays"><a class="header" href="#initializing-arrays">Initializing Arrays</a></h2>
-<p>Arrays can be initialized at the time of declaration:</p>
-<pre><code class="language-go">var numbers = [5]int{1, 2, 3, 4, 5}
-</code></pre>
-<p>Or you can use the shorthand notation:</p>
-<pre><code class="language-go">numbers := [5]int{1, 2, 3, 4, 5}
-</code></pre>
-<h2 id="accessing-array-elements"><a class="header" href="#accessing-array-elements">Accessing Array Elements</a></h2>
-<p>Array elements are accessed using the index, which starts from 0:</p>
-<pre><code class="language-go">fmt.Println(numbers[0]) // Output: 1
-</code></pre>
-<h2 id="iterating-over-arrays"><a class="header" href="#iterating-over-arrays">Iterating Over Arrays</a></h2>
-<p>You can iterate over arrays using a <code>for</code> loop:</p>
-<pre><code class="language-go">for i := 0; i &lt; len(numbers); i++ {
-    fmt.Println(numbers[i])
+<h1 id="operators-are-used-to-perform-operations-on-variables-and-values"><a class="header" href="#operators-are-used-to-perform-operations-on-variables-and-values">Operators are used to perform operations on variables and values</a></h1>
+<h2 id="arithmetic-operators"><a class="header" href="#arithmetic-operators">Arithmetic Operators</a></h2>
+<h3 id="1-addition-the--operator-adds-two-operands-for-example-xy"><a class="header" href="#1-addition-the--operator-adds-two-operands-for-example-xy">1. Addition: The + operator adds two operands. For example, x+y.</a></h3>
+<h3 id="2-subtraction-the---operator-subtracts-two-operands-for-example-x-y"><a class="header" href="#2-subtraction-the---operator-subtracts-two-operands-for-example-x-y">2. Subtraction: The - operator subtracts two operands. For example, x-y.</a></h3>
+<h3 id="3-multiplication-the--operator-multiplies-two-operands-for-example-xy"><a class="header" href="#3-multiplication-the--operator-multiplies-two-operands-for-example-xy">3. Multiplication: The * operator multiplies two operands. For example, x*y.</a></h3>
+<h3 id="4-division-the--operator-divides-the-first-operand-by-the-second-for-example-xy"><a class="header" href="#4-division-the--operator-divides-the-first-operand-by-the-second-for-example-xy">4. Division: The / operator divides the first operand by the second. For example, x/y.</a></h3>
+<h3 id="5-modulus-returns-the-division-remainder"><a class="header" href="#5-modulus-returns-the-division-remainder">5. Modulus: Returns the division remainder</a></h3>
+<h3 id="6-increment-the--increases-the-value-of-a-variable-by-1"><a class="header" href="#6-increment-the--increases-the-value-of-a-variable-by-1">6. Increment: The ++ Increases the value of a variable by 1</a></h3>
+<h3 id="7-decrement-the----decreases-the-value-of-a-variable-by-1"><a class="header" href="#7-decrement-the----decreases-the-value-of-a-variable-by-1">7. Decrement: The -- Decreases the value of a variable by 1</a></h3>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	fmt.Println(2 + 2) // 4
+	fmt.Println(2 - 2) // 0
+	fmt.Println(2 * 2) // 4
+	fmt.Println(2 / 2) // 1
+	fmt.Println(2 % 2) // 0
 }
 </code></pre>
-<p>Or using the <code>range</code> keyword:</p>
-<pre><code class="language-go">for index, value := range numbers {
-    fmt.Println(index, value)
+<h3 id="increment"><a class="header" href="#increment">Increment</a></h3>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  x:= 10
+  x++ // Add one new value (increment)
+  fmt.Println(x)
 }
 </code></pre>
-<h2 id="multidimensional-arrays"><a class="header" href="#multidimensional-arrays">Multidimensional Arrays</a></h2>
-<p>Go supports multidimensional arrays. A two-dimensional array is declared as follows:</p>
-<pre><code class="language-go">var matrix [3][3]int
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-go">matrix := [3][3]int{
-    {1, 2, 3},
-    {4, 5, 6},
-    {7, 8, 9},
+<h3 id="decrement"><a class="header" href="#decrement">Decrement</a></h3>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  x:= 10
+  x-- // Remove one new value (decrement)
+  fmt.Println(x)
 }
 </code></pre>
-<h2 id="array-of-arrays"><a class="header" href="#array-of-arrays">Array of Arrays</a></h2>
-<p>You can also create an array of arrays:</p>
-<pre><code class="language-go">var arrayOfArrays [2][3]int
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-go">arrayOfArrays := [2][3]int{
-    {1, 2, 3},
-    {4, 5, 6},
-}
-</code></pre>
-<h2 id="passing-arrays-to-functions"><a class="header" href="#passing-arrays-to-functions">Passing Arrays to Functions</a></h2>
-<p>Arrays can be passed to functions by value, meaning the function receives a copy of the array:</p>
-<pre><code class="language-go">func printArray(arr [5]int) {
-    for i := 0; i &lt; len(arr); i++ {
-        fmt.Println(arr[i])
-    }
-}
-</code></pre>
-<p>To modify the original array, you can pass a pointer to the array:</p>
-<pre><code class="language-go">func modifyArray(arr *[5]int) {
-    arr[0] = 100
+<h2 id="assignment-operators"><a class="header" href="#assignment-operators">Assignment Operators</a></h2>
+<h3 id="assignment-operators-are-used-to-assign-values-to-variables"><a class="header" href="#assignment-operators-are-used-to-assign-values-to-variables">Assignment operators are used to assign values to variables.</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Example</th><th>Same As</th></tr></thead><tbody>
+<tr><td>=</td><td>x = 5</td><td>x = 5</td></tr>
+<tr><td>+=</td><td>x += 3</td><td>x = x + 3</td></tr>
+<tr><td>-=</td><td>x -= 3</td><td>x = x - 3</td></tr>
+<tr><td>*=</td><td>x *= 3</td><td>x = x * 3</td></tr>
+<tr><td>/=</td><td>x /= 3</td><td>x = x / 3</td></tr>
+<tr><td>%=</td><td>x %= 3</td><td>x = x % 3</td></tr>
+</tbody></table>
+</div>
+<h2 id="questions-and-examples"><a class="header" href="#questions-and-examples">Questions and Examples</a></h2>
+<h3 id="1-create-a-variable-named-lgnumber-store-1000-as-a-value-and-perform-various-operations"><a class="header" href="#1-create-a-variable-named-lgnumber-store-1000-as-a-value-and-perform-various-operations">1. Create a variable named <code>lgNumber</code>, store 1000 as a value, and perform various operations.</a></h3>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  lgNumber := 1000
+
+  // Add that variable with itself
+  sum := lgNumber + lgNumber
+  fmt.Println("Addition:", sum) // 2000
+
+  // Subtract that variable by itself
+  difference := lgNumber - lgNumber
+  fmt.Println("Subtraction:", difference) // 0
+
+  // Multiply that variable with itself
+  product := lgNumber * lgNumber
+  fmt.Println("Multiplication:", product) // 1000000
+
+  // Divide that variable with itself
+  quotient := lgNumber / lgNumber
+  fmt.Println("Division:", quotient) // 1
 }
 </code></pre>
 <h2 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h2>
-<h3 id="q1-how-can-i-find-the-length-of-an-array-in-go"><a class="header" href="#q1-how-can-i-find-the-length-of-an-array-in-go">Q1: How can I find the length of an array in Go?</a></h3>
-<p>You can use the built-in <code>len()</code> function to find the length of an array.</p>
-<p>Example:</p>
+<h3 id="1-how-do-you-perform-addition-and-subtraction-in-go"><a class="header" href="#1-how-do-you-perform-addition-and-subtraction-in-go">1. How do you perform addition and subtraction in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>+</code> operator for addition and <code>-</code> for subtraction.</p>
 <pre><code class="language-go">package main
-
 import "fmt"
 
 func main() {
-    arr := [5]int{1, 2, 3, 4, 5}
-    fmt.Println("Length of the array:", len(arr)) // Output: 5
+    a, b := 10, 5
+    fmt.Println("Addition:", a+b) // 15
+    fmt.Println("Subtraction:", a-b) // 5
 }
 </code></pre>
-<h3 id="q2-how-do-i-copy-an-array-in-go"><a class="header" href="#q2-how-do-i-copy-an-array-in-go">Q2: How do I copy an array in Go?</a></h3>
-<p>In Go, you can copy an array by simply assigning it to another array of the same type and size.</p>
-<p>Example:</p>
+<h3 id="2-how-do-you-calculate-the-remainder-of-a-division-in-go"><a class="header" href="#2-how-do-you-calculate-the-remainder-of-a-division-in-go">2. How do you calculate the remainder of a division in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>%</code> operator for modulus.</p>
 <pre><code class="language-go">package main
-
 import "fmt"
 
 func main() {
-    original := [3]int{1, 2, 3}
-    copy := original
-    fmt.Println("Original:", original) // Output: [1 2 3]
-    fmt.Println("Copy:", copy)         // Output: [1 2 3]
+    fmt.Println("Remainder:", 10%3) // 1
 }
 </code></pre>
-<h3 id="q3-how-can-i-pass-an-array-to-a-function-without-copying-it"><a class="header" href="#q3-how-can-i-pass-an-array-to-a-function-without-copying-it">Q3: How can I pass an array to a function without copying it?</a></h3>
-<p>To avoid copying, you can pass a pointer to the array.</p>
-<p>Example:</p>
+<h3 id="3-can-you-increment-a-variable-in-go"><a class="header" href="#3-can-you-increment-a-variable-in-go">3. Can you increment a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Yes, use <code>++</code> to increment a variable by 1.</p>
 <pre><code class="language-go">package main
-
 import "fmt"
 
-func modifyArray(arr *[3]int) {
-    arr[0] = 42
-}
-
 func main() {
-    arr := [3]int{1, 2, 3}
-    modifyArray(&amp;arr)
-    fmt.Println("Modified array:", arr) // Output: [42 2 3]
+    x := 5
+    x++
+    fmt.Println("Incremented Value:", x) // 6
 }
 </code></pre>
-<h3 id="example-code-to-test-maingo"><a class="header" href="#example-code-to-test-maingo">Example code to test: main.go</a></h3>
+<h3 id="4-how-do-you-assign-and-add-a-value-to-a-variable-in-go"><a class="header" href="#4-how-do-you-assign-and-add-a-value-to-a-variable-in-go">4. How do you assign and add a value to a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>+=</code> operator.</p>
 <pre><code class="language-go">package main
-
 import "fmt"
 
 func main() {
-	arr1 := [5]int{1, 2, 3, 4, 5}
-	arr2 := [5]int{1, 2, 3, 4, 5}
-
-	fmt.Println(arr1)
-	fmt.Println(arr2)
-
-	var arr3 [5]int
-	// fmt.Println(arr3) // this should print [0 0 0 0 0]
-	// println("Length:", len(arr3))
-
-	for i := 0; i &lt; len(arr3); i++ {
-	    fmt.Scan(&amp;arr3[i])
-	}
-	fmt.Println(arr3)
-
-	strArr := [3]string{"one", "two", "three"}
-
-	for i := 0; i &lt; len(strArr); i++ {
-		fmt.Print(strArr[i]+ "")
-	}
-
-
+    x := 10
+    x += 5
+    fmt.Println("Updated Value:", x) // 15
 }
+</code></pre>
+<h3 id="5-how-do-you-multiply-and-assign-a-value-to-a-variable-in-go"><a class="header" href="#5-how-do-you-multiply-and-assign-a-value-to-a-variable-in-go">5. How do you multiply and assign a value to a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>*=</code> operator.</p>
+<pre><code class="language-go">package main
+import "fmt"
 
+func main() {
+    x := 10
+    x *= 2
+    fmt.Println("Updated Value:", x) // 20
+}
+</code></pre>
+<h3 id="6-how-do-you-divide-and-assign-a-value-to-a-variable-in-go"><a class="header" href="#6-how-do-you-divide-and-assign-a-value-to-a-variable-in-go">6. How do you divide and assign a value to a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>/=</code> operator.</p>
+<pre><code class="language-go">package main
+import "fmt"
 
+func main() {
+    x := 10
+    x /= 2
+    fmt.Println("Updated Value:", x) // 5
+}
+</code></pre>
+<h3 id="7-how-do-you-decrement-a-variable-in-go"><a class="header" href="#7-how-do-you-decrement-a-variable-in-go">7. How do you decrement a variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use <code>--</code> to decrement a variable by 1.</p>
+<pre><code class="language-go">package main
+import "fmt"
 
+func main() {
+    x := 5
+    x--
+    fmt.Println("Decremented Value:", x) // 4
+}
+</code></pre>
+<h3 id="8-how-do-you-perform-multiple-arithmetic-operations-in-one-line"><a class="header" href="#8-how-do-you-perform-multiple-arithmetic-operations-in-one-line">8. How do you perform multiple arithmetic operations in one line?</a></h3>
+<p><strong>Answer:</strong> Combine operators in a single expression.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    result := (10 + 5) * 2 - 3
+    fmt.Println("Result:", result) // 27
+}
+</code></pre>
+<h3 id="9-how-do-you-check-if-a-number-is-even-or-odd-in-go"><a class="header" href="#9-how-do-you-check-if-a-number-is-even-or-odd-in-go">9. How do you check if a number is even or odd in Go?</a></h3>
+<p><strong>Answer:</strong> Use the modulus operator <code>%</code>.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    num := 7
+    if num%2 == 0 {
+        fmt.Println("Even")
+    } else {
+        fmt.Println("Odd")
+    }
+}
+</code></pre>
+<h3 id="10-how-do-you-swap-two-numbers-without-using-a-third-variable-in-go"><a class="header" href="#10-how-do-you-swap-two-numbers-without-using-a-third-variable-in-go">10. How do you swap two numbers without using a third variable in Go?</a></h3>
+<p><strong>Answer:</strong> Use arithmetic operations.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    a, b := 5, 10
+    a = a + b
+    b = a - b
+    a = a - b
+    fmt.Println("Swapped Values:", a, b) // 10, 5
+}
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/topic-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/maps.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/topic-wise/boolean.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/parameter-argument.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -323,11 +371,11 @@ func main() {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/topic-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/maps.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/topic-wise/boolean.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/parameter-argument.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Conditional Statement - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,210 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> interview-qa/conditional-statements
+<strong>Tags:</strong> [go, conditional-statements, if-else]
+]</p>
+<h2 id="go-conditions"><a class="header" href="#go-conditions">Go Conditions</a></h2>
+<h3 id="conditional-statements-allow-us-to-control-the-structure-of-our-program"><a class="header" href="#conditional-statements-allow-us-to-control-the-structure-of-our-program">Conditional statements allow us to control the structure of our program.</a></h3>
+<h3 id="there-are-different-ways-by-which-we-can-control-the-flow-of-our-program-if-else-if-else-are-one-of-them"><a class="header" href="#there-are-different-ways-by-which-we-can-control-the-flow-of-our-program-if-else-if-else-are-one-of-them">There are different ways by which we can control the flow of our program, (If, else if, else) are one of them.</a></h3>
+<h3 id="if-else-if-else-statments-allow-us-to-make-decisions-while-our-program-is-running-theyre-also-called-conditional-statments-in-programming"><a class="header" href="#if-else-if-else-statments-allow-us-to-make-decisions-while-our-program-is-running-theyre-also-called-conditional-statments-in-programming">(If, else if, else) statments allow us to make "decisions" while our program is running, They're also called (conditional statments) in programming.</a></h3>
+<pre><code class="language-go">    // Sudo Syntax
+     if condition { &lt;code&gt; }
+     else if condition { &lt;code&gt; }
+     else { &lt;code&gt; }
+</code></pre>
+<pre><code class="language-go">// Actual Code
+package main
+import "fmt"
+
+func main() {
+	password := "12345678"
+	if len(password) &gt; 7 {
+		fmt.Println("Valid Password")
+	} else {
+		fmt.Println("Invalid Password")
+	}
+}
+</code></pre>
+<h2 id="frequently-asked-questions-faqs"><a class="header" href="#frequently-asked-questions-faqs">Frequently Asked Questions (FAQs)</a></h2>
+<h3 id="1-what-is-the-syntax-of-an-if-else-statement-in-go"><a class="header" href="#1-what-is-the-syntax-of-an-if-else-statement-in-go">1. <strong>What is the syntax of an if-else statement in Go?</strong></a></h3>
+<p><strong>Answer:</strong>
+The syntax of an if-else statement in Go is as follows:</p>
+<pre><code class="language-go">if condition {
+    // code to execute if condition is true
+} else {
+    // code to execute if condition is false
+}
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	number := 10
+	if number%2 == 0 {
+		fmt.Println("Even Number")
+	} else {
+		fmt.Println("Odd Number")
+	}
+}
+</code></pre>
+<h3 id="2-can-we-use-an-if-statement-without-an-else-block"><a class="header" href="#2-can-we-use-an-if-statement-without-an-else-block">2. <strong>Can we use an if statement without an else block?</strong></a></h3>
+<p><strong>Answer:</strong>
+Yes, an if statement can be used without an else block.
+<strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	number := 5
+	if number &gt; 0 {
+		fmt.Println("Positive Number")
+	}
+}
+</code></pre>
+<h3 id="3-what-is-an-else-if-ladder-in-go"><a class="header" href="#3-what-is-an-else-if-ladder-in-go">3. <strong>What is an else-if ladder in Go?</strong></a></h3>
+<p><strong>Answer:</strong>
+An else-if ladder is used to check multiple conditions sequentially.
+<strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	score := 85
+	if score &gt;= 90 {
+		fmt.Println("Grade: A")
+	} else if score &gt;= 75 {
+		fmt.Println("Grade: B")
+	} else {
+		fmt.Println("Grade: C")
+	}
+}
+</code></pre>
+<h3 id="4-how-do-you-use-a-short-statement-in-an-if-condition"><a class="header" href="#4-how-do-you-use-a-short-statement-in-an-if-condition">4. <strong>How do you use a short statement in an if condition?</strong></a></h3>
+<p><strong>Answer:</strong>
+A short statement can be used to initialize a variable within an if condition.
+<strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	if num := 10; num%2 == 0 {
+		fmt.Println("Even Number")
+	}
+}
+</code></pre>
+<h3 id="5-can-we-nest-if-else-statements-in-go"><a class="header" href="#5-can-we-nest-if-else-statements-in-go">5. <strong>Can we nest if-else statements in Go?</strong></a></h3>
+<p><strong>Answer:</strong>
+Yes, if-else statements can be nested.
+<strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	number := 15
+	if number &gt; 0 {
+		if number%2 == 0 {
+			fmt.Println("Positive Even Number")
+		} else {
+			fmt.Println("Positive Odd Number")
+		}
+	} else {
+		fmt.Println("Non-Positive Number")
+	}
+}
+</code></pre>
+<h3 id="6-what-is-the-difference-between-if-else-and-switch-statements"><a class="header" href="#6-what-is-the-difference-between-if-else-and-switch-statements">6. <strong>What is the difference between if-else and switch statements?</strong></a></h3>
+<p><strong>Answer:</strong>
+If-else is used for conditional branching, while switch is used for selecting one of many blocks of code.
+<strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	day := 3
+	switch day {
+	case 1:
+		fmt.Println("Monday")
+	case 2:
+		fmt.Println("Tuesday")
+	case 3:
+		fmt.Println("Wednesday")
+	default:
+		fmt.Println("Invalid Day")
+	}
+}
+</code></pre>
+<h3 id="7-how-do-you-handle-multiple-conditions-in-a-single-if-statement"><a class="header" href="#7-how-do-you-handle-multiple-conditions-in-a-single-if-statement">7. <strong>How do you handle multiple conditions in a single if statement?</strong></a></h3>
+<p><strong>Answer:</strong>
+Logical operators like <code>&amp;&amp;</code> (AND) and <code>||</code> (OR) can be used to handle multiple conditions.
+<strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	number := 15
+	if number &gt; 0 &amp;&amp; number%3 == 0 {
+		fmt.Println("Positive and Divisible by 3")
+	}
+}
+</code></pre>
+<h3 id="8-what-happens-if-the-condition-in-an-if-statement-is-not-a-boolean"><a class="header" href="#8-what-happens-if-the-condition-in-an-if-statement-is-not-a-boolean">8. <strong>What happens if the condition in an if statement is not a boolean?</strong></a></h3>
+<p><strong>Answer:</strong>
+In Go, the condition in an if statement must evaluate to a boolean. Otherwise, it will result in a compilation error.
+<strong>Example:</strong></p>
+<pre><code class="language-go">// This will cause a compilation error
+// if 10 {
+//     fmt.Println("Invalid Condition")
+// }
+</code></pre>
+<h3 id="9-can-we-use-a-function-call-in-an-if-condition"><a class="header" href="#9-can-we-use-a-function-call-in-an-if-condition">9. <strong>Can we use a function call in an if condition?</strong></a></h3>
+<p><strong>Answer:</strong>
+Yes, a function call can be used in an if condition.
+<strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func isEven(num int) bool {
+	return num%2 == 0
+}
+
+func main() {
+	if isEven(10) {
+		fmt.Println("Even Number")
+	}
+}
+</code></pre>
+<h3 id="10-how-do-you-use-if-else-with-user-input"><a class="header" href="#10-how-do-you-use-if-else-with-user-input">10. <strong>How do you use if-else with user input?</strong></a></h3>
+<p><strong>Answer:</strong>
+You can use the <code>fmt.Scan</code> function to take user input and use it in an if-else statement.
+<strong>Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+	var age int
+	fmt.Print("Enter your age: ")
+	fmt.Scan(&amp;age)
+	if age &gt;= 18 {
+		fmt.Println("You are eligible to vote.")
+	} else {
+		fmt.Println("You are not eligible to vote.")
+	}
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/comparison-operator.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/constant.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +371,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/comparison-operator.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/constant.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

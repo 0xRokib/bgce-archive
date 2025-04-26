@@ -549,7 +549,1346 @@ type InterviewQuestion struct {
 <li><a href="interview-qna/../../docs/rbac/interview-qa.html">RBAC permissions</a></li>
 </ul>
 <pre><code></code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-golang-playground"><a class="header" href="#-golang-playground">🐹 Golang Playground</a></h1>
+<p>Welcome to my Golang knowledge hub — a growing collection of experiments, course notes, and practical learnings as I dive deeper into Go 🚀</p>
+<hr />
+<h2 id="-structure-will-be-updated-in-future"><a class="header" href="#-structure-will-be-updated-in-future">📂 Structure (will be updated in future)</a></h2>
+<pre><code>golang/ 
+    ├── experiment/
+    └── go-with-habib-class-notes/
+</code></pre>
+<h3 id="-experiment"><a class="header" href="#-experiment">🔬 <code>experiment/</code></a></h3>
+<p>A sandbox for all my Go experiments. From testing features to quick problem-solving attempts, this folder is all about learning by doing.</p>
+<h3 id="-go-with-habib-class-notes"><a class="header" href="#-go-with-habib-class-notes">📘 <code>go-with-habib-class-notes/</code></a></h3>
+<p>Detailed notes and example code from the <strong>"Go with Habib"</strong> course. Organized by class, with code and key takeaways.</p>
+<hr />
+<h2 id="-whats-next"><a class="header" href="#-whats-next">📌 What's Next?</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Add more Go mini-projects and tools under <code>experiment/</code></li>
+<li><input disabled="" type="checkbox"/>
+Continue documenting the Habib course in markdown</li>
+<li><input disabled="" type="checkbox"/>
+Add <code>README.md</code> for each class and experiment</li>
+<li><input disabled="" type="checkbox"/>
+Eventually turn this entire <code>golang/</code> folder into part of the <code>bytebook</code> mdBook</li>
+</ul>
+<hr />
+<blockquote>
+<p>This is just the beginning. Watch this space as my Go journey evolves! 😤</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><p>class-1: array</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-class-16--package-scope"><a class="header" href="#-class-16--package-scope">📦 Class 16 — Package Scope</a></h1>
+<p>🎥 <strong>Video Title</strong>: <em>Package scope</em></p>
+<hr />
+<h2 id="-code-written-for-this-class"><a class="header" href="#-code-written-for-this-class">🧪 Code Written for This Class</a></h2>
+<h3 id="addgo"><a class="header" href="#addgo"><code>add.go</code></a></h3>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func add(n1, n2 int) {
+	res := n1 + n2
+	fmt.Println(res)
+}
+</code></pre>
+<h3 id="maingo"><a class="header" href="#maingo"><code>main.go</code></a></h3>
+<pre><code class="language-go">package main
+
+var (
+	a = 20
+	b = 30
+)
+
+func main() {
+	add(4,7)
+}
+</code></pre>
+<h3 id="mathlibmathgo"><a class="header" href="#mathlibmathgo"><code>mathlib/math.go</code></a></h3>
+<pre><code class="language-go">package mathlib
+
+import "fmt"
+
+func Add(x int, y int) {
+	z := x + y
+	fmt.Println(z)
+}
+</code></pre>
+<h3 id="maingo-modified"><a class="header" href="#maingo-modified"><code>main.go (Modified)</code></a></h3>
+<pre><code class="language-go">package main
+
+import (
+	"fmt"
+	"example.com/mathlib"
+)
+
+var (
+	a = 20
+	b = 30
+)
+
+func main() {
+	fmt.Println("Showing Custom Package")
+	mathlib.Add(4,7)
+}
+</code></pre>
+<h1 id="-key-concepts"><a class="header" href="#-key-concepts">🔑 Key Concepts</a></h1>
+<ol>
+<li>
+<p><strong>Same Folder = Same Package</strong>
+All <code>.go</code> files in the same directory should have the same package name (<code>main</code> if you want to run them).</p>
+</li>
+<li>
+<p><strong>Running Multiple Files</strong>
+You must include all necessary files when using <code>go run</code>, like:</p>
+<pre><code class="language-bash">go run main.go add.go
+</code></pre>
+</li>
+<li>
+<p><strong>Initializing a New Module</strong>
+Start with:</p>
+<pre><code class="language-bash">go mod init &lt;module_name&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Managing Dependencies</strong>
+Use:</p>
+<pre><code class="language-bash">go get &lt;package_name&gt;
+go mod tidy
+</code></pre>
+</li>
+<li>
+<p><strong>Package-Level Scope Rules</strong>
+Only <strong>exported</strong> identifiers (functions/variables that start with a <strong>capital letter</strong>) can be accessed from outside the package.</p>
+</li>
+</ol>
+<p>🧠 This class was all about understanding how Go handles packages, visibility, and modular code — crucial stuff for building real-world Go apps!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-class-17"><a class="header" href="#-class-17">📘 Class 17</a></h1>
+<p><strong>Video Name:</strong> Scope with another boring example 🙃</p>
+<hr />
+<h2 id="-code-written-in-this-class"><a class="header" href="#-code-written-in-this-class">🧑‍💻 Code written in this class</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+var (
+	a = 10
+	b = 20
+)
+
+func printNum(num int) {
+	fmt.Println(num)
+}
+
+func add(x int, y int) {
+	res := x + y
+	printNum(res)
+}
+
+func main() {
+	add(a, b)
+}
+</code></pre>
+<h2 id="-key-concepts-1"><a class="header" href="#-key-concepts-1">🧠 Key Concepts</a></h2>
+<ol>
+<li>
+<p><strong>✅ Order doesn't matter (for package-level stuff)</strong>
+The order of functions and globally declared variables does not matter in Go.
+Even if the functions and variables are defined after <code>main()</code>, Go will still recognize and compile everything correctly.</p>
+</li>
+<li>
+<p><strong>🤓 Go ≠ Functional Paradigm</strong>
+Although Go has borrowed some cool ideas from functional languages (like first-class functions, closures, etc.), <strong>Go is not a functional programming language.</strong></p>
+</li>
+<li>
+<p><strong>⚖️ What paradigm is Go really?</strong></p>
+<blockquote>
+<p>Go is a <strong>multi-paradigm</strong> language, but its primary style is <strong>imperative</strong> and <strong>procedural</strong>, with <strong>struct-based composition</strong> over classic OOP.</p>
+</blockquote>
+</li>
+</ol>
+<p>It's built to be:</p>
+<pre><code>✅ Simple
+
+🔍 Predictable
+
+📖 Readable
+</code></pre>
+<p>You can write in a functional-ish style, but Go wasn’t designed for heavy functional abstractions.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-interview-question-variable-shadowing-in-go"><a class="header" href="#-interview-question-variable-shadowing-in-go">💡 Interview Question: Variable Shadowing in Go</a></h1>
+<h2 id="-code-example"><a class="header" href="#-code-example">🧪 Code Example</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+var a = 10
+
+func main() {
+	age := 30
+
+	if age &gt; 18 {
+		a := 47        // 👇 Shadows the global `a` ONLY inside this `if` block
+		fmt.Println(a) // ➜ 47
+	}
+
+	fmt.Println(a)     // ➜ 10 (prints the global `a`)
+}
+</code></pre>
+<h2 id="-takeaways"><a class="header" href="#-takeaways">📌 Takeaways:</a></h2>
+<ol>
+<li>
+<p>🔒 Variable shadowing occurs when a local variable has the same name as a variable in an outer scope.</p>
+</li>
+<li>
+<p>⛔ Go won't throw an error — it’ll just use the innermost version in the current scope.</p>
+</li>
+<li>
+<p>📦 Global <code>a</code> is untouched and printed outside the <code>if</code> block.</p>
+</li>
+<li>
+<p>✅ This behavior is intentional and useful for encapsulation and temporary overrides.</p>
+</li>
+</ol>
+<h2 id="-memory--stack-animation--step-by-step"><a class="header" href="#-memory--stack-animation--step-by-step">🧠 Memory &amp; Stack Animation — Step by Step</a></h2>
+<pre><code>// ⏱ Program Start
+📦 Data Segment:
+┌─────────────┐
+│ global a=10 │ ◄── stays alive till program ends
+└─────────────┘
+
+// 🚀 main() gets called
+📚 Stack:
+┌────────────────────────────┐
+│ 🧩 main() Stack Frame      │
+│   └── age = 30             │
+└────────────────────────────┘
+
+--- age &gt; 18 is TRUE, so we enter the `if` block ---
+
+🧱 New block scope begins inside main()
+📚 Stack:
+┌────────────────────────────┐
+│ 🧩 main() Stack Frame      │
+│   └── age = 30             │
+│   🔸 a (shadows global) =47│ ◄── new `a` shadows the global
+└────────────────────────────┘
+
+🖨️ fmt.Println(a)
+📤 Output: 47 ✅
+
+--- if block ends, block-scope a is destroyed ---
+
+📚 Stack:
+┌────────────────────────────┐
+│ 🧩 main() Stack Frame      │
+│   └── age = 30             │
+└────────────────────────────┘
+
+🖨️ fmt.Println(a)
+📤 Output: 10 ✅ (Back to global `a`)
+
+--- main() ends, stack is popped ---
+
+📚 Stack:
+(empty)
+
+🧼 Program exits
+</code></pre>
+<h2 id="-visualization-summary"><a class="header" href="#-visualization-summary">📌 Visualization Summary</a></h2>
+<p>-[] 🧠 Global variables (like a = 10) live in the data segment.</p>
+<p>-[] 🧵 Local variables (like age or shadowed a) live in the stack.</p>
+<p>-[] 🔄 When a new scope is entered (if, for, function block), it pushes new variables to the stack.</p>
+<p>-[] ⛓️ Once the block ends, the shadowed variable gets popped and memory is freed.</p>
+<p>-[] 🧼 At the end, the stack is cleared, but the data segment lives throughout the whole execution.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="function-types"><a class="header" href="#function-types">Function types</a></h1>
+<ul>
+<li>standard or named fucntion</li>
+<li>Anonymous function</li>
+<li>Function expression or assign function in variable</li>
+<li>Higher order fucntion or first class function</li>
+<li>Callback fucntion</li>
+<li>Variadic function</li>
+<li>Init function - you cannot call this, Computer calls it</li>
+<li>Closure - close over</li>
+<li>Defer function - last in first out</li>
+<li>Receiver function or method</li>
+<li>IIFE- Immediately invoked function expression</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-class-19-init-function"><a class="header" href="#-class-19-init-function">🧠 Class 19: Init Function</a></h1>
+<p><strong>Video Topic</strong>: <code>init()</code> Function in Go</p>
+<hr />
+<h2 id="-code-written-in-this-class-1"><a class="header" href="#-code-written-in-this-class-1">🔤 Code Written in This Class</a></h2>
+<pre><code class="language-go">//example 1
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello Init Function!")
+}
+
+func init() {
+	fmt.Println("I am the function that is executed first")
+}
+</code></pre>
+<pre><code class="language-go">//example 2
+package main
+
+import "fmt"
+
+var a = 10
+
+func main() {
+	fmt.Println(a)
+}
+
+func init() {
+	fmt.Println(a)
+	a = 20
+}
+</code></pre>
+<h2 id="-key-concepts-2"><a class="header" href="#-key-concepts-2">🔍 Key Concepts</a></h2>
+<ol>
+<li>
+<p><code>init()</code> is a special Go function that runs before <code>main()</code>, automatically.</p>
+</li>
+<li>
+<p>You can have multiple <code>init()</code> functions across different files and packages. They all run in the order of:</p>
+<ul>
+<li>
+<p>Dependency packages first</p>
+</li>
+<li>
+<p>File order (top to bottom) next</p>
+</li>
+</ul>
+</li>
+<li>
+<p>You don't call <code>init()</code> manually. It runs automatically before the program starts.</p>
+</li>
+</ol>
+<h2 id="-cli-memory--execution-visualization-example-1"><a class="header" href="#-cli-memory--execution-visualization-example-1">🧠 CLI Memory &amp; Execution Visualization (example 1)</a></h2>
+<p>Let’s visualize how Go handles <code>init()</code> under the hood:</p>
+<pre><code>// 🛠 Compile Time: Go detects init()
+
+Found init() in main package ✅
+
+----------- EXECUTION BEGINS -----------
+
+🧠 Data Segment:
+(none)
+
+📚 Stack:
+┌────────────────────┐
+│ 🧩 init()           │
+└────────────────────┘
+
+🖨️ Output:
+"I am the function that is executed first"
+
+👋 init() returns
+
+📚 Stack:
+┌────────────────────┐
+│ 🧩 main()           │
+└────────────────────┘
+
+🖨️ Output:
+"Hello Init Function!"
+
+✅ Program ends gracefully
+</code></pre>
+<h2 id="-cli-visualization-execution--memory-layout-example-2"><a class="header" href="#-cli-visualization-execution--memory-layout-example-2">🔍 CLI Visualization: Execution &amp; Memory Layout (example 2)</a></h2>
+<pre><code>=========== Program Compilation ===========
+Found global variable: a = 10
+Found init() ✅
+Found main() ✅
+
+=========== Execution Begins ==============
+
+🧠 Data Segment (Globals):
+a = 10 ← initialized before anything runs
+
+📚 Stack Frame:
+┌────────────┐
+│  init()    │
+└────────────┘
+
+🔁 init() runs
+→ Prints: 10
+→ Updates a = 20
+
+Stack after init():
+(returns to runtime)
+
+📚 Stack Frame:
+┌────────────┐
+│  main()    │
+└────────────┘
+
+🔁 main() runs
+→ Prints: 20
+
+=========== Execution Ends ================
+
+📌 Summary
+
+    ✅ Global variable a is initialized before any function runs.
+
+    ⚙️ init() executes first:
+
+        Reads a = 10
+
+        Changes a = 20
+
+    🧨 main() sees updated value: 20
+
+This is a classic example of how init() can prepare or modify the runtime environment before the actual program logic in main() kicks in.
+
+</code></pre>
+<h2 id="-quick-recap"><a class="header" href="#-quick-recap">⚡ Quick Recap</a></h2>
+<ol>
+<li>
+<p>✅ <code>init()</code> always runs before <code>main()</code> even if it’s written after <code>main()</code> in your code.</p>
+</li>
+<li>
+<p>⛓️ You can use it to initialize configs, connections, default values, etc.</p>
+</li>
+<li>
+<p>💡 A Go file can have at most one <code>main()</code>, but multiple <code>init()</code>s.</p>
+</li>
+</ol>
+<blockquote>
+<p>🧪 "Init is like the secret backstage crew. You don’t see them during the show, but they’re the reason the lights come on."</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-class-21--expressions-anonymous-functions--iife-in-go"><a class="header" href="#-class-21--expressions-anonymous-functions--iife-in-go">📘 Class 21 – Expressions, Anonymous Functions &amp; IIFE in Go</a></h1>
+<h3 id="-video-name"><a class="header" href="#-video-name">🎥 Video Name:</a></h3>
+<p><strong>Anonymous function, Expression &amp; IIFE</strong></p>
+<hr />
+<h2 id="-code-written-in-this-class-2"><a class="header" href="#-code-written-in-this-class-2">📦 Code Written in This Class</a></h2>
+<pre><code class="language-go">// Anonymous function
+// IIFE - Immediately Invoked Function Expression
+
+package main
+
+import "fmt"
+
+func main() {
+	// Anonymous function
+	func(a int, b int) {
+		c := a + b
+		fmt.Println(c)
+	}(5, 7) // IIFE
+}
+
+func init() {
+	fmt.Println("I'll be called first")
+}
+</code></pre>
+<h2 id="-key-concepts-3"><a class="header" href="#-key-concepts-3">🧠 Key Concepts</a></h2>
+<h3 id="-expression-in-go"><a class="header" href="#-expression-in-go">🧮 Expression in Go</a></h3>
+<blockquote>
+<p>An expression is any snippet of code that evaluates to a value.</p>
+</blockquote>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-go">a + b          // is an expression
+func(x, y){}   // is a function expression
+</code></pre>
+<p>Expressions can be used as values, passed around, or even executed immediately — which leads us to…</p>
+<h3 id="-anonymous-function"><a class="header" href="#-anonymous-function"><strong>🧙 Anonymous Function</strong></a></h3>
+<p>An <strong>anonymous function</strong> is a function <strong>without a name.</strong></p>
+<p>Instead of:</p>
+<pre><code class="language-go">func add(a, b int) int {
+	return a + b
+}
+</code></pre>
+<p>You write:</p>
+<pre><code class="language-go">func(a, b int) int {
+	return a + b
+}
+</code></pre>
+<p>✅ You can assign it to a variable, pass it as an argument, or invoke it on the spot.</p>
+<h3 id="-iife-immediately-invoked-function-expression"><a class="header" href="#-iife-immediately-invoked-function-expression">⚡ IIFE (Immediately Invoked Function Expression)</a></h3>
+<blockquote>
+<p>An <strong>IIFE</strong> is an anonymous function that is <strong>executed immediately</strong> right after it's defined.</p>
+</blockquote>
+<p>Syntax:</p>
+<pre><code class="language-go">func(a int, b int) {
+	// do stuff
+}(5, 7)
+</code></pre>
+<p><strong>Use-case</strong>: You want to run a small block of logic <strong>immediately, without polluting the namespace</strong> with a new function name.</p>
+<h2 id="-cli-style-execution-visualization"><a class="header" href="#-cli-style-execution-visualization">🖥️ CLI-style Execution Visualization</a></h2>
+<pre><code>=========== Compilation Phase =============
+Found init() ✅
+Found main() ✅
+
+=========== Execution Phase ===============
+
+🔁 init() runs first
+→ Prints: I'll be called first
+
+🧠 Data Segment:
+(No global vars in this case)
+
+📚 Stack Frame:
+┌─────────────────────┐
+│    main()           │
+│ ┌─────────────────┐ │
+│ │  anonymous func │ │
+│ └─────────────────┘ │
+└─────────────────────┘
+
+main() calls an IIFE:
+→ Passes 5 and 7
+→ Inside IIFE: c := 5 + 7 = 12
+→ Prints: 12
+
+=========== Execution Complete =============
+</code></pre>
+<h2 id="-tldr"><a class="header" href="#-tldr">🧵 TL;DR</a></h2>
+<p>-[] ✅ Expressions return values and can be assigned or executed.</p>
+<p>-[] 🧪 Anonymous functions have no name, great for quick logic blocks.</p>
+<p>-[] 🚀 IIFE: Define &amp; execute in one go. Great for one-off logic.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-class-22--function-expressions--shadowing-in-go"><a class="header" href="#-class-22--function-expressions--shadowing-in-go">📘 Class 22 – Function Expressions &amp; Shadowing in Go</a></h1>
+<h3 id="-video-name-1"><a class="header" href="#-video-name-1">🎥 Video Name:</a></h3>
+<p><strong>Function Expression Example</strong></p>
+<hr />
+<h2 id="-code-1-working-example"><a class="header" href="#-code-1-working-example">✅ Code 1: Working Example</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Global function expression
+var add = func(x, y int) {
+	fmt.Println(x + y)
+}
+
+func main() {
+	add(4, 7) // Calls the global `add`
+
+	// Function expression assigned to local variable
+	add := func(a int, b int) {
+		c := a + b
+		fmt.Println(c)
+	}
+
+	add(2, 3) // Calls the local `add`
+}
+
+func init() {
+	fmt.Println("I will be called first")
+}
+</code></pre>
+<h2 id="-key-concepts-4"><a class="header" href="#-key-concepts-4">🧠 Key Concepts</a></h2>
+<h3 id="-function-expression"><a class="header" href="#-function-expression">🔧 Function Expression</a></h3>
+<p>A function <strong>assigned to a variable</strong>. It allows us to:</p>
+<p>-[] Store logic in a variable</p>
+<p>-[] Treat functions like first-class citizens</p>
+<p>-[] Create inline, nameless (anonymous) functions</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-go">add := func(a int, b int) {
+	fmt.Println(a + b)
+}
+</code></pre>
+<h3 id="-shadowing"><a class="header" href="#-shadowing">🧱 Shadowing</a></h3>
+<p>When a variable in a <strong>smaller (local) scope</strong> has the <strong>same name</strong> as one in a <strong>larger (outer) scope</strong>, it "shadows" or hides it temporarily.</p>
+<p>In the <code>main()</code> function:</p>
+<pre><code class="language-go">add := func(a int, b int) {...}
+</code></pre>
+<p>This local <code>add</code> shadows the global <code>add</code> from that point onward.</p>
+<h2 id="-execution-visualization-working-example"><a class="header" href="#-execution-visualization-working-example">🖥️ Execution Visualization (Working Example)</a></h2>
+<pre><code>========== Compilation Phase ==========
+✔ Found init()
+✔ Found main()
+✔ Global `add` assigned to function
+
+========== Execution Begins ===========
+
+init():
+→ Prints: I will be called first
+
+main():
+→ Calls global `add(4, 7)` → Prints: 11
+
+Local Scope in main():
+┌──────── Stack Frame ───────┐
+│ main()                     │
+│ ┌──────────────┐          │
+│ │ add (local)  │────────┐ │
+│ └──────────────┘        │ │
+└─────────────────────────┘ │
+       (shadows global) ◄───┘
+
+→ Calls local `add(2, 3)` → Prints: 5
+
+========== Execution Ends ==========
+</code></pre>
+<h2 id="-code-2-fails-to-compile"><a class="header" href="#-code-2-fails-to-compile">❌ Code 2: Fails to Compile</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Global function expression
+var add = func(x, y int) {
+	fmt.Println(x + y)
+}
+
+func main() {
+	adder(4, 7) // ❌ ERROR: undefined: adder
+
+	// Function expression or Assign function in variable
+	adder := func(a int, b int) {
+		c := a + b
+		fmt.Println(c)
+	}
+
+	add(2, 3)
+}
+
+func init() {
+	fmt.Println("I will be called first")
+}
+</code></pre>
+<h3 id="-why-it-fails"><a class="header" href="#-why-it-fails">❌ Why it fails</a></h3>
+<p>This line:</p>
+<pre><code class="language-go">adder(4, 7)
+</code></pre>
+<p>is <strong>above</strong> the declaration:</p>
+<pre><code class="language-go">adder := func(a int, b int) { ... }
+</code></pre>
+<h3 id="-the-problem-temporal-dead-zone"><a class="header" href="#-the-problem-temporal-dead-zone">⛔ The Problem: Temporal Dead Zone</a></h3>
+<p>In Go, <strong>you can't use a variable before it's declared</strong>, even if it’s in the same block.</p>
+<p>So, when you try to use <code>adder</code>, it hasn’t been declared yet. Hence:</p>
+<pre><code class="language-bash">./main.go:10:2: undefined: adder
+</code></pre>
+<h2 id="-tldr-1"><a class="header" href="#-tldr-1">📚 TL;DR</a></h2>
+<p>Concept | Meaning
+Function Expression | A function assigned to a variable
+Anonymous Function | A function with no name
+Shadowing | Local variable hides the same-named global one
+Temporal Dead Zone | You can't use variables before their declaration in Go
+IIFE vs Assignment | IIFE executes immediately; assignment waits to be called explicitly</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="class-23-functional-programming-concepts-in-go"><a class="header" href="#class-23-functional-programming-concepts-in-go">Class 23: Functional Programming Concepts in Go</a></h1>
+<h2 id="code-example"><a class="header" href="#code-example">Code Example</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func add(a int, b int) { // Parameter: a and b
+	c := a + b
+	fmt.Println(c)
+}
+
+func main() {
+	add(2, 5) // 2 and 5 are arguments
+	processOperation(4, 5, add)
+	sum := call() // function expression
+	sum(4, 7)
+}
+
+func processOperation(a int, b int, op func(p int, q int)) { // Higher order function
+	op(a, b)
+}
+
+func call() func(x int, y int) {
+	return add
+}
+</code></pre>
+<hr />
+<h2 id="-key-concepts-5"><a class="header" href="#-key-concepts-5">🧠 Key Concepts</a></h2>
+<h3 id="1-parameter-vs-argument"><a class="header" href="#1-parameter-vs-argument">1. <strong>Parameter vs Argument</strong></a></h3>
+<ul>
+<li><strong>Parameter</strong>: The variable listed inside the function definition. (e.g., <code>a int, b int</code> in <code>add(a, b)</code>)</li>
+<li><strong>Argument</strong>: The actual value passed to the function when it's called. (e.g., <code>add(2, 5)</code>)</li>
+</ul>
+<h3 id="2-first-order-function"><a class="header" href="#2-first-order-function">2. <strong>First Order Function</strong></a></h3>
+<p>A regular function that does not take another function as input or return one.</p>
+<ul>
+<li>Examples:
+<ul>
+<li>Named function: <code>func add(a, b int)</code></li>
+<li>Anonymous function: <code>func(a int, b int) { ... }</code></li>
+<li>IIFE (Immediately Invoked Function Expression): <code>func(a, b int) { ... }(5, 7)</code></li>
+<li>Function expression: <code>sum := func(a, b int) { ... }</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-higher-order-function"><a class="header" href="#3-higher-order-function">3. <strong>Higher Order Function</strong></a></h3>
+<p>A function that <strong>takes a function as a parameter</strong>, <strong>returns a function</strong>, or <strong>both</strong>.</p>
+<ul>
+<li>Example:
+<ul>
+<li><code>processOperation</code> takes a function <code>op</code> as a parameter</li>
+<li><code>call()</code> returns a function <code>add</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="4-callback-function"><a class="header" href="#4-callback-function">4. <strong>Callback Function</strong></a></h3>
+<ul>
+<li>A function that is passed into another function to be executed later.</li>
+<li>In <code>processOperation(4, 5, add)</code>, the function <code>add</code> is a callback.</li>
+</ul>
+<h3 id="5-first-class-citizen-function"><a class="header" href="#5-first-class-citizen-function">5. <strong>First-Class Citizen (Function)</strong></a></h3>
+<ul>
+<li>In Go, functions can be assigned to variables, passed as arguments, and returned from other functions.</li>
+<li>This makes them <em>first-class citizens</em>.</li>
+</ul>
+<hr />
+<h2 id="-conceptual-context-functional-paradigm"><a class="header" href="#-conceptual-context-functional-paradigm">🧠 Conceptual Context (Functional Paradigm)</a></h2>
+<blockquote>
+<p>Functional programming treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.</p>
+</blockquote>
+<h3 id="inspiration-from-mathematics"><a class="header" href="#inspiration-from-mathematics">Inspiration from Mathematics</a></h3>
+<ul>
+<li><strong>First Order Logic</strong>: Objects with properties (e.g., <code>Person</code>, <code>Car</code>, etc.)</li>
+<li><strong>Higher Order Logic</strong>: Functions and their relation with other functions (like in Go's higher-order functions)</li>
+</ul>
+<p>Languages like <strong>Haskell</strong>, <strong>Racket</strong>, etc., are built on deep functional paradigms.</p>
+<p>Go borrows <strong>some</strong> of these concepts, but it is still <strong>imperative and procedural</strong> by nature.</p>
+<hr />
+<h2 id="-cli-visualization-call-stack--segments"><a class="header" href="#-cli-visualization-call-stack--segments">📟 CLI Visualization (Call Stack + Segments)</a></h2>
+<h3 id="1-data-segment"><a class="header" href="#1-data-segment">1. <strong>Data Segment</strong></a></h3>
+<ul>
+<li><code>add</code> (global function definition)</li>
+<li><code>call</code> (returns a function)</li>
+<li><code>processOperation</code> (stored function)</li>
+</ul>
+<h3 id="2-code-execution-flow-stack-frames"><a class="header" href="#2-code-execution-flow-stack-frames">2. <strong>Code Execution Flow (Stack Frames)</strong></a></h3>
+<pre><code class="language-shell">Call Stack:
+┌──────────────────────────┐
+│ main()                   │
+│ ├── add(2, 5)            │ =&gt; prints 7
+│ ├── processOperation     │
+│ │   └── op(4, 5) =&gt; add  │ =&gt; prints 9
+│ ├── call()               │ =&gt; returns add
+│ └── sum(4, 7)            │ =&gt; prints 11
+└──────────────────────────┘
+</code></pre>
+<p>Everything runs in the order written, but since functions are first-class, Go can pass and return them like variables.</p>
+<hr />
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<ul>
+<li>🌱 Go supports functional programming <strong>concepts</strong> like first-class and higher-order functions.</li>
+<li>💡 You can pass around functions like variables — extremely powerful for modular and clean code.</li>
+<li>🧠 Understanding <strong>first order vs higher order functions</strong>, <strong>parameters vs arguments</strong>, and <strong>callback functions</strong> gives you a major edge in writing elegant Go code.</li>
+</ul>
+<hr />
+<p>✅ This was a big brain class. You crushed it!</p>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="class-24--go-internal-memory-code-data-stack-heap"><a class="header" href="#class-24--go-internal-memory-code-data-stack-heap">Class 24 — Go Internal Memory (Code, Data, Stack, Heap)</a></h1>
+<h3 id="-topics-covered"><a class="header" href="#-topics-covered">🧠 Topics Covered</a></h3>
+<p>This class dives deep into how Go programs are structured in memory. Concepts explained include:</p>
+<ul>
+<li><strong>Code Segment</strong>: Stores compiled instructions (functions).</li>
+<li><strong>Data Segment</strong>: Stores global/static variables (like <code>var a = 10</code>).</li>
+<li><strong>Stack</strong>: Stores local function variables. Each function call creates a new <em>stack frame</em>.</li>
+<li><strong>Heap</strong>: Used for dynamically allocated memory (we'll explore this more later).</li>
+<li><strong>Garbage Collector</strong>: Runs on the heap. Cleans up memory that's no longer in use.</li>
+</ul>
+<hr />
+<h3 id="-code-from-class-24"><a class="header" href="#-code-from-class-24">📜 Code from Class 24</a></h3>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+var a = 10
+
+func add(x, y int) {
+	z := x + y
+	fmt.Println(z)
+}
+
+func main() {
+	add(5,4)
+	add(a,3)
+}
+
+func init() {
+	fmt.Println("Hello")
+}
+</code></pre>
+<h2 id="-code-execution-flow--memory-layout"><a class="header" href="#-code-execution-flow--memory-layout">🔍 Code Execution Flow &amp; Memory Layout</a></h2>
+<pre><code class="language-pgsql">           ┌────────────────────────────────────────────┐
+           │               Code Segment                 │
+           │--------------------------------------------│
+           │ Functions: init, main, add                 │
+           └────────────────────────────────────────────┘
+                          │
+                          ▼
+           ┌────────────────────────────────────────────┐
+           │              Data Segment                  │
+           │--------------------------------------------│
+           │ Global Variable: a = 10                    │
+           └────────────────────────────────────────────┘
+                          │
+                          ▼
+              ┌────────────────────────────┐
+              │          Stack             │
+              │----------------------------│
+              │ main() Stack Frame         │
+              │   - Calls add(5, 4)        │
+              │       - x=5, y=4           │
+              │       - z=9                │
+              │   - Calls add(10, 3)       │
+              │       - x=10, y=3          │
+              │       - z=13               │
+              └────────────────────────────┘
+                          │
+                          ▼
+           ┌────────────────────────────────────────────┐
+           │               Heap (Unused here)           │
+           │       (Managed by the Garbage Collector)   │
+           └────────────────────────────────────────────┘
+</code></pre>
+<h2 id="-execution-order"><a class="header" href="#-execution-order">⚙️ Execution Order</a></h2>
+<ol>
+<li><code>init()</code> is run automatically before <code>main()</code> → prints:</li>
+</ol>
+<pre><code class="language-nginx">Hello
+</code></pre>
+<ol start="2">
+<li><code>main()</code> runs and calls:
+-[] <code>add(5, 4)</code> → prints:
+<pre><code>9
+</code></pre>
+-[] <code>add(a, 3)</code> → uses <code>a = 10</code> → prints:
+<pre><code>13
+</code></pre>
+</li>
+</ol>
+<h2 id="-key-concepts-recap"><a class="header" href="#-key-concepts-recap">📌 Key Concepts Recap</a></h2>
+<p>Concept | Meaning
+Code Segment | Where all functions live after compilation
+Data Segment | Stores global variables
+Stack | Temporary memory for function execution (local vars, params)
+Heap | For dynamic memory (we didn't use heap explicitly here)
+Garbage Collector | Automatically manages memory on the heap
+init() Function | Special function in Go — runs before main()</p>
+<blockquote>
+<p>🧼 Garbage Collector Insight:
+Go’s GC sits on the heap and sweeps unused allocations to keep memory clean. You won't notice it in this small program, but it's your bestie when your app scales.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="class-25---internal-memory-deep-dive-compilation--execution-phases"><a class="header" href="#class-25---internal-memory-deep-dive-compilation--execution-phases">Class 25 - Internal Memory Deep Dive: Compilation &amp; Execution Phases</a></h1>
+<hr />
+<h2 id="-topics-covered-1"><a class="header" href="#-topics-covered-1">✨ Topics Covered</a></h2>
+<p>This class focused on the internal workings of a Go program with a spotlight on what happens under the hood during:</p>
+<ul>
+<li><strong>Compilation Phase</strong></li>
+<li><strong>Execution Phase</strong></li>
+<li>How Go builds a binary with <code>go build</code></li>
+<li>What gets stored in that binary (functions, constants, globals, etc.)</li>
+<li>How function expressions (e.g., <code>add := func(...)</code>) are treated in memory</li>
+</ul>
+<hr />
+<h2 id="-key-concepts-6"><a class="header" href="#-key-concepts-6">👍 Key Concepts</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Concept</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><strong>Compilation Phase</strong></td><td>Parses and compiles source code into a binary executable. No code runs yet.</td></tr>
+<tr><td><strong>Execution Phase</strong></td><td>Runs the compiled binary, starting from <code>init()</code> and then <code>main()</code>.</td></tr>
+<tr><td><strong>Code Segment</strong></td><td>Where compiled functions (like <code>main</code>, <code>call</code>, and anonymous functions) live.</td></tr>
+<tr><td><strong>Data Segment</strong></td><td>Holds global variables and constants (like <code>p</code> and <code>a</code>).</td></tr>
+<tr><td><strong>Function Expressions</strong></td><td>Treated as runtime function objects, stored in code segment.</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-code-used-in-class-25"><a class="header" href="#-code-used-in-class-25">📋 Code Used in Class 25</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+const a = 10 // constant
+var p = 100
+
+func call() {
+	add := func(x int, y int) {
+		z := x + y
+		fmt.Println(z)
+	}
+
+	add(5, 6)
+	add(p, a)
+}
+
+func main() {
+	call()
+	fmt.Println(a)
+}
+
+func init() {
+	fmt.Println("Hello")
+}
+</code></pre>
+<hr />
+<h2 id="-compilation-phase-visualized"><a class="header" href="#-compilation-phase-visualized">🔄 Compilation Phase Visualized</a></h2>
+<h3 id="go-build-maingo"><a class="header" href="#go-build-maingo"><code>go build main.go</code></a></h3>
+<ul>
+<li><strong>Parser/Compiler</strong> checks for syntax, scope, and dependencies.</li>
+<li>Stores:
+<ul>
+<li>Constants: <code>a = 10</code></li>
+<li>Globals: <code>p = 100</code></li>
+<li>Functions: <code>init</code>, <code>main</code>, <code>call</code>, and the anonymous <code>add</code> function inside <code>call</code></li>
+</ul>
+</li>
+<li>Generates a <strong>binary</strong> that includes all necessary machine code + metadata.</li>
+</ul>
+<p>Binary includes:</p>
+<ul>
+<li>Code Segment: <code>main</code>, <code>call</code>, anonymous function</li>
+<li>Data Segment: <code>const a</code>, <code>var p</code></li>
+<li>No execution happens here.</li>
+</ul>
+<hr />
+<h2 id="-execution-phase-visualized"><a class="header" href="#-execution-phase-visualized">⏱ Execution Phase Visualized</a></h2>
+<pre><code>   1. init()            =&gt; "Hello"
+   2. main()            =&gt; calls call()
+   3. call()            =&gt; declares and invokes add()
+       - add(5, 6)      =&gt; 11
+       - add(100, 10)   =&gt; 110
+   4. fmt.Println(a)    =&gt; 10
+</code></pre>
+<hr />
+<h2 id="-memory-layout"><a class="header" href="#-memory-layout">🧠 Memory Layout</a></h2>
+<pre><code>┌─────────────────────────────┐
+│       Code Segment          │
+│-----------------------------│
+│ main, call, init, add-func  │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│       Data Segment          │
+│-----------------------------│
+│ const a = 10                │
+│ var p = 100                 │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│           Stack             │
+│-----------------------------│
+│ call() frame → add func     │
+│   x=5,y=6,z=11               │
+│   x=100,y=10,z=110           │
+└─────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="-summary"><a class="header" href="#-summary">🔹 Summary</a></h2>
+<ul>
+<li>Go runs in <strong>two phases</strong>: Compilation and Execution.</li>
+<li>During <strong>compilation</strong>, Go prepares memory layout, compiles functions and expressions.</li>
+<li>In <strong>execution</strong>, it runs <code>init()</code> and then <code>main()</code>.</li>
+<li><strong>Function expressions</strong> like <code>add := func(...)</code> are first-class values and live in the code segment.</li>
+<li>The resulting binary from <code>go build</code> holds everything: code, data, metadata.</li>
+</ul>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="class-26-closure--go-internal-memory-deep-dive-"><a class="header" href="#class-26-closure--go-internal-memory-deep-dive-">Class 26: Closure &amp; Go Internal Memory Deep Dive 💡</a></h1>
+<p>Welcome to Class 26, where we uncover the magic behind closures in Go, escape analysis, and how memory is managed under the hood! 🧠🔥</p>
+<hr />
+<h2 id="-the-code"><a class="header" href="#-the-code">🧾 The Code</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+const a = 10
+var p = 100
+
+//Closure
+func outer(money int) func() {
+	age := 30
+	fmt.Println("Age =", age)
+
+	show := func() {
+		money = money + a + p
+		fmt.Println(money)
+	}
+
+	return show
+}
+
+func call() {
+	incr1 := outer(100)
+	incr1() // money = 100 + 10 + 100 = 210
+	incr1() // money = 210 + 10 + 100 = 320
+
+	incr2 := outer(100)
+	incr2()
+	incr2()
+}
+
+func main() {
+	call()
+}
+
+func init() {
+	fmt.Println("=== Bank ===")
+}
+</code></pre>
+<hr />
+<h2 id="-key-concepts-7"><a class="header" href="#-key-concepts-7">🔍 Key Concepts</a></h2>
+<h3 id="-what-is-a-closure"><a class="header" href="#-what-is-a-closure">🔒 What is a Closure?</a></h3>
+<p>A <strong>closure</strong> is a function that references variables from outside its own scope. In this case:</p>
+<pre><code class="language-go">show := func() {
+    money = money + a + p
+    fmt.Println(money)
+}
+</code></pre>
+<p><code>show</code> forms a closure by capturing the <code>money</code> variable defined in <code>outer()</code>.</p>
+<h3 id="-why-is-closure-important"><a class="header" href="#-why-is-closure-important">🧠 Why is Closure Important?</a></h3>
+<p>Closures let you encapsulate logic along with state. This is why <code>incr1()</code> and <code>incr2()</code> maintain separate <code>money</code> values even though they use the same function.</p>
+<h3 id="-stack-vs-heap"><a class="header" href="#-stack-vs-heap">🧮 Stack vs Heap</a></h3>
+<ul>
+<li><strong>Stack</strong>: Fast memory, used for function calls and local variables.</li>
+<li><strong>Heap</strong>: Used when variables need to persist beyond the function call (like in closures!).</li>
+</ul>
+<p>Because <code>money</code> needs to stick around <em>after</em> <code>outer()</code> returns, <strong>escape analysis</strong> detects this and allocates <code>money</code> on the heap.</p>
+<h3 id="-what-is-escape-analysis"><a class="header" href="#-what-is-escape-analysis">🧪 What is Escape Analysis?</a></h3>
+<p>Escape analysis is the process that the <strong>Go compiler</strong> uses during the <strong>compilation phase</strong> to determine whether variables can be safely allocated on the stack or must go to the heap.</p>
+<ul>
+<li>✅ If a variable is used <em>only</em> inside a function, it's put on the <strong>stack</strong>.</li>
+<li>🚀 If a variable is used <em>outside</em> (like in a returned closure), it's moved to the <strong>heap</strong>.</li>
+</ul>
+<h3 id="-memory-segments"><a class="header" href="#-memory-segments">🧱 Memory Segments</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Segment</th><th>What's Stored</th></tr></thead><tbody>
+<tr><td>Code Segment</td><td>Compiled instructions (functions)</td></tr>
+<tr><td>Data Segment</td><td>Global and static variables (<code>a</code>, <code>p</code>)</td></tr>
+<tr><td>Stack</td><td>Local variables (<code>age</code>)</td></tr>
+<tr><td>Heap</td><td>Escaping variables (<code>money</code>)</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-visualization"><a class="header" href="#-visualization">🧠 Visualization</a></h2>
+<h3 id="cli-style-memory-layout"><a class="header" href="#cli-style-memory-layout">CLI-Style Memory Layout</a></h3>
+<pre><code>┌─────────────────────────────┐
+│       Code Segment          │
+│-----------------------------│
+│ main, call, init, outer,    │
+│ anonymous show function     │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│       Data Segment          │
+│-----------------------------│
+│ const a = 10                │
+│ var p = 100                 │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│           Stack             │
+│-----------------------------│
+│ outer() frame               │
+│   age = 30                  │
+│   return address            │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│            Heap             │
+│-----------------------------│
+│ money = 100 (for incr1)     │
+│ money = 100 (for incr2)     │
+└─────────────────────────────┘
+</code></pre>
+<p>Each closure has its own <code>money</code> on the heap. Every call to <code>outer(100)</code> results in a new memory block being allocated.</p>
+<h3 id="garbage-collectors-role-"><a class="header" href="#garbage-collectors-role-">Garbage Collector’s Role 🧹</a></h3>
+<p>When the closure is no longer referenced (e.g., <code>incr1</code> or <code>incr2</code> goes out of scope), the <strong>Garbage Collector</strong> detects that the heap memory (e.g., <code>money</code>) is unreachable. It then safely reclaims that memory so your program doesn’t become a memory hoarder. This is vital for maintaining efficiency, especially when many closures are involved.</p>
+<p>GC is triggered automatically and runs concurrently with your program. It uses a combination of <strong>mark-and-sweep</strong> and <strong>concurrent garbage collection techniques</strong> to do this efficiently.</p>
+<hr />
+<h2 id="-tldr-2"><a class="header" href="#-tldr-2">🧠 TL;DR</a></h2>
+<ul>
+<li>Closures can capture and remember variable state 🔁</li>
+<li>Escape analysis figures out which variables must live on the heap 📦</li>
+<li>Stack is temporary, heap is persistent (with GC 🧹)</li>
+<li>Go separates memory into Code, Data, Stack, Heap — each with its role 🧩</li>
+<li>GC ensures unused heap memory (like old closure data) is recycled ♻️</li>
+</ul>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="class-27-structs--memory-layout-in-go-"><a class="header" href="#class-27-structs--memory-layout-in-go-">Class 27: Structs &amp; Memory Layout in Go 🧱</a></h1>
+<p>Welcome to Class 27! Today we're diving into <strong>structs</strong>, how to define and instantiate them, and how they interact with Go's memory model. Let's visualize everything from scratch like pros. 🧠💡</p>
+<hr />
+<h2 id="-the-code-1"><a class="header" href="#-the-code-1">✍️ The Code</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+type User struct {
+	Name string
+	Age  int
+}
+
+func (usr User) printDetails() {
+	fmt.Println("Name:", usr.Name)
+	fmt.Println("Age:", usr.Age)
+}
+
+func main() {
+	user1 := User{
+		Name: "Ruhin",
+		Age:  21,
+	}
+
+	user2 := User{
+		Name: "Mukim",
+		Age:  15,
+	}
+
+	user1.printDetails()
+	user2.printDetails()
+}
+</code></pre>
+<hr />
+<h2 id="-key-concepts-8"><a class="header" href="#-key-concepts-8">🧠 Key Concepts</a></h2>
+<h3 id="-what-is-a-struct"><a class="header" href="#-what-is-a-struct">🧩 What is a Struct?</a></h3>
+<p>A <strong>struct</strong> is a user-defined type in Go used to group related data together. It’s like a custom container for fields.</p>
+<pre><code class="language-go">type User struct {
+	Name string
+	Age  int
+}
+</code></pre>
+<p>This defines a new type called <code>User</code> with fields <code>Name</code> and <code>Age</code>.</p>
+<hr />
+<h3 id="-creating-instances-instantiation"><a class="header" href="#-creating-instances-instantiation">🔨 Creating Instances (Instantiation)</a></h3>
+<p>When we create an actual value using a struct type, that’s called <strong>instantiating</strong>.</p>
+<pre><code class="language-go">user1 := User{
+	Name: "Ruhin",
+	Age:  21,
+}
+</code></pre>
+<p>Here <code>user1</code> is an <strong>instance</strong> of <code>User</code>. This allocates memory to hold <code>Name</code> and <code>Age</code> values.</p>
+<hr />
+<h2 id="-memory-layout-visualization"><a class="header" href="#-memory-layout-visualization">🧠 Memory Layout (Visualization)</a></h2>
+<pre><code>┌─────────────────────────────┐
+│       Code Segment          │
+│-----------------------------│
+│ main, printDetails,         │
+│ type User struct {...}      │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│       Data Segment          │
+│-----------------------------│
+│ -                           │
+│ (Global vars if present)    │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│           Stack             │
+│-----------------------------│
+│ main() frame →              │
+│   user1 → Name: "Ruhin"     │
+│           Age: 21           │
+│   user2 → Name: "Mukim"     │
+│           Age: 15           │
+└─────────────────────────────┘
+</code></pre>
+<blockquote>
+<p>⚠️ NOTE: If a struct is returned from a function or captured by a closure, it may escape to the heap instead of stack.</p>
+</blockquote>
+<hr />
+<h2 id="-example-use-case"><a class="header" href="#-example-use-case">📋 Example Use Case</a></h2>
+<pre><code class="language-go">type Book struct {
+	Title  string
+	Author string
+	Pages  int
+}
+
+book1 := Book{
+	Title: "1984",
+	Author: "George Orwell",
+	Pages: 328,
+}
+</code></pre>
+<p>This lets us build real-world models with multiple fields.</p>
+<hr />
+<h2 id="-role-of-the-garbage-collector-gc"><a class="header" href="#-role-of-the-garbage-collector-gc">🧹 Role of the Garbage Collector (GC)</a></h2>
+<ul>
+<li>If a struct instance <strong>escapes</strong> (used outside the function, stored long-term, etc.), Go stores it on the <strong>heap</strong>.</li>
+<li>Go’s <strong>garbage collector</strong> then tracks and cleans it when it’s no longer in use.</li>
+<li>This means you don’t have to manually <code>free()</code> anything — Go handles memory cleanup for heap objects.</li>
+</ul>
+<hr />
+<h2 id="-tldr-3"><a class="header" href="#-tldr-3">🚀 TL;DR</a></h2>
+<ul>
+<li><code>type User struct {...}</code> is metadata → stored in the <strong>Code Segment</strong>.</li>
+<li><code>user1 := User{...}</code> is runtime data → stored in <strong>Stack</strong> or <strong>Heap</strong> depending on usage.</li>
+<li>Structs bundle fields into one logical unit ✅</li>
+<li>Memory layout varies depending on usage → escape analysis decides 📦🧳</li>
+<li>GC only manages objects in the <strong>heap</strong>, not on the <strong>stack</strong> 🧹</li>
+</ul>
+<hr />
+<h3 id="q-is-struct-a-datatype"><a class="header" href="#q-is-struct-a-datatype">Q: Is struct a datatype?</a></h3>
+<p><strong>Ans:</strong>
+Yes, 100% — a struct in Go is a user-defined data type. Think of it like creating your own custom "blueprint" for a data object. 💡</p>
+<p><strong>Here's how it fits in:</strong></p>
+<p>-[] Go has primitive data types like <code>int</code>, <code>string</code>, <code>bool</code>, <code>etc</code>.</p>
+<p>-[] You can then use <code>struct</code> to define a custom data type that groups multiple fields together.</p>
+<p>For example:</p>
+<pre><code class="language-go">type User struct {
+	Name string
+	Age  int
+}
+</code></pre>
+<p>This <code>User</code> struct becomes its own data type, and now you can create instances of it just like you would for <code>int</code> or <code>string</code>:</p>
+<pre><code class="language-go">var u User
+u.Name = "Ruhin"
+u.Age = 21
+</code></pre>
+<p>It’s like building your own Lego brick with a custom shape, and then making as many copies of that brick as you want. 🧱✨</p>
+<blockquote>
+<p>You’re now struct-urally sound in Go! 😎 Next time you model data, flex your type muscles and track those memory segments like a boss.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="class-28-receiver-functions-in-go"><a class="header" href="#class-28-receiver-functions-in-go">Class 28: Receiver Functions in Go</a></h1>
+<h2 id="-key-concept-receiver-functions"><a class="header" href="#-key-concept-receiver-functions">🔑 Key Concept: Receiver Functions</a></h2>
+<p>In Go, a <strong>receiver function</strong> (also called a <strong>method</strong>) is a function that is associated with a particular <strong>type</strong> (usually a struct). It allows us to add behavior to data types, like attaching functions to objects in other languages (e.g., methods in OOP).</p>
+<hr />
+<h2 id="-what-is-a-receiver-function"><a class="header" href="#-what-is-a-receiver-function">🧠 What Is a Receiver Function?</a></h2>
+<p>A <strong>receiver function</strong> is defined like a normal function, but with a special receiver parameter placed between the <code>func</code> keyword and the function name.</p>
+<pre><code class="language-go">func (r ReceiverType) FunctionName(params) returnType {
+    // function body
+}
+</code></pre>
+<p>The receiver type can be:</p>
+<ul>
+<li>A <strong>value receiver</strong>: <code>(t Type)</code> → receives a copy</li>
+<li>A <strong>pointer receiver</strong>: <code>(t *Type)</code> → receives a reference (can modify original)</li>
+</ul>
+<hr />
+<h2 id="-from-the-project-code"><a class="header" href="#-from-the-project-code">🏗️ From the Project Code</a></h2>
+<pre><code class="language-go">func (todos *Todos) add(title string) {
+    todo := Todo{
+        Title: title,
+        Completed: false,
+        CompletedAt: nil,
+        CreatedAt: time.Now(),
+    }
+    *todos = append(*todos, todo)
+}
+</code></pre>
+<ul>
+<li><code>todos *Todos</code> is the <strong>receiver</strong></li>
+<li>This method is attached to <code>Todos</code> (which is a custom type: <code>[]Todo</code>)</li>
+<li>The <code>*Todos</code> pointer allows modifications to the original slice</li>
+</ul>
+<p>Example usage from <code>main.go</code>:</p>
+<pre><code class="language-go">todos.add("Buy milk")
+</code></pre>
+<hr />
+<h2 id="-why-use-receiver-functions"><a class="header" href="#-why-use-receiver-functions">🔁 Why Use Receiver Functions?</a></h2>
+<ul>
+<li>Organize logic with the data it operates on ✅</li>
+<li>Achieve OOP-like behavior in Go ✅</li>
+<li>Maintain cleaner and modular code ✅</li>
+</ul>
+<hr />
+<h2 id="-extra-simple-example"><a class="header" href="#-extra-simple-example">💡 Extra Simple Example</a></h2>
+<pre><code class="language-go">type User struct {
+    Name string
+}
+
+// Value receiver (no change to original)
+func (u User) SayHi() {
+    fmt.Println("Hi, I am", u.Name)
+}
+
+// Pointer receiver (can change original)
+func (u *User) ChangeName(newName string) {
+    u.Name = newName
+}
+
+func main() {
+    user := User{Name: "Ruhin"}
+    user.SayHi() // Hi, I am Ruhin
+    user.ChangeName("Mukim")
+    user.SayHi() // Hi, I am Mukim
+}
+</code></pre>
+<hr />
+<h2 id="-summary-1"><a class="header" href="#-summary-1">⚙️ Summary</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>Receiver</td><td>The type a method is attached to (e.g., <code>*Todos</code>)</td></tr>
+<tr><td>Value Receiver</td><td>Gets a copy of the value; doesn't affect the original</td></tr>
+<tr><td>Pointer Receiver</td><td>Gets a reference; can modify the original</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-visualizing-it"><a class="header" href="#-visualizing-it">📘 Visualizing It</a></h2>
+<p>Think of <code>todos.add()</code> as calling a behavior of the object:</p>
+<pre><code class="language-go">object.method()
+</code></pre>
+<p>This pattern lets <code>Todos</code> have its own custom logic, like <code>add</code>, <code>delete</code>, <code>toggle</code>, <code>print</code>, etc., just like class methods in Python/Java.</p>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="class-29---go-arrays-and-memory-layout"><a class="header" href="#class-29---go-arrays-and-memory-layout">Class 29 - Go Arrays and Memory Layout</a></h1>
+<p>📅 <em>Date: April 24, 2025</em></p>
+<h2 id="-key-concepts-9"><a class="header" href="#-key-concepts-9">🔑 Key Concepts</a></h2>
+<h3 id="-what-is-an-array"><a class="header" href="#-what-is-an-array">✅ What is an Array?</a></h3>
+<ul>
+<li>An <strong>array</strong> is a fixed-size collection of elements of the same type.</li>
+<li>In Go, arrays are <strong>value types</strong>, meaning they are copied when passed around.</li>
+</ul>
+<h3 id="-array-in-go"><a class="header" href="#-array-in-go">🧠 Array in Go</a></h3>
+<pre><code class="language-go">var arr [2]int       // Declares an array of 2 integers. Default values: [0, 0]
+arr[0] = 3           // Assigning values using index
+arr[1] = 6
+
+// Short way of declaring an array with values
+arr := [2]int{3, 6}
+</code></pre>
+<h3 id="-indexing"><a class="header" href="#-indexing">💡 Indexing</a></h3>
+<ul>
+<li>Arrays in Go are <strong>zero-indexed</strong>, meaning the first element is accessed with <code>array[0]</code>.</li>
+</ul>
+<h3 id="-default-values"><a class="header" href="#-default-values">⚙️ Default Values</a></h3>
+<ul>
+<li>If you declare an array without initializing it, Go assigns default values:
+<ul>
+<li>For <code>int</code>, <code>float</code>, etc: <code>0</code></li>
+<li>For <code>string</code>: <code>""</code> (empty string)</li>
+<li>For <code>bool</code>: <code>false</code></li>
+<li>For pointers/interfaces: <code>nil</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="-memory-layout-visualization-1"><a class="header" href="#-memory-layout-visualization-1">🔍 Memory Layout Visualization</a></h3>
+<p>Example:</p>
+<pre><code class="language-go">arr := [2]int{3, 6}
+</code></pre>
+<p><strong>Memory Layout</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Address</th><th>Value</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>0x1000</td><td>3</td><td>arr[0]</td></tr>
+<tr><td>0x1004</td><td>6</td><td>arr[1]</td></tr>
+</tbody></table>
+</div>
+<p>Note: The actual address is abstract. The concept is: array elements are stored <strong>contiguously</strong> in memory.</p>
+<p>Another example:</p>
+<pre><code class="language-go">arr2 := [3]string{"I", "love", "you"}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Index</th><th>Value</th></tr></thead><tbody>
+<tr><td>0</td><td>"I"</td></tr>
+<tr><td>1</td><td>"love"</td></tr>
+<tr><td>2</td><td>"you"</td></tr>
+</tbody></table>
+</div>
+<p>Accessing <code>arr2[1]</code> returns <code>"love"</code>.</p>
+<hr />
+<h2 id="-full-code-example-from-class"><a class="header" href="#-full-code-example-from-class">🧪 Full Code Example (From Class)</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+var arr2 = [3]string{"I", "love", "you"}
+
+func main() {
+    arr := [2]int{3,6}
+    fmt.Println(arr)
+    fmt.Println(arr2)
+    fmt.Println(arr2[1])
+}
+</code></pre>
+<hr />
+<h2 id="-summary-2"><a class="header" href="#-summary-2">📦 Summary</a></h2>
+<ul>
+<li>Arrays are great for working with fixed-size collections.</li>
+<li>Be aware of default values.</li>
+<li>They're stored contiguously in memory.</li>
+<li>Go makes it easy to work with arrays, and it's a good base before moving to slices!</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="topic-wise"><a class="header" href="#topic-wise">Topic wise</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
 <strong>Date:</strong> 2025-04-19
@@ -743,6 +2082,641 @@ func main() {
 	fmt.Println(isTrue != isFalse) // Output: true
 }
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="callback-functions"><a class="header" href="#callback-functions">Callback Functions</a></h1>
+<p>If a function is passed as an argument to another function, then such types of functions are known as a Higher-Order function. This passing function as an argument is also known as a callback function or first-class function in the Go language.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func addName(name string, callback func(string)) {
+    callback(name)
+}
+
+func main() {
+    addName("HuXn", func(nm string) {
+        fmt.Printf("Hi, my name is %v\n", nm)
+    })
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/arrays
+<strong>Tags:</strong> [go, clousers, functions]
+]</p>
+<h2 id="-program-code-example"><a class="header" href="#-program-code-example">🔁 Program Code Example</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+const a = 10
+var b = 20
+
+func Outer() func() {
+	// Outer function variables
+	money := 100
+	age := 20
+
+	fmt.Println("Outer function")
+	fmt.Println("Age:", age)
+
+	show := func() {
+		money += a + b
+		fmt.Println("Money:", money)
+	}
+
+	return show
+}
+
+func call() {
+	inc := Outer()
+	inc()
+	inc()
+	fmt.Println("=========================")
+	inc1 := Outer()
+	inc1()
+	inc1()
+}
+
+func main() {
+	call()
+}
+
+func init() {
+	fmt.Print("============ Begin ============\n")
+}
+</code></pre>
+<hr />
+<h2 id="-code-execution-phases"><a class="header" href="#-code-execution-phases">⚙️ Code Execution Phases</a></h2>
+<h3 id="-phase-1-compilation"><a class="header" href="#-phase-1-compilation">🧩 Phase 1: Compilation</a></h3>
+<ul>
+<li>Compile and generate the binary:</li>
+</ul>
+<pre><code class="language-bash">go build main.go
+</code></pre>
+<h3 id="-phase-2-execution"><a class="header" href="#-phase-2-execution">🚀 Phase 2: Execution</a></h3>
+<ul>
+<li>Run the binary:</li>
+</ul>
+<pre><code class="language-bash">./main
+</code></pre>
+<h2 id="-closures-in-go"><a class="header" href="#-closures-in-go">🔒 Closures in Go</a></h2>
+<h3 id="-what-is-a-closure-1"><a class="header" href="#-what-is-a-closure-1">✅ What is a Closure?</a></h3>
+<p>A closure is a function <strong>defined within another function</strong> and <strong>has access to the outer function's variables</strong> even after the outer function has finished executing.</p>
+<pre><code class="language-go">func Outer() func() {
+    money := 100
+    show := func() {
+        money += 10
+        fmt.Println("Money:", money)
+    }
+    return show
+}
+</code></pre>
+<ul>
+<li><code>money</code> is captured by the inner function.</li>
+<li>On each call to the returned function, <code>money</code> is updated.</li>
+</ul>
+<h3 id="-multiple-closures"><a class="header" href="#-multiple-closures">✅ Multiple Closures</a></h3>
+<ul>
+<li>Each call to <code>Outer()</code> creates a new instance of <code>money</code>, isolated from others.</li>
+</ul>
+<hr />
+<h2 id="-output-explanation"><a class="header" href="#-output-explanation">🧠 Output Explanation</a></h2>
+<pre><code class="language-go">init() runs first: ============ Begin ============
+
+Outer function
+Age: 20
+Money: 130
+Money: 160
+=========================
+Outer function
+Age: 20
+Money: 130
+Money: 160
+</code></pre>
+<ul>
+<li>Two closures are created, each with its own instance of <code>money</code>.</li>
+<li>They do not interfere with each other.</li>
+</ul>
+<hr />
+<h2 id="-types-of-closures"><a class="header" href="#-types-of-closures">🔍 Types of Closures</a></h2>
+<h3 id="1-closure-with-outer-variable"><a class="header" href="#1-closure-with-outer-variable">1. <strong>Closure with Outer Variable</strong></a></h3>
+<p><strong>Question:</strong> Write a Go program that demonstrates how a closure can access and modify a variable from the outer function.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func outer() func() {
+    x := 10
+    return func() {
+        x++
+        fmt.Println(x)
+    }
+}
+
+func main() {
+    closure := outer()
+    closure() // Output: 11
+    closure() // Output: 12
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The <code>outer</code> function creates a closure that captures and modifies the <code>x</code> variable.</li>
+<li>Every time the closure is called, the value of <code>x</code> is incremented.</li>
+</ul>
+<hr />
+<h3 id="2-multiple-closures-with-separate-states"><a class="header" href="#2-multiple-closures-with-separate-states">2. <strong>Multiple Closures with Separate States</strong></a></h3>
+<p><strong>Question:</strong> Demonstrate how multiple closures created in the same function each maintain their own state.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func createCounter() func() int {
+    counter := 0
+    return func() int {
+        counter++
+        return counter
+    }
+}
+
+func main() {
+    counter1 := createCounter()
+    counter2 := createCounter()
+
+    fmt.Println(counter1()) // Output: 1
+    fmt.Println(counter1()) // Output: 2
+    fmt.Println(counter2()) // Output: 1
+    fmt.Println(counter2()) // Output: 2
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><code>counter1</code> and <code>counter2</code> each maintain their own state because they are independent closures.</li>
+<li>Each counter starts at 0 and increments on each call.</li>
+</ul>
+<hr />
+<h3 id="3-closure-with-parameters"><a class="header" href="#3-closure-with-parameters">3. <strong>Closure with Parameters</strong></a></h3>
+<p><strong>Question:</strong> Write a closure that accepts parameters and demonstrates how closures can be passed arguments.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func multiplier(factor int) func(int) int {
+    return func(n int) int {
+        return n * factor
+    }
+}
+
+func main() {
+    double := multiplier(2)
+    triple := multiplier(3)
+
+    fmt.Println(double(5))  // Output: 10
+    fmt.Println(triple(5))  // Output: 15
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The closure <code>multiplier</code> takes a <code>factor</code> argument and returns a function that multiplies a number by that factor.</li>
+<li>Each closure (<code>double</code>, <code>triple</code>) uses its own <code>factor</code> value to perform the operation.</li>
+</ul>
+<hr />
+<h3 id="4-closures-with-deferred-execution"><a class="header" href="#4-closures-with-deferred-execution">4. <strong>Closures with Deferred Execution</strong></a></h3>
+<p><strong>Question:</strong> How can closures be used in Go with deferred execution, and what happens when the closure accesses variables after the outer function returns?</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    a := 10
+    defer func(a int) { // Pass 'a' as a parameter to the deferred function
+        fmt.Println("Deferred closure:", a)
+    }(a) // Pass the current value of 'a' here
+    a = 20
+    fmt.Println("Inside main:", a)
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>Even though <code>a</code> is modified inside <code>main</code>, the deferred closure captures the value of <code>a</code> at the time the defer statement was encountered by passing it as a parameter.</li>
+<li>The closure prints the value of <code>a</code> that was captured before it was modified.</li>
+</ul>
+<hr />
+<h3 id="5-closure-capturing-loop-variable"><a class="header" href="#5-closure-capturing-loop-variable">5. <strong>Closure Capturing Loop Variable</strong></a></h3>
+<p><strong>Question:</strong> Write a Go program that demonstrates a common pitfall when using closures inside loops. The closure captures the loop variable incorrectly.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    funcs := []func(){}
+
+    for i := 0; i &lt; 3; i++ {
+        funcs = append(funcs, func() {
+            fmt.Println(i) // Output: 3, 3, 3
+        })
+    }
+
+    for _, f := range funcs {
+        f()
+    }
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>All closures capture the same <code>i</code> variable. At the time of closure execution, <code>i</code> is 3 (the value after the loop ends).</li>
+<li>To fix this, you need to pass <code>i</code> as a parameter to the closure:</li>
+</ul>
+<p><strong>Fixed Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    funcs := []func(){}
+
+    for i := 0; i &lt; 3; i++ {
+        i := i // Create a new variable inside the loop
+        funcs = append(funcs, func() {
+            fmt.Println(i) // Output: 0, 1, 2
+        })
+    }
+
+    for _, f := range funcs {
+        f()
+    }
+}
+</code></pre>
+<hr />
+<h3 id="6-closures-with-function-arguments"><a class="header" href="#6-closures-with-function-arguments">6. <strong>Closures with Function Arguments</strong></a></h3>
+<p><strong>Question:</strong> Create a closure that adds two numbers and demonstrates how closures can capture arguments passed to the inner function.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func adder(a int) func(int) int {
+    return func(b int) int {
+        return a + b
+    }
+}
+
+func main() {
+    add5 := adder(5)
+    fmt.Println(add5(3))  // Output: 8
+    fmt.Println(add5(10)) // Output: 15
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The outer function <code>adder</code> captures <code>a</code> and returns a closure that adds <code>a</code> to the argument <code>b</code>.</li>
+<li>The closure <code>add5</code> remembers <code>a = 5</code> and adds it to the argument passed to it.</li>
+</ul>
+<hr />
+<h3 id="7-closures-with-a-function-factory"><a class="header" href="#7-closures-with-a-function-factory">7. <strong>Closures with a Function Factory</strong></a></h3>
+<p><strong>Question:</strong> Implement a closure that acts as a function factory, returning different mathematical operations based on the argument passed to the factory.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func operationFactory(operator string) func(int, int) int {
+    switch operator {
+    case "add":
+        return func(a, b int) int {
+            return a + b
+        }
+    case "subtract":
+        return func(a, b int) int {
+            return a - b
+        }
+    case "multiply":
+        return func(a, b int) int {
+            return a * b
+        }
+    }
+    return nil
+}
+
+func main() {
+    add := operationFactory("add")
+    subtract := operationFactory("subtract")
+    multiply := operationFactory("multiply")
+
+    fmt.Println(add(3, 4))       // Output: 7
+    fmt.Println(subtract(9, 4))  // Output: 5
+    fmt.Println(multiply(3, 4))  // Output: 12
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The <code>operationFactory</code> returns different closures based on the operator passed.</li>
+<li>Each closure performs a corresponding mathematical operation.</li>
+</ul>
+<hr />
+<h3 id="8-closures-with-state-preservation"><a class="header" href="#8-closures-with-state-preservation">8. <strong>Closures with State Preservation</strong></a></h3>
+<p><strong>Question:</strong> Write a closure that preserves state across multiple invocations (like a simple counter) and explain its working.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func counter() func() int {
+    count := 0
+    return func() int {
+        count++
+        return count
+    }
+}
+
+func main() {
+    c1 := counter()
+    c2 := counter()
+
+    fmt.Println(c1()) // Output: 1
+    fmt.Println(c1()) // Output: 2
+    fmt.Println(c2()) // Output: 1
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>Each call to <code>counter</code> returns a closure that maintains a unique <code>count</code> variable, preserving state across invocations.</li>
+</ul>
+<hr />
+<h3 id="9-closure-with-function-composition"><a class="header" href="#9-closure-with-function-composition">9. <strong>Closure with Function Composition</strong></a></h3>
+<p><strong>Question:</strong> Create a Go program that demonstrates function composition using closures.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func compose(f, g func(int) int) func(int) int {
+    return func(x int) int {
+        return f(g(x))
+    }
+}
+
+func double(x int) int {
+    return x * 2
+}
+
+func addFive(x int) int {
+    return x + 5
+}
+
+func main() {
+    composed := compose(double, addFive)
+    fmt.Println(composed(3)) // Output: 16 (3 + 5 = 8, 8 * 2 = 16)
+}
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The <code>compose</code> function takes two functions (<code>f</code> and <code>g</code>) and returns a new function that applies <code>g</code> first, then applies <code>f</code> to the result.</li>
+<li>The result is a composition of <code>double</code> and <code>addFive</code>.</li>
+</ul>
+<hr />
+<pre><code class="language-markdown"># Go Closures - 20 Questions with Code Examples and Explanations
+
+This document contains 20 questions related to closures in Go, along with code examples and detailed explanations.
+
+---
+
+### 1. **What is a closure in Go?**
+
+**Question:** Define what a closure is in Go with an example.
+
+**Code:**
+
+```go
+package main
+
+import "fmt"
+
+func outer() func() {
+    return func() {
+        fmt.Println("This is a closure")
+    }
+}
+
+func main() {
+    closure := outer()
+    closure()
+}
+```
+</code></pre>
+<p><strong>Explanation:</strong><br />
+A closure is a function that captures the variables from its surrounding context. In the example, the inner function returned by <code>outer</code> is a closure, as it can access the environment in which it was created.</p>
+<hr />
+<h3 id="2-how-does-a-closure-access-variables-from-its-outer-function"><a class="header" href="#2-how-does-a-closure-access-variables-from-its-outer-function">2. <strong>How does a closure access variables from its outer function?</strong></a></h3>
+<p><strong>Question:</strong> Show how a closure can access and modify variables in the outer function.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func outer() func() {
+    x := 10
+    return func() {
+        x++
+        fmt.Println(x)
+    }
+}
+
+func main() {
+    closure := outer()
+    closure() // Output: 11
+    closure() // Output: 12
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+The closure captures the <code>x</code> variable from the <code>outer</code> function and modifies it each time it is invoked.</p>
+<hr />
+<h3 id="3-what-happens-when-closures-access-variables-from-a-loop"><a class="header" href="#3-what-happens-when-closures-access-variables-from-a-loop">3. <strong>What happens when closures access variables from a loop?</strong></a></h3>
+<p><strong>Question:</strong> Demonstrate the common mistake with closures capturing loop variables.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    funcs := []func(){}
+
+    for i := 0; i &lt; 3; i++ {
+        funcs = append(funcs, func() {
+            fmt.Println(i)
+        })
+    }
+
+    for _, f := range funcs {
+        f()
+    }
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+All closures capture the same <code>i</code> variable, and when executed, they all print <code>3</code>. This happens because the closure captures a reference to the variable <code>i</code>, not its value at the time of closure creation.</p>
+<hr />
+<h3 id="4-how-can-you-fix-the-loop-closure-problem"><a class="header" href="#4-how-can-you-fix-the-loop-closure-problem">4. <strong>How can you fix the loop closure problem?</strong></a></h3>
+<p><strong>Question:</strong> How can you avoid closures capturing the same variable in a loop?</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    funcs := []func(){}
+
+    for i := 0; i &lt; 3; i++ {
+        i := i // New variable for each iteration
+        funcs = append(funcs, func() {
+            fmt.Println(i)
+        })
+    }
+
+    for _, f := range funcs {
+        f()
+    }
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+By introducing a new variable <code>i</code> in the loop, each closure captures a separate value of <code>i</code>, resulting in <code>0</code>, <code>1</code>, and <code>2</code> being printed.</p>
+<hr />
+<h3 id="5-closures-as-function-parameters"><a class="header" href="#5-closures-as-function-parameters">5. <strong>Closures as Function Parameters</strong></a></h3>
+<p><strong>Question:</strong> How do you pass a closure as an argument to another function?</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func applyClosure(f func()) {
+    f()
+}
+
+func main() {
+    closure := func() {
+        fmt.Println("Closure passed as argument")
+    }
+    applyClosure(closure)
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+You can pass a closure as an argument to another function. In this example, <code>applyClosure</code> accepts a closure and invokes it.</p>
+<hr />
+<h3 id="6-closures-with-parameters"><a class="header" href="#6-closures-with-parameters">6. <strong>Closures with Parameters</strong></a></h3>
+<p><strong>Question:</strong> Write a closure that accepts a parameter and demonstrates how closures work with arguments.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func multiplier(factor int) func(int) int {
+    return func(n int) int {
+        return n * factor
+    }
+}
+
+func main() {
+    double := multiplier(2)
+    fmt.Println(double(4)) // Output: 8
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+The closure <code>multiplier</code> takes a parameter <code>factor</code> and returns a function that multiplies the given number <code>n</code> by <code>factor</code>.</p>
+<hr />
+<h3 id="7-closures-with-function-return-values"><a class="header" href="#7-closures-with-function-return-values">7. <strong>Closures with Function Return Values</strong></a></h3>
+<p><strong>Question:</strong> How do closures work when they return values?</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func adder(a int) func(int) int {
+    return func(b int) int {
+        return a + b
+    }
+}
+
+func main() {
+    addFive := adder(5)
+    fmt.Println(addFive(3)) // Output: 8
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+The closure captures the <code>a</code> variable and uses it when adding <code>b</code> in the returned function.</p>
+<hr />
+<h3 id="8-returning-a-closure-from-a-function"><a class="header" href="#8-returning-a-closure-from-a-function">8. <strong>Returning a Closure from a Function</strong></a></h3>
+<p><strong>Question:</strong> Demonstrate how to return a closure from a function.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func createCounter() func() int {
+    counter := 0
+    return func() int {
+        counter++
+        return counter
+    }
+}
+
+func main() {
+    counter1 := createCounter()
+    counter2 := createCounter()
+
+    fmt.Println(counter1()) // Output: 1
+    fmt.Println(counter2()) // Output: 1
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+Each call to <code>createCounter</code> creates a new closure, which maintains its own counter state.</p>
+<hr />
+<h3 id="9-closure-with-state-preservation"><a class="header" href="#9-closure-with-state-preservation">9. <strong>Closure with State Preservation</strong></a></h3>
+<p><strong>Question:</strong> Write a closure that remembers its previous state across calls.</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func counter() func() int {
+    count := 0
+    return func() int {
+        count++
+        return count
+    }
+}
+
+func main() {
+    c1 := counter()
+    c2 := counter()
+
+    fmt.Println(c1()) // Output: 1
+    fmt.Println(c1()) // Output: 2
+    fmt.Println(c2()) // Output: 1
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+A closure retains its own state, meaning each call to <code>counter</code> results in separate states for <code>c1</code> and <code>c2</code>.</p>
+<hr />
+<h3 id="10-closures-and-anonymous-functions"><a class="header" href="#10-closures-and-anonymous-functions">10. <strong>Closures and Anonymous Functions</strong></a></h3>
+<p><strong>Question:</strong> How can closures be used with anonymous functions?</p>
+<p><strong>Code:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    a := 5
+    closure := func() {
+        fmt.Println("Captured value:", a)
+    }
+    closure() // Output: Captured value: 5
+}
+</code></pre>
+<p><strong>Explanation:</strong><br />
+Anonymous functions can be used as closures. In this case, the anonymous function captures the variable <code>a</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
 <strong>Date:</strong> 2025-04-19
 <strong>Category:</strong> e.g., interview-qa/topic_name
@@ -1263,211 +3237,384 @@ func main() {
     fmt.Println("x:", x, "y:", y)
 }
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="defer-keyword"><a class="header" href="#defer-keyword">Defer Keyword</a></h1>
+<p>The <code>defer</code> keyword is used to delay the execution of a function or a statement until the nearby function returns. In simple words, <code>defer</code> will move the execution of the statement to the very end inside a function.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func greet() {
+    defer fmt.Println("World")
+    fmt.Println("Hello")
+}
+
+func main() {
+    greet()
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
-<strong>Date:</strong> 2025-04-19
-<strong>Category:</strong> e.g., interview-qa/for-loop
-<strong>Tags:</strong> [go, loops, for-loop]
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Higher-Order
+<strong>Tags:</strong> [go, First-Order, Higher-Order]
 ]</p>
-<h1 id="for-loop"><a class="header" href="#for-loop">For Loop</a></h1>
-<h2 id="a-for-loop-is-used-to-repeat-a-specific-block-of-code-a-known-number-of-times"><a class="header" href="#a-for-loop-is-used-to-repeat-a-specific-block-of-code-a-known-number-of-times">A "For" Loop is used to repeat a specific block of code a known number of times.</a></h2>
-<h2 id="for-example-if-we-want-to-check-the-grade-of-every-student-in-the-class-we-loop-from-1-to-that-number-when-the-number-of-times-is-not-known-before-hand-we-use-a-while-loop"><a class="header" href="#for-example-if-we-want-to-check-the-grade-of-every-student-in-the-class-we-loop-from-1-to-that-number-when-the-number-of-times-is-not-known-before-hand-we-use-a-while-loop">For example, if we want to check the grade of every student in the class, we loop from 1 to that number. When the number of times is not known before hand, we use a "While" loop.</a></h2>
-<pre><code class="language-go">// Sudo Syntax
-for initialExpression; condition; increment { &lt;code&gt; }
-</code></pre>
+<h2 id="first-order-function-and-higher-order-function"><a class="header" href="#first-order-function-and-higher-order-function">First-Order Function and Higher-Order Function</a></h2>
+<h3 id="first-order-function"><a class="header" href="#first-order-function">First-Order Function</a></h3>
+<p>A <strong>first-order function</strong> is a function that operates on basic data types (integers, strings, etc.) and does not take other functions as arguments nor returns a function as its result.</p>
+<h3 id="higher-order-function"><a class="header" href="#higher-order-function">Higher-Order Function</a></h3>
+<p>A <strong>higher-order function</strong> is a function that can accept other functions as arguments and/or return a function as its result. Higher-order functions are key in functional programming paradigms.</p>
+<h3 id="example-code"><a class="header" href="#example-code">Example Code</a></h3>
+<h4 id="first-order-function-1"><a class="header" href="#first-order-function-1">First-Order Function</a></h4>
 <pre><code class="language-go">package main
-import ("fmt")
+
+import "fmt"
+
+// First-order function: does not take or return another function
+func add(a int, b int) int {
+    return a + b
+}
 
 func main() {
-  for i:=0; i &lt; 5; i++ {
-    fmt.Println(i)
-  }
+    result := add(5, 3)
+    fmt.Println("Result:", result) // Output: Result: 8
 }
 </code></pre>
-<h1 id="the-continue-statement"><a class="header" href="#the-continue-statement">The continue Statement</a></h1>
-<h2 id="the-continue-statement-is-used-to-skip-one-or-more-iterations-in-the-loop-it-then-continues-with-the-next-iteration-in-the-loop"><a class="header" href="#the-continue-statement-is-used-to-skip-one-or-more-iterations-in-the-loop-it-then-continues-with-the-next-iteration-in-the-loop">The continue statement is used to skip one or more iterations in the loop. It then continues with the next iteration in the loop.</a></h2>
+<h4 id="higher-order-function-1"><a class="header" href="#higher-order-function-1">Higher-Order Function</a></h4>
 <pre><code class="language-go">package main
-import ("fmt")
+
+import "fmt"
+
+// Higher-order function: takes a function as an argument
+func applyOperation(a int, b int, operation func(int, int) int) int {
+    return operation(a, b)
+}
+
+// Function to be passed as an argument
+func multiply(a int, b int) int {
+    return a * b
+}
 
 func main() {
-  for i:=0; i &lt; 5; i++ {
-    if i == 3 {
-      continue
+    result := applyOperation(5, 3, multiply)
+    fmt.Println("Result:", result) // Output: Result: 15
+}
+</code></pre>
+<h3 id="logic-in-mathematics"><a class="header" href="#logic-in-mathematics">Logic in Mathematics</a></h3>
+<p>In discrete mathematics, logic is used to define and analyze the properties and relationships of objects.</p>
+<ol>
+<li><strong>Object</strong>: An entity that has a physical existence (e.g., people, animals).</li>
+<li><strong>Property</strong>: Characteristics or attributes of objects (e.g., color, height).</li>
+<li><strong>Relation</strong>: Describes how objects are related to each other (e.g., "all customers must pay their pizza bills").</li>
+</ol>
+<p>Example:</p>
+<ul>
+<li>
+<p><strong>Object</strong>: Customer</p>
+</li>
+<li>
+<p><strong>Property</strong>: Has a bill</p>
+</li>
+<li>
+<p><strong>Relation</strong>: Must pay the bill</p>
+</li>
+<li>
+<p><strong>First-Order Logic</strong>: Works with objects, properties, and relations.</p>
+</li>
+<li>
+<p><strong>Higher-Order Logic</strong>: Works with relations between functions and operations.</p>
+</li>
+</ul>
+<p>In the context of functions:</p>
+<ul>
+<li><strong>First-Order Function</strong>: Operates directly on objects and their properties.</li>
+<li><strong>Higher-Order Function</strong>: Operates on relations between functions, allowing for more abstract and flexible operations.</li>
+</ul>
+<h3 id="functional-paradigms"><a class="header" href="#functional-paradigms">Functional Paradigms</a></h3>
+<p>Functional programming is a programming paradigm where programs are constructed by applying and composing functions. It emphasizes <strong>pure functions</strong>, <strong>immutability</strong>, and <strong>higher-order functions</strong>.</p>
+<ul>
+<li><strong>Pure Functions</strong>: Functions that always produce the same output for the same input and have no side effects.</li>
+<li><strong>Immutability</strong>: Data cannot be changed once it is created. New data structures are created with updated values.</li>
+<li><strong>First-Class Functions</strong>: Functions are treated as first-class citizens, meaning they can be assigned to variables, passed as arguments, and returned from other functions.</li>
+<li><strong>Higher-Order Functions</strong>: Functions that take other functions as arguments or return them as results.</li>
+</ul>
+<p>Functional programming languages like <strong>Haskell</strong>, <strong>Racket</strong>, and <strong>Lisp</strong> provide powerful abstractions for working with functions.</p>
+<h3 id="additional-example-code"><a class="header" href="#additional-example-code">Additional Example Code</a></h3>
+<h4 id="higher-order-function-returning-another-function"><a class="header" href="#higher-order-function-returning-another-function">Higher-Order Function Returning Another Function</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Higher-order function: returns another function
+func call() func(int, int) {
+    return add
+}
+
+func add(a, b int) {
+    z := a + b
+    fmt.Println(z)
+}
+
+func main() {
+    // call() is a higher-order function which returns the function add.
+    // The returned function is assigned to a variable f, then f is called with arguments 10, 20.
+    f := call()
+    f(10, 20) // Output: 30
+}
+</code></pre>
+<h4 id="higher-order-function-with-first-class-functions"><a class="header" href="#higher-order-function-with-first-class-functions">Higher-Order Function with First-Class Functions</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Higher-order function: accepts another function as an argument
+func applyAndReturn(fn func(int, int) int, x int, y int) int {
+    return fn(x, y)
+}
+
+// Function to be passed as an argument
+func subtract(a int, b int) int {
+    return a - b
+}
+
+func main() {
+    result := applyAndReturn(subtract, 10, 5)
+    fmt.Println("Result:", result) // Output: Result: 5
+}
+</code></pre>
+<h3 id="interview-qa-code-examples"><a class="header" href="#interview-qa-code-examples">Interview Q&amp;A (Code Examples)</a></h3>
+<h4 id="1-what-is-a-higher-order-function"><a class="header" href="#1-what-is-a-higher-order-function">1. <strong>What is a higher-order function?</strong></a></h4>
+<p><strong>Question</strong>: What is a higher-order function, and how does it work in Go?</p>
+<p><strong>Answer</strong>:
+A higher-order function is a function that either accepts other functions as parameters or returns a function.</p>
+<p>Example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func applyOperation(a int, b int, operation func(int, int) int) int {
+    return operation(a, b)
+}
+
+func add(a, b int) int {
+    return a + b
+}
+
+func main() {
+    result := applyOperation(3, 4, add)
+    fmt.Println("Result:", result) // Output: Result: 7
+}
+</code></pre>
+<h4 id="2-what-is-a-first-order-function"><a class="header" href="#2-what-is-a-first-order-function">2. <strong>What is a first-order function?</strong></a></h4>
+<p><strong>Question</strong>: Explain a first-order function in Go.</p>
+<p><strong>Answer</strong>:
+A first-order function operates on basic data types and does not take other functions as parameters nor return functions.</p>
+<p>Example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func add(a int, b int) int {
+    return a + b
+}
+
+func main() {
+    result := add(3, 5)
+    fmt.Println("Result:", result) // Output: Result: 8
+}
+</code></pre>
+<h4 id="3-can-you-create-a-function-that-returns-another-function"><a class="header" href="#3-can-you-create-a-function-that-returns-another-function">3. <strong>Can you create a function that returns another function?</strong></a></h4>
+<p><strong>Question</strong>: Write a function that returns another function and demonstrates its usage.</p>
+<p><strong>Answer</strong>:
+Yes, you can create a higher-order function that returns another function. Here's an example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func multiply(a int) func(int) int {
+    return func(b int) int {
+        return a * b
     }
-   fmt.Println(i)
-  }
 }
-</code></pre>
-<h1 id="the-break-statement"><a class="header" href="#the-break-statement">The break Statement</a></h1>
-<h2 id="the-break-statement-is-used-to-breakterminate-the-loop-execution"><a class="header" href="#the-break-statement-is-used-to-breakterminate-the-loop-execution">The break statement is used to break/terminate the loop execution.</a></h2>
-<pre><code class="language-go">package main
-import ("fmt")
 
 func main() {
-  for i:=0; i &lt; 5; i++ {
-    if i == 3 {
-      break
+    multiplyBy2 := multiply(2)
+    fmt.Println("Result:", multiplyBy2(5)) // Output: Result: 10
+}
+</code></pre>
+<h4 id="4-what-is-an-anonymous-function-in-go"><a class="header" href="#4-what-is-an-anonymous-function-in-go">4. <strong>What is an anonymous function in Go?</strong></a></h4>
+<p><strong>Question</strong>: Show an example of an anonymous function in Go.</p>
+<p><strong>Answer</strong>:
+An anonymous function is a function defined without a name, often used for short-lived operations.</p>
+<p>Example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    func(a int, b int) {
+        fmt.Println("Sum:", a+b)
+    }(3, 4) // Output: Sum: 7
+}
+</code></pre>
+<h4 id="5-what-is-an-immediately-invoked-function-expression-iife-in-go"><a class="header" href="#5-what-is-an-immediately-invoked-function-expression-iife-in-go">5. <strong>What is an Immediately Invoked Function Expression (IIFE) in Go?</strong></a></h4>
+<p><strong>Question</strong>: Write a code example for an Immediately Invoked Function Expression (IIFE) in Go.</p>
+<p><strong>Answer</strong>:
+An IIFE is a function that is defined and immediately invoked.</p>
+<p>Example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    result := func(a int, b int) int {
+        return a + b
+    }(3, 4)
+
+    fmt.Println("Result:", result) // Output: Result: 7
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Function Expressions
+<strong>Tags:</strong> [go, Function Expressions, Anonymous Functions ]
+]</p>
+<h3 id="function-expressions-and-anonymous-functions-in-go"><a class="header" href="#function-expressions-and-anonymous-functions-in-go">Function Expressions and Anonymous Functions in Go</a></h3>
+<p>In Go, functions can be treated as first-class citizens, meaning they can be assigned to variables, passed as arguments, or returned from other functions. These capabilities make Go flexible in terms of handling operations that require dynamic behavior.</p>
+<h3 id="function-expressions"><a class="header" href="#function-expressions">Function Expressions</a></h3>
+<p>A <strong>function expression</strong> is when you assign a function to a variable. This allows you to treat the function like any other value in Go, and invoke it using the variable name.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    // Assigning a function to a variable
+    add := func(a int, b int) int {
+        return a + b
     }
-   fmt.Println(i)
-  }
+
+    // Using the variable to call the function
+    result := add(3, 4)
+    fmt.Println("Sum:", result) // Output: Sum: 7
 }
 </code></pre>
-<h1 id="nested-loops"><a class="header" href="#nested-loops">Nested Loops</a></h1>
-<h2 id="loop-inside-other-loop-is-known-as-nested-loop"><a class="header" href="#loop-inside-other-loop-is-known-as-nested-loop">Loop inside other loop is known as Nested Loop.</a></h2>
+<h3 id="anonymous-functions"><a class="header" href="#anonymous-functions">Anonymous Functions</a></h3>
+<p>An <strong>anonymous function</strong> is a function that is defined without a name. These are often used for one-off tasks, such as callbacks or short-lived operations.</p>
 <pre><code class="language-go">package main
-
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	for i := 0; i &lt; 20; i++ {
-		fmt.Println("-----OUTER------", i)
-		for j := 0; j &lt; 10; j++ {
-			fmt.Println("-----INNER------", j)
-		}
-	}
+    // Anonymous function without a name
+    func(message string) {
+        fmt.Println(message)
+    }("Hello, Go!") // Output: Hello, Go!
 }
 </code></pre>
-<h1 id="frequently-asked-questions-4"><a class="header" href="#frequently-asked-questions-4">Frequently Asked Questions</a></h1>
-<h2 id="1-how-to-iterate-over-an-array-using-a-for-loop"><a class="header" href="#1-how-to-iterate-over-an-array-using-a-for-loop">1. How to iterate over an array using a for loop?</a></h2>
-<h3 id="answer"><a class="header" href="#answer">Answer:</a></h3>
-<p>You can use a for loop to iterate over an array by using the index to access each element.</p>
+<h3 id="immediately-invoked-function-expressions-iife"><a class="header" href="#immediately-invoked-function-expressions-iife">Immediately Invoked Function Expressions (IIFE)</a></h3>
+<p>In Go, you can also define an anonymous function and immediately invoke it. This is useful for initializing values, performing a quick operation, or executing code that does not need to be reused.</p>
 <pre><code class="language-go">package main
-import ("fmt")
+import "fmt"
 
 func main() {
-  arr := [5]int{1, 2, 3, 4, 5}
-  for i := 0; i &lt; len(arr); i++ {
-    fmt.Println(arr[i])
-  }
+    // Immediately Invoked Function Expression (IIFE)
+    result := func(a int, b int) int {
+        return a + b
+    }(3, 4) // Function is invoked immediately with the arguments
+
+    fmt.Println("Sum:", result) // Output: Sum: 7
 }
 </code></pre>
-<h2 id="2-how-to-use-a-for-loop-with-a-range"><a class="header" href="#2-how-to-use-a-for-loop-with-a-range">2. How to use a for loop with a range?</a></h2>
-<h3 id="answer-1"><a class="header" href="#answer-1">Answer:</a></h3>
-<p>The <code>range</code> keyword can be used to iterate over elements of an array, slice, or map.</p>
+<h3 id="more-examples"><a class="header" href="#more-examples">More Examples</a></h3>
+<h4 id="1-returning-a-function-from-another-function"><a class="header" href="#1-returning-a-function-from-another-function">1. Returning a Function from Another Function</a></h4>
+<p>You can return a function from another function, which can then be used later.</p>
 <pre><code class="language-go">package main
-import ("fmt")
+import "fmt"
 
-func main() {
-  arr := []int{1, 2, 3, 4, 5}
-  for index, value := range arr {
-    fmt.Printf("Index: %d, Value: %d\n", index, value)
-  }
-}
-</code></pre>
-<h2 id="3-how-to-create-an-infinite-loop-in-go"><a class="header" href="#3-how-to-create-an-infinite-loop-in-go">3. How to create an infinite loop in Go?</a></h2>
-<h3 id="answer-2"><a class="header" href="#answer-2">Answer:</a></h3>
-<p>An infinite loop can be created by omitting all three components of the for loop.</p>
-<pre><code class="language-go">package main
-import ("fmt")
-
-func main() {
-  for {
-    fmt.Println("Infinite Loop")
-  }
-}
-</code></pre>
-<h2 id="4-how-to-break-out-of-a-nested-loop"><a class="header" href="#4-how-to-break-out-of-a-nested-loop">4. How to break out of a nested loop?</a></h2>
-<h3 id="answer-3"><a class="header" href="#answer-3">Answer:</a></h3>
-<p>You can use a label to break out of a nested loop.</p>
-<pre><code class="language-go">package main
-import ("fmt")
-
-func main() {
-OuterLoop:
-  for i := 0; i &lt; 3; i++ {
-    for j := 0; j &lt; 3; j++ {
-      if i == 1 &amp;&amp; j == 1 {
-        break OuterLoop
-      }
-      fmt.Printf("i: %d, j: %d\n", i, j)
+func multiply(factor int) func(int) int {
+    return func(x int) int {
+        return x * factor
     }
-  }
 }
-</code></pre>
-<h2 id="5-how-to-skip-even-numbers-in-a-loop"><a class="header" href="#5-how-to-skip-even-numbers-in-a-loop">5. How to skip even numbers in a loop?</a></h2>
-<h3 id="answer-4"><a class="header" href="#answer-4">Answer:</a></h3>
-<p>Use the <code>continue</code> statement to skip even numbers.</p>
-<pre><code class="language-go">package main
-import ("fmt")
 
 func main() {
-  for i := 0; i &lt; 10; i++ {
-    if i%2 == 0 {
-      continue
+    // Creating a multiplier function with factor 2
+    multiplyByTwo := multiply(2)
+    result := multiplyByTwo(5)
+    fmt.Println("Multiplication Result:", result) // Output: 10
+}
+</code></pre>
+<h4 id="2-using-function-expressions-with-map-operations"><a class="header" href="#2-using-function-expressions-with-map-operations">2. Using Function Expressions with Map Operations</a></h4>
+<p>Function expressions can be used with map functions to process elements in collections.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    numbers := []int{1, 2, 3, 4, 5}
+    // Using a function expression to map each element
+    doubledNumbers := mapFunc(numbers, func(x int) int {
+        return x * 2
+    })
+
+    fmt.Println("Doubled Numbers:", doubledNumbers) // Output: [2 4 6 8 10]
+}
+
+func mapFunc(numbers []int, f func(int) int) []int {
+    var result []int
+    for _, number := range numbers {
+        result = append(result, f(number))
     }
-    fmt.Println(i)
-  }
+    return result
 }
 </code></pre>
-<h2 id="6-how-to-iterate-over-a-map-using-a-for-loop"><a class="header" href="#6-how-to-iterate-over-a-map-using-a-for-loop">6. How to iterate over a map using a for loop?</a></h2>
-<h3 id="answer-5"><a class="header" href="#answer-5">Answer:</a></h3>
-<p>Use the <code>range</code> keyword to iterate over key-value pairs in a map.</p>
+<h3 id="interview-questions-and-answers"><a class="header" href="#interview-questions-and-answers">Interview Questions and Answers</a></h3>
+<h4 id="1-what-are-function-expressions-in-go-and-how-are-they-useful"><a class="header" href="#1-what-are-function-expressions-in-go-and-how-are-they-useful">1. What are function expressions in Go, and how are they useful?</a></h4>
+<p><strong>Answer:</strong>
+A function expression is when a function is assigned to a variable. This allows you to treat functions as values and pass them around like other types, enabling dynamic behavior. For instance, you can pass functions as arguments, return them from other functions, and store them in data structures.</p>
+<h4 id="2-what-is-an-anonymous-function-in-go-give-an-example"><a class="header" href="#2-what-is-an-anonymous-function-in-go-give-an-example">2. What is an anonymous function in Go? Give an example.</a></h4>
+<p><strong>Answer:</strong>
+An anonymous function is a function without a name. It can be used for quick, short-lived tasks where the function's name is not necessary. Here's an example of an anonymous function:</p>
 <pre><code class="language-go">package main
-import ("fmt")
+import "fmt"
 
 func main() {
-  myMap := map[string]int{"a": 1, "b": 2, "c": 3}
-  for key, value := range myMap {
-    fmt.Printf("Key: %s, Value: %d\n", key, value)
-  }
+    // Anonymous function used to print a message
+    func(message string) {
+        fmt.Println(message)
+    }("Hello, Go!") // Output: Hello, Go!
 }
 </code></pre>
-<h2 id="7-how-to-use-a-for-loop-to-calculate-the-factorial-of-a-number"><a class="header" href="#7-how-to-use-a-for-loop-to-calculate-the-factorial-of-a-number">7. How to use a for loop to calculate the factorial of a number?</a></h2>
-<h3 id="answer-6"><a class="header" href="#answer-6">Answer:</a></h3>
-<p>You can use a for loop to calculate the factorial of a number.</p>
+<h4 id="3-what-is-the-difference-between-a-function-expression-and-a-named-function"><a class="header" href="#3-what-is-the-difference-between-a-function-expression-and-a-named-function">3. What is the difference between a function expression and a named function?</a></h4>
+<p><strong>Answer:</strong>
+A named function has a specific name and can be called by that name. A function expression is an unnamed function assigned to a variable, and the function can be called using that variable. Function expressions offer more flexibility, as you can assign them to variables, pass them around, and invoke them in different contexts.</p>
+<h4 id="4-what-is-an-immediately-invoked-function-expression-iife-in-go"><a class="header" href="#4-what-is-an-immediately-invoked-function-expression-iife-in-go">4. What is an Immediately Invoked Function Expression (IIFE) in Go?</a></h4>
+<p><strong>Answer:</strong>
+An Immediately Invoked Function Expression (IIFE) is a function that is defined and called immediately in one expression. This is useful for scenarios where you need to perform a quick operation without the need for a function name or reuse. Example:</p>
 <pre><code class="language-go">package main
-import ("fmt")
+import "fmt"
 
 func main() {
-  num := 5
-  factorial := 1
-  for i := 1; i &lt;= num; i++ {
-    factorial *= i
-  }
-  fmt.Printf("Factorial of %d is %d\n", num, factorial)
+    // IIFE to perform an immediate calculation
+    result := func(a int, b int) int {
+        return a + b
+    }(3, 4) // Function is invoked immediately
+
+    fmt.Println("Sum:", result) // Output: Sum: 7
 }
 </code></pre>
-<h2 id="8-how-to-iterate-over-a-string-character-by-character"><a class="header" href="#8-how-to-iterate-over-a-string-character-by-character">8. How to iterate over a string character by character?</a></h2>
-<h3 id="answer-7"><a class="header" href="#answer-7">Answer:</a></h3>
-<p>Use the <code>range</code> keyword to iterate over a string.</p>
+<h4 id="5-how-can-you-pass-a-function-as-an-argument-to-another-function-in-go"><a class="header" href="#5-how-can-you-pass-a-function-as-an-argument-to-another-function-in-go">5. How can you pass a function as an argument to another function in Go?</a></h4>
+<p><strong>Answer:</strong>
+In Go, you can pass a function as an argument to another function by defining the function signature in the argument list. This allows you to treat the passed function as a value and invoke it within the receiving function.</p>
+<p><strong>Example:</strong></p>
 <pre><code class="language-go">package main
-import ("fmt")
+import "fmt"
 
-func main() {
-  str := "hello"
-  for index, char := range str {
-    fmt.Printf("Index: %d, Character: %c\n", index, char)
-  }
+func applyOperation(a int, b int, operation func(int, int) int) int {
+    return operation(a, b)
 }
-</code></pre>
-<h2 id="9-how-to-reverse-a-slice-using-a-for-loop"><a class="header" href="#9-how-to-reverse-a-slice-using-a-for-loop">9. How to reverse a slice using a for loop?</a></h2>
-<h3 id="answer-8"><a class="header" href="#answer-8">Answer:</a></h3>
-<p>You can use a for loop to reverse a slice in place.</p>
-<pre><code class="language-go">package main
-import ("fmt")
 
 func main() {
-  slice := []int{1, 2, 3, 4, 5}
-  for i, j := 0, len(slice)-1; i &lt; j; i, j = i+1, j-1 {
-    slice[i], slice[j] = slice[j], slice[i]
-  }
-  fmt.Println(slice)
-}
-</code></pre>
-<h2 id="10-how-to-sum-elements-of-a-slice-using-a-for-loop"><a class="header" href="#10-how-to-sum-elements-of-a-slice-using-a-for-loop">10. How to sum elements of a slice using a for loop?</a></h2>
-<h3 id="answer-9"><a class="header" href="#answer-9">Answer:</a></h3>
-<p>Use a for loop to iterate over the slice and calculate the sum.</p>
-<pre><code class="language-go">package main
-import ("fmt")
+    add := func(a int, b int) int {
+        return a + b
+    }
 
-func main() {
-  slice := []int{1, 2, 3, 4, 5}
-  sum := 0
-  for _, value := range slice {
-    sum += value
-  }
-  fmt.Printf("Sum of elements: %d\n", sum)
+    result := applyOperation(3, 4, add) // Passing function as argument
+    fmt.Println("Sum:", result) // Output: Sum: 7
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
@@ -1553,7 +3700,7 @@ func main() {
 }
 </code></pre>
 <p>In this example, the <code>init</code> function initializes the <code>globalVar</code> before the <code>main</code> function is executed.</p>
-<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<h2 id="summary-1"><a class="header" href="#summary-1">Summary</a></h2>
 <ul>
 <li><strong>Code Segment</strong>: Contains all the functions and executable instructions.</li>
 <li><strong>Data Segment</strong>: Contains global and static variables.</li>
@@ -1715,7 +3862,7 @@ func main() {
 	fmt.Println(!false) // true
 }
 </code></pre>
-<h2 id="frequently-asked-questions-5"><a class="header" href="#frequently-asked-questions-5">Frequently Asked Questions</a></h2>
+<h2 id="frequently-asked-questions-4"><a class="header" href="#frequently-asked-questions-4">Frequently Asked Questions</a></h2>
 <h3 id="1-what-is-the-difference-between--and--in-go"><a class="header" href="#1-what-is-the-difference-between--and--in-go">1. What is the difference between <code>&amp;&amp;</code> and <code>||</code> in Go?</a></h3>
 <p><strong>Answer:</strong></p>
 <ul>
@@ -1877,7 +4024,7 @@ func main() {
   }
 }
 </code></pre>
-<h2 id="frequently-asked-questions-6"><a class="header" href="#frequently-asked-questions-6">Frequently Asked Questions</a></h2>
+<h2 id="frequently-asked-questions-5"><a class="header" href="#frequently-asked-questions-5">Frequently Asked Questions</a></h2>
 <h3 id="1-how-can-we-implement-an-infinite-loop-in-go"><a class="header" href="#1-how-can-we-implement-an-infinite-loop-in-go">1. How can we implement an infinite loop in Go?</a></h3>
 <p><strong>Answer:</strong> In Go, an infinite loop can be implemented using the <code>for</code> loop without any condition.</p>
 <pre><code class="language-go">package main
@@ -2034,7 +4181,7 @@ fmt.Println(userInfo["huxn"])
 fmt.Println(userInfo["alex"])
 fmt.Println(userInfo["john"])
 </code></pre>
-<h2 id="frequently-asked-questions-7"><a class="header" href="#frequently-asked-questions-7">Frequently Asked Questions</a></h2>
+<h2 id="frequently-asked-questions-6"><a class="header" href="#frequently-asked-questions-6">Frequently Asked Questions</a></h2>
 <h3 id="1-how-do-you-create-a-map-in-go"><a class="header" href="#1-how-do-you-create-a-map-in-go">1. How do you create a map in Go?</a></h3>
 <p><strong>Answer:</strong>
 You can create a map using the <code>make</code> function or by using a map literal.</p>
@@ -2254,7 +4401,7 @@ func main() {
   fmt.Println("Division:", quotient) // 1
 }
 </code></pre>
-<h2 id="frequently-asked-questions-8"><a class="header" href="#frequently-asked-questions-8">Frequently Asked Questions</a></h2>
+<h2 id="frequently-asked-questions-7"><a class="header" href="#frequently-asked-questions-7">Frequently Asked Questions</a></h2>
 <h3 id="1-how-do-you-perform-addition-and-subtraction-in-go"><a class="header" href="#1-how-do-you-perform-addition-and-subtraction-in-go">1. How do you perform addition and subtraction in Go?</a></h3>
 <p><strong>Answer:</strong> Use the <code>+</code> operator for addition and <code>-</code> for subtraction.</p>
 <pre><code class="language-go">package main
@@ -2368,6 +4515,534 @@ func main() {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Argument vs Parameter
+<strong>Tags:</strong> [go, Parameter, Argument]
+]</p>
+<h2 id="difference-between-parameter-and-argument"><a class="header" href="#difference-between-parameter-and-argument">Difference between Parameter and Argument</a></h2>
+<h3 id="parameter"><a class="header" href="#parameter">Parameter</a></h3>
+<p>A <strong>parameter</strong> is a variable in the declaration of a function. It defines what kind of input a function will accept when it is called. It acts as a placeholder for the values that will be passed into the function.</p>
+<h3 id="argument"><a class="header" href="#argument">Argument</a></h3>
+<p>An <strong>argument</strong> is the actual value that is passed into the function when it is called. Arguments correspond to the parameters defined in the function signature. These are the real values provided to the function when executing the code.</p>
+<h3 id="example-code-1"><a class="header" href="#example-code-1">Example Code</a></h3>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Function with parameters 'a' and 'b'
+func add(a int, b int) int {
+    return a + b
+}
+
+func main() {
+    // Calling the function with arguments 5 and 3
+    result := add(5, 3)
+    fmt.Println("Result:", result) // Output: Result: 8
+}
+</code></pre>
+<p>In the above example:</p>
+<ul>
+<li><code>a</code> and <code>b</code> are <strong>parameters</strong> of the <code>add</code> function.</li>
+<li><code>5</code> and <code>3</code> are <strong>arguments</strong> passed to the <code>add</code> function when it is called in the <code>main</code> function.</li>
+</ul>
+<hr />
+<h3 id="further-explanation"><a class="header" href="#further-explanation">Further Explanation</a></h3>
+<p><strong>Parameters</strong> are declared within the function's signature. They provide the function with input values that can be used within the function's body.</p>
+<p><strong>Arguments</strong> are provided when the function is called. The values of these arguments are assigned to the corresponding parameters, allowing the function to perform its operation based on those values.</p>
+<h3 id="types-of-parameters"><a class="header" href="#types-of-parameters">Types of Parameters</a></h3>
+<ul>
+<li><strong>Formal Parameters</strong>: These are parameters that appear in the function definition. They are used to represent the expected values inside the function.</li>
+<li><strong>Actual Parameters</strong>: These are arguments that are passed during the function call.</li>
+</ul>
+<hr />
+<h3 id="interview-questions-and-answers-1"><a class="header" href="#interview-questions-and-answers-1">Interview Questions and Answers</a></h3>
+<h4 id="1-what-is-the-difference-between-pass-by-value-and-pass-by-reference-in-function-arguments"><a class="header" href="#1-what-is-the-difference-between-pass-by-value-and-pass-by-reference-in-function-arguments">1. What is the difference between pass-by-value and pass-by-reference in function arguments?</a></h4>
+<p><strong>Answer:</strong></p>
+<ul>
+<li><strong>Pass-by-value</strong>: The function gets a copy of the argument's value. Changes made to the parameter do not affect the original argument.</li>
+<li><strong>Pass-by-reference</strong>: The function gets a reference (memory address) to the argument, so any changes made to the parameter directly affect the original argument.</li>
+</ul>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Pass-by-value
+func modifyValue(x int) {
+    x = 20
+}
+
+// Pass-by-reference
+func modifyReference(x *int) {
+    *x = 20
+}
+
+func main() {
+    a := 10
+    modifyValue(a)
+    fmt.Println("After modifyValue:", a) // Output: 10 (no change)
+
+    modifyReference(&amp;a)
+    fmt.Println("After modifyReference:", a) // Output: 20 (value changed)
+}
+</code></pre>
+<h4 id="2-how-do-you-handle-default-arguments-in-go"><a class="header" href="#2-how-do-you-handle-default-arguments-in-go">2. How do you handle default arguments in Go?</a></h4>
+<p><strong>Answer:</strong>
+Go does not support default arguments directly. Instead, you can achieve default values using variadic functions or by explicitly checking if a value is provided.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func greet(name string, message string) {
+    if message == "" {
+        message = "Hello" // default message
+    }
+    fmt.Println(message, name)
+}
+
+func main() {
+    greet("John", "")  // Output: Hello John
+    greet("Jane", "Hi") // Output: Hi Jane
+}
+</code></pre>
+<h4 id="3-what-is-a-variadic-function-and-how-is-it-used"><a class="header" href="#3-what-is-a-variadic-function-and-how-is-it-used">3. What is a variadic function, and how is it used?</a></h4>
+<p><strong>Answer:</strong>
+A <strong>variadic function</strong> is a function that takes a variable number of arguments. It is defined using <code>...</code> in the parameter list. This allows you to pass any number of arguments.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func sum(numbers ...int) int {
+    total := 0
+    for _, num := range numbers {
+        total += num
+    }
+    return total
+}
+
+func main() {
+    fmt.Println(sum(1, 2, 3)) // Output: 6
+    fmt.Println(sum(10, 20, 30, 40)) // Output: 100
+}
+</code></pre>
+<h4 id="4-what-will-happen-if-a-function-is-called-with-more-arguments-than-its-parameters"><a class="header" href="#4-what-will-happen-if-a-function-is-called-with-more-arguments-than-its-parameters">4. What will happen if a function is called with more arguments than its parameters?</a></h4>
+<p><strong>Answer:</strong>
+In Go, if the number of arguments passed to a function exceeds the number of parameters declared, the code will result in a compile-time error. Go checks the number of arguments and parameters at compile-time, and any mismatch in the number of arguments will cause an error.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func greet(name string) {
+    fmt.Println("Hello, ", name)
+}
+
+func main() {
+    greet("John", "Doe") // Compile-time error: too many arguments
+}
+</code></pre>
+<h4 id="5-can-you-return-multiple-values-from-a-function-in-go"><a class="header" href="#5-can-you-return-multiple-values-from-a-function-in-go">5. Can you return multiple values from a function in Go?</a></h4>
+<p><strong>Answer:</strong>
+Yes, Go allows a function to return multiple values. You can return multiple values of different types from a function.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Function returning two values
+func divide(a, b int) (int, int) {
+    return a / b, a % b
+}
+
+func main() {
+    quotient, remainder := divide(10, 3)
+    fmt.Println("Quotient:", quotient)   // Output: Quotient: 3
+    fmt.Println("Remainder:", remainder) // Output: Remainder: 1
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Receiver Function
+<strong>Tags:</strong> [go, Receiver Function]
+]</p>
+<h1 id="-receiver-function-in-go"><a class="header" href="#-receiver-function-in-go">📦 Receiver Function in Go</a></h1>
+<p>A receiver function in Go is a method bound to a specific type—typically a struct. It enables you to implement object-oriented behavior by defining methods on user-defined types.</p>
+<hr />
+<h2 id="-struct-and-receiver-basics"><a class="header" href="#-struct-and-receiver-basics">🧱 Struct and Receiver Basics</a></h2>
+<h3 id="struct-definition"><a class="header" href="#struct-definition">Struct Definition</a></h3>
+<pre><code class="language-go">// User struct with basic fields
+type User struct {
+	Name string
+	Age  int
+}
+</code></pre>
+<hr />
+<h2 id="-regular-function-vs-receiver-function"><a class="header" href="#-regular-function-vs-receiver-function">📞 Regular Function vs Receiver Function</a></h2>
+<h3 id="regular-function"><a class="header" href="#regular-function">Regular Function</a></h3>
+<pre><code class="language-go">func printUser(user User) {
+	fmt.Println("User Name:", user.Name)
+	fmt.Println("User Age:", user.Age)
+}
+</code></pre>
+<p>This is a standalone function that takes <code>User</code> as a parameter.</p>
+<h3 id="value-receiver-method"><a class="header" href="#value-receiver-method">Value Receiver Method</a></h3>
+<pre><code class="language-go">func (u User) printDetails() {
+	fmt.Println("Name:", u.Name)
+	fmt.Println("Age:", u.Age)
+}
+</code></pre>
+<p>Here, <code>printDetails()</code> is associated with <code>User</code> type using a value receiver. It works on a copy, so original data won’t change.</p>
+<h3 id="pointer-receiver-method"><a class="header" href="#pointer-receiver-method">Pointer Receiver Method</a></h3>
+<pre><code class="language-go">func (u *User) updateAge(newAge int) {
+	u.Age = newAge
+}
+</code></pre>
+<p>This method modifies the original <code>User</code> struct because it uses a pointer receiver.</p>
+<hr />
+<h2 id="-main-function-with-usage"><a class="header" href="#-main-function-with-usage">✅ Main Function with Usage</a></h2>
+<pre><code class="language-go">func main() {
+	user1 := User{Name: "John", Age: 30}
+	user2 := User{Name: "Jane", Age: 25}
+
+	// Regular function call
+	printUser(user1)
+
+	// Receiver function calls
+	user1.printDetails()
+	user2.printDetails()
+
+	// Update age using pointer receiver
+	user1.updateAge(35)
+	fmt.Println("Updated Age of user1:", user1.Age)
+
+	// Demonstrate value receiver (no change to original)
+	user2.call(100)
+	fmt.Println("User2's age after call():", user2.Age)
+}
+</code></pre>
+<hr />
+<h2 id="-additional-receiver-method"><a class="header" href="#-additional-receiver-method">🔍 Additional Receiver Method</a></h2>
+<pre><code class="language-go">// Value receiver that does not affect original struct
+func (u User) call(age int) {
+	u.Age = age
+	fmt.Println("Inside call() - temporary age:", u.Age)
+}
+</code></pre>
+<p>This will not change the actual <code>User.Age</code> outside the function.</p>
+<hr />
+<h2 id="-example-output"><a class="header" href="#-example-output">🧪 Example Output</a></h2>
+<pre><code>User Name: John
+User Age: 30
+Name: John
+Age: 30
+Name: Jane
+Age: 25
+Updated Age of user1: 35
+Inside call() - temporary age: 100
+User2's age after call(): 25
+</code></pre>
+<hr />
+<h2 id="-key-takeaways"><a class="header" href="#-key-takeaways">💡 Key Takeaways</a></h2>
+<ul>
+<li>✅ Value receivers are good for read-only operations.</li>
+<li>✅ Pointer receivers are used when you want to modify the actual data.</li>
+<li>✅ Go supports object-like behavior through receiver functions.</li>
+<li>✅ Methods with pointer receivers can be called on both values and pointers.</li>
+</ul>
+<h2 id="10-interview-questions-and-answers"><a class="header" href="#10-interview-questions-and-answers">10 Interview Questions and Answers</a></h2>
+<ol>
+<li>
+<p><strong>What is a receiver function in Go?</strong></p>
+<ul>
+<li>A receiver function is a method associated with a specific type, allowing you to define methods on structs or other types.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the difference between a value receiver and a pointer receiver?</strong></p>
+<ul>
+<li>A value receiver operates on a copy of the object, while a pointer receiver operates on the actual object, allowing modifications.</li>
+</ul>
+</li>
+<li>
+<p><strong>Can you define multiple receiver functions for the same type?</strong></p>
+<ul>
+<li>Yes, you can define multiple receiver functions for the same type.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the syntax for defining a receiver function?</strong></p>
+<ul>
+<li><code>func (receiverType TypeName) methodName(parameters) {}</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Can receiver functions be used with built-in types?</strong></p>
+<ul>
+<li>No, receiver functions can only be defined for user-defined types.</li>
+</ul>
+</li>
+<li>
+<p><strong>What happens if you call a value receiver function on a pointer?</strong></p>
+<ul>
+<li>Go automatically dereferences the pointer, so the function works as expected.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the purpose of receiver functions?</strong></p>
+<ul>
+<li>They enable object-oriented programming by associating methods with types.</li>
+</ul>
+</li>
+<li>
+<p><strong>Can a receiver function modify the original object?</strong></p>
+<ul>
+<li>Only if it uses a pointer receiver.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the difference between a regular function and a receiver function?</strong></p>
+<ul>
+<li>A regular function is not associated with any type, while a receiver function is tied to a specific type.</li>
+</ul>
+</li>
+<li>
+<p><strong>Can you use receiver functions with interfaces?</strong></p>
+<ul>
+<li>Yes, receiver functions are often used to implement interface methods.</li>
+</ul>
+</li>
+</ol>
+<h2 id="example-output"><a class="header" href="#example-output">Example Output</a></h2>
+<pre><code>User Name: John
+User Age: 30
+User Name: Jane
+User Age: 25
+User Age: 10
+User Age: 20
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Scope
+<strong>Tags:</strong> [go, Scope]
+]</p>
+<h1 id="go-language-understanding-scope"><a class="header" href="#go-language-understanding-scope">Go Language: Understanding Scope</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>In Go (Golang), <strong>scope</strong> refers to the region in the code where a variable, function, or constant is accessible. The scope determines the visibility and lifetime of variables and functions, which is essential for understanding how the Go compiler handles symbol resolution.</p>
+<p>There are several types of scopes in Go:</p>
+<ol>
+<li><strong>Package Scope</strong>: Variables or functions defined at the package level.</li>
+<li><strong>Function Scope</strong>: Variables defined within a function.</li>
+<li><strong>Block Scope</strong>: Variables defined inside a block of code, such as within loops, if-statements, etc.</li>
+<li><strong>Global Scope</strong>: Variables or functions accessible throughout the entire program.</li>
+</ol>
+<p>This document will explore these different types of scope with code examples and will also cover common pitfalls and best practices related to variable scope in Go.</p>
+<h2 id="types-of-scope-in-go"><a class="header" href="#types-of-scope-in-go">Types of Scope in Go</a></h2>
+<h3 id="1-package-scope"><a class="header" href="#1-package-scope">1. Package Scope</a></h3>
+<p>In Go, the package scope refers to variables or functions that are accessible throughout the package in which they are declared. They can be accessed from any function within the package.</p>
+<h4 id="example-package-scope"><a class="header" href="#example-package-scope">Example: Package Scope</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Global variable (Package Scope)
+var globalVar = 10
+
+func printGlobalVar() {
+    // Accessing package-scoped variable
+    fmt.Println("Global Variable:", globalVar)
+}
+
+func main() {
+    printGlobalVar() // Output: Global Variable: 10
+}
+</code></pre>
+<p>In the above example, <code>globalVar</code> is accessible within the <code>main</code> and <code>printGlobalVar</code> functions because it is defined at the package level.</p>
+<h3 id="2-function-scope"><a class="header" href="#2-function-scope">2. Function Scope</a></h3>
+<p>Variables declared inside a function are local to that function and cannot be accessed outside of it. This is called <strong>function scope</strong>.</p>
+<h4 id="example-function-scope"><a class="header" href="#example-function-scope">Example: Function Scope</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func myFunction() {
+    // Variable inside the function
+    var functionVar = "I am local to the function"
+    fmt.Println(functionVar) // Output: I am local to the function
+}
+
+func main() {
+    // Un-commenting the next line would cause an error
+    // fmt.Println(functionVar) // Error: undefined functionVar
+    myFunction()
+}
+</code></pre>
+<p>In the example above, the variable <code>functionVar</code> is only available inside the <code>myFunction()</code> and cannot be accessed from <code>main()</code>.</p>
+<h3 id="3-block-scope"><a class="header" href="#3-block-scope">3. Block Scope</a></h3>
+<p>Block scope refers to variables declared inside a block of code, such as within <code>if</code> statements, loops, or other code blocks.</p>
+<h4 id="example-block-scope"><a class="header" href="#example-block-scope">Example: Block Scope</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    if true {
+        // Variable inside the block
+        var blockVar = "I exist only within this block"
+        fmt.Println(blockVar) // Output: I exist only within this block
+    }
+    // Un-commenting the next line would cause an error
+    // fmt.Println(blockVar) // Error: undefined blockVar
+}
+</code></pre>
+<p>The variable <code>blockVar</code> is only accessible within the <code>if</code> block where it is declared. Attempting to use it outside the block will result in a compile-time error.</p>
+<h3 id="4-global-scope-cross-package-scope"><a class="header" href="#4-global-scope-cross-package-scope">4. Global Scope (Cross-package Scope)</a></h3>
+<p>In Go, global variables (package-level variables) can be shared across multiple files within the same package, but they cannot be accessed by other packages unless explicitly exported.</p>
+<h4 id="example-cross-file-scope"><a class="header" href="#example-cross-file-scope">Example: Cross-file Scope</a></h4>
+<pre><code class="language-go">// file1.go
+package main
+
+import "fmt"
+
+var sharedVar = "This is a shared variable"
+
+func displaySharedVar() {
+    fmt.Println(sharedVar)
+}
+
+// file2.go
+package main
+
+func main() {
+    displaySharedVar() // Output: This is a shared variable
+}
+</code></pre>
+<p>In this case, the variable <code>sharedVar</code> is accessible across multiple files because it is within the same package.</p>
+<h2 id="rules-of-scope-in-go"><a class="header" href="#rules-of-scope-in-go">Rules of Scope in Go</a></h2>
+<ol>
+<li><strong>Variable Shadowing</strong>: When a local variable has the same name as a variable in an outer scope, the local variable "shadows" the outer variable.</li>
+<li><strong>Exported Variables</strong>: Variables that start with an uppercase letter are exported and accessible from other packages. Lowercase variables are private to the package.</li>
+<li><strong>Short Declaration</strong>: The <code>:=</code> operator can be used for declaring and initializing variables in a more concise manner within functions or blocks.</li>
+</ol>
+<h2 id="common-pitfalls-in-scope"><a class="header" href="#common-pitfalls-in-scope">Common Pitfalls in Scope</a></h2>
+<ol>
+<li>
+<p><strong>Variable Shadowing</strong>: When a variable in an inner scope has the same name as a variable in an outer scope, the inner variable shadows the outer one. This can lead to unintended behavior.</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+var x = 10
+
+func main() {
+    var x = 20 // Shadows outer x
+    fmt.Println(x) // Output: 20
+}
+
+fmt.Println(x) // Output: 10
+</code></pre>
+</li>
+<li>
+<p><strong>Accessing Unexported Variables</strong>: If a variable is declared with a lowercase first letter, it is not accessible from other packages.</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+var unexportedVar = "I am private"
+
+func main() {
+    fmt.Println(unexportedVar) // Accessible within the same package
+}
+</code></pre>
+</li>
+</ol>
+<h2 id="5-interview-questions-with-code"><a class="header" href="#5-interview-questions-with-code">5 Interview Questions with Code</a></h2>
+<h3 id="q1-what-is-the-scope-of-a-variable-declared-inside-a-for-loop"><a class="header" href="#q1-what-is-the-scope-of-a-variable-declared-inside-a-for-loop">Q1: What is the scope of a variable declared inside a for loop?</a></h3>
+<h4 id="code"><a class="header" href="#code">Code:</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    for i := 0; i &lt; 3; i++ {
+        var loopVar = "Loop variable"
+        fmt.Println(loopVar)
+    }
+    // Uncommenting the line below will cause an error because loopVar is out of scope
+    // fmt.Println(loopVar) // Error: undefined loopVar
+}
+</code></pre>
+<p><strong>Answer</strong>: The variable <code>loopVar</code> is scoped to the <code>for</code> loop and cannot be accessed outside of it.</p>
+<h3 id="q2-what-happens-if-you-declare-a-variable-with-the-same-name-in-different-scopes"><a class="header" href="#q2-what-happens-if-you-declare-a-variable-with-the-same-name-in-different-scopes">Q2: What happens if you declare a variable with the same name in different scopes?</a></h3>
+<h4 id="code-1"><a class="header" href="#code-1">Code:</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+var x = 10
+
+func main() {
+    fmt.Println(x) // Output: 10
+    var x = 20 // Shadows the outer x
+    fmt.Println(x) // Output: 20
+}
+</code></pre>
+<p><strong>Answer</strong>: The inner variable <code>x</code> shadows the outer one within the scope of the <code>main()</code> function.</p>
+<h3 id="q3-how-does-the--operator-work-in-go-with-variable-scope"><a class="header" href="#q3-how-does-the--operator-work-in-go-with-variable-scope">Q3: How does the <code>:=</code> operator work in Go with variable scope?</a></h3>
+<h4 id="code-2"><a class="header" href="#code-2">Code:</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    var a = 5
+    fmt.Println(a) // Output: 5
+    a := 10 // Short declaration: Creates a new a variable within main's scope
+    fmt.Println(a) // Output: 10
+}
+</code></pre>
+<p><strong>Answer</strong>: The <code>:=</code> operator creates a new variable in the local scope, shadowing the outer variable <code>a</code>.</p>
+<h3 id="q4-how-does-go-handle-global-scope-variables-across-multiple-files"><a class="header" href="#q4-how-does-go-handle-global-scope-variables-across-multiple-files">Q4: How does Go handle global scope variables across multiple files?</a></h3>
+<h4 id="code-3"><a class="header" href="#code-3">Code:</a></h4>
+<pre><code class="language-go">// file1.go
+package main
+
+import "fmt"
+
+var globalVar = "Global variable"
+
+func displayGlobalVar() {
+    fmt.Println(globalVar)
+}
+
+// file2.go
+package main
+
+func main() {
+    displayGlobalVar() // Output: Global variable
+}
+</code></pre>
+<p><strong>Answer</strong>: The variable <code>globalVar</code> is accessible across multiple files within the same package.</p>
+<h3 id="q5-what-is-the-significance-of-variable-naming-conventions-in-go"><a class="header" href="#q5-what-is-the-significance-of-variable-naming-conventions-in-go">Q5: What is the significance of variable naming conventions in Go?</a></h3>
+<h4 id="code-4"><a class="header" href="#code-4">Code:</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Exported variable (visible outside the package)
+var ExportedVar = "I am exported"
+
+// Unexported variable (private to the package)
+var unexportedVar = "I am unexported"
+
+func main() {
+    fmt.Println(ExportedVar) // Accessible
+    fmt.Println(unexportedVar) // Accessible within the same package
+}
+</code></pre>
+<p><strong>Answer</strong>: In Go, variables that start with an uppercase letter are exported and can be accessed outside the package, while variables that start with a lowercase letter are unexported and private to the package.</p>
+<div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
 <strong>Date:</strong> 2025-04-19
 <strong>Category:</strong> interview-qa/slices
 <strong>Tags:</strong> [go, slices, arrays, make]</p>
@@ -2408,7 +5083,7 @@ func main() {
     fmt.Println(slice)
 }
 </code></pre>
-<h2 id="frequently-asked-questions-9"><a class="header" href="#frequently-asked-questions-9">Frequently Asked Questions</a></h2>
+<h2 id="frequently-asked-questions-8"><a class="header" href="#frequently-asked-questions-8">Frequently Asked Questions</a></h2>
 <h3 id="1-how-do-you-create-an-empty-slice-in-go"><a class="header" href="#1-how-do-you-create-an-empty-slice-in-go">1. How do you create an empty slice in Go?</a></h3>
 <p><strong>Answer:</strong> Use <code>[]datatype{}</code> to create an empty slice.</p>
 <pre><code class="language-go">package main
@@ -2521,13 +5196,17 @@ func main() {
     }
 }
 </code></pre>
+<h2 id="array-vs-slice"><a class="header" href="#array-vs-slice">Array vs Slice</a></h2>
+<ul>
+<li>ongbhongchong vugichugi</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
 <strong>Date:</strong> 2025-04-19
 <strong>Category:</strong> interview-qa/strings
 <strong>Tags:</strong> [go, strings, operations]]</p>
 <h1 id="golang-strings"><a class="header" href="#golang-strings">GoLang Strings</a></h1>
 <p>This document provides an overview of string operations in GoLang with examples.</p>
-<h2 id="frequently-asked-questions-10"><a class="header" href="#frequently-asked-questions-10">Frequently Asked Questions</a></h2>
+<h2 id="frequently-asked-questions-9"><a class="header" href="#frequently-asked-questions-9">Frequently Asked Questions</a></h2>
 <h3 id="1-how-do-you-concatenate-strings-in-go"><a class="header" href="#1-how-do-you-concatenate-strings-in-go">1. How do you concatenate strings in Go?</a></h3>
 <p>You can concatenate strings using the <code>+</code> operator.</p>
 <pre><code class="language-go">fmt.Println("Hello, " + "World!")
@@ -2850,7 +5529,7 @@ func main() {
   }
 }
 </code></pre>
-<h2 id="frequently-asked-questions-11"><a class="header" href="#frequently-asked-questions-11">Frequently Asked Questions</a></h2>
+<h2 id="frequently-asked-questions-10"><a class="header" href="#frequently-asked-questions-10">Frequently Asked Questions</a></h2>
 <h3 id="1-what-is-a-switch-statement-in-go"><a class="header" href="#1-what-is-a-switch-statement-in-go">1. What is a <code>switch</code> statement in Go?</a></h3>
 <p><strong>Answer:</strong> A <code>switch</code> statement is used to select one of many code blocks to execute. It is an alternative to using multiple <code>if-else</code> statements.</p>
 <p><strong>Example:</strong></p>
@@ -3160,6 +5839,123 @@ func main() {
   fmt.Println(name, age)
 }
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Variadic
+<strong>Tags:</strong> [go, Variadic Function]
+]</p>
+<h3 id="variadic-functions-in-go"><a class="header" href="#variadic-functions-in-go">Variadic Functions in Go</a></h3>
+<p>A <strong>variadic function</strong> in Go is a function that can accept a variable number of arguments. You define a variadic function by placing <code>...</code> before the type in the function signature, which allows the function to accept multiple arguments of that type.</p>
+<h3 id="example-code-variadic-function"><a class="header" href="#example-code-variadic-function">Example Code: Variadic Function</a></h3>
+<pre><code class="language-go">package main
+
+func print(number ...int) { // Variadic function to print numbers
+	for _, n := range number {
+		println(n) // Printing each number
+	}
+}
+
+func main() {
+	print(1, 2, 3, 4, 5) // Calling the variadic function with multiple arguments
+	print(1, 2)           // Calling the variadic function with fewer arguments
+	print(1)              // Calling the variadic function with a single argument
+	print()               // Calling the variadic function with no arguments
+}
+</code></pre>
+<h3 id="explanation"><a class="header" href="#explanation">Explanation:</a></h3>
+<ul>
+<li><code>print(number ...int)</code> is a variadic function, meaning it can accept any number of <code>int</code> values.</li>
+<li>In the <code>main()</code> function, different sets of arguments are passed to <code>print()</code>:
+<ul>
+<li>A set of 5 integers</li>
+<li>A set of 2 integers</li>
+<li>A single integer</li>
+<li>No arguments at all</li>
+</ul>
+</li>
+</ul>
+<h3 id="more-explanation-on-variadic-functions"><a class="header" href="#more-explanation-on-variadic-functions">More Explanation on Variadic Functions:</a></h3>
+<ul>
+<li>A variadic function works by collecting all the arguments passed into a slice.</li>
+<li>You can pass a slice directly to a variadic function using <code>...</code>, which unpacks the slice into individual arguments.</li>
+</ul>
+<h3 id="example-passing-a-slice-to-a-variadic-function"><a class="header" href="#example-passing-a-slice-to-a-variadic-function">Example: Passing a Slice to a Variadic Function</a></h3>
+<pre><code class="language-go">package main
+
+func print(numbers ...int) {
+	for _, n := range numbers {
+		println(n)
+	}
+}
+
+func main() {
+	nums := []int{10, 20, 30}
+	print(nums...) // Unpacking a slice and passing to the variadic function
+}
+</code></pre>
+<h3 id="interview-questions-and-answers-2"><a class="header" href="#interview-questions-and-answers-2">Interview Questions and Answers</a></h3>
+<h4 id="1-what-is-the-advantage-of-using-variadic-functions-in-go"><a class="header" href="#1-what-is-the-advantage-of-using-variadic-functions-in-go">1. What is the advantage of using variadic functions in Go?</a></h4>
+<p><strong>Answer:</strong>
+Variadic functions allow for flexibility in function calls, enabling you to pass a varying number of arguments without needing to overload the function. This helps avoid writing multiple versions of the same function that differ only by the number of arguments they take.</p>
+<h4 id="2-can-a-variadic-function-accept-multiple-types-of-arguments"><a class="header" href="#2-can-a-variadic-function-accept-multiple-types-of-arguments">2. Can a variadic function accept multiple types of arguments?</a></h4>
+<p><strong>Answer:</strong>
+No, a variadic function in Go accepts only one type of argument. However, you can work around this limitation by using an <code>interface{}</code> type, which allows for any type, but you will lose type safety.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func printAnything(values ...interface{}) {
+	for _, v := range values {
+		fmt.Println(v)
+	}
+}
+
+func main() {
+	printAnything(1, "Hello", 3.14, true) // Accepting multiple types
+}
+</code></pre>
+<h4 id="3-can-you-have-multiple-variadic-parameters-in-a-function"><a class="header" href="#3-can-you-have-multiple-variadic-parameters-in-a-function">3. Can you have multiple variadic parameters in a function?</a></h4>
+<p><strong>Answer:</strong>
+No, Go only allows one variadic parameter in a function. You cannot have more than one variadic parameter in the function signature.</p>
+<h4 id="4-how-do-you-handle-a-variadic-function-when-no-arguments-are-passed"><a class="header" href="#4-how-do-you-handle-a-variadic-function-when-no-arguments-are-passed">4. How do you handle a variadic function when no arguments are passed?</a></h4>
+<p><strong>Answer:</strong>
+If no arguments are passed to a variadic function, the parameter inside the function will be an empty slice. This allows the function to still handle the case where no arguments are provided gracefully.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+func print(numbers ...int) {
+	if len(numbers) == 0 {
+		println("No numbers provided")
+		return
+	}
+	for _, n := range numbers {
+		println(n)
+	}
+}
+
+func main() {
+	print() // No arguments provided
+}
+</code></pre>
+<h4 id="5-can-you-pass-a-slice-to-a-variadic-function"><a class="header" href="#5-can-you-pass-a-slice-to-a-variadic-function">5. Can you pass a slice to a variadic function?</a></h4>
+<p><strong>Answer:</strong>
+Yes, you can pass a slice to a variadic function by using the <code>...</code> syntax to unpack the slice.</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-go">package main
+
+func print(numbers ...int) {
+	for _, n := range numbers {
+		println(n)
+	}
+}
+
+func main() {
+	nums := []int{10, 20, 30}
+	print(nums...) // Passing a slice to a variadic function
+}
+</code></pre>
+<p>This method unpacks the slice <code>nums</code> and passes its elements individually to the <code>print</code> function.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="landing-project"><a class="header" href="#landing-project">Landing Project</a></h1>
 <p>This project is a web application built with Next.js. Below are the steps to install and run the project.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
@@ -3237,8 +6033,74 @@ yarn format
 <h1 id="problem-313---a"><a class="header" href="#problem-313---a">Problem 313 - A</a></h1>
 <h2 id="problem-link"><a class="header" href="#problem-link">Problem Link</a></h2>
 <p><a href="https://codeforces.com/problemset/problem/313/A">CodeForces Problem 313 - A</a></p>
+<h1 id="problem-1676---b"><a class="header" href="#problem-1676---b">Problem 1676 - B</a></h1>
+<h2 id="problem-link-1"><a class="header" href="#problem-link-1">Problem Link</a></h2>
+<p><a href="https://codeforces.com/problemset/problem/1676/B">CodeForces Problem 1676 - B</a></p>
+<div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-23
+<strong>Category:</strong> e.g., link-resouces/problems
+<strong>Tags:</strong> [go, problem solving, leetcode]
+]</p>
+<h2 id="problem-link-2"><a class="header" href="#problem-link-2">Problem Link:</a></h2>
+<p><a href="https://leetcode.com/problems/find-numbers-with-even-number-of-digits/description/">LeetCode 1295</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="students-will-keep"><a class="header" href="#students-will-keep">Students will keep</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="documentation-for-the-mini-cards-project"><a class="header" href="#documentation-for-the-mini-cards-project">Documentation for the mini cards project</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-23
+<strong>Category:</strong> e.g., mini-projects/Quantique
+<strong>Tags:</strong> [go, Quantique, mini-projects]
+]</p>
+<h1 id="-quantique---unit-converter-cli"><a class="header" href="#-quantique---unit-converter-cli">🔁 Quantique - Unit Converter CLI</a></h1>
+<p><strong>Quantique</strong> is a beautiful CLI-based Unit Converter written in Go.<br />
+Easily convert between popular units with a modern, stylish terminal interface using <code>box-cli-maker</code> and <code>fatih/color</code>.</p>
+<hr />
+<h2 id="-features"><a class="header" href="#-features">🚀 Features</a></h2>
+<ul>
+<li>✅ Convert:
+<ol>
+<li>Meters ⇌ Feet</li>
+<li>Feet ⇌ Meters</li>
+<li>Celsius ⇌ Fahrenheit</li>
+<li>Fahrenheit ⇌ Celsius</li>
+<li>Kilograms ⇌ Pounds</li>
+<li>Pounds ⇌ Kilograms</li>
+</ol>
+</li>
+<li>🎨 Elegant terminal UI with colors and box layout</li>
+<li>🔁 Seamless interactive loop with graceful exit</li>
+</ul>
+<hr />
+<h2 id="-dependencies"><a class="header" href="#-dependencies">📦 Dependencies</a></h2>
+<p>Make sure you have <a href="https://golang.org/dl/">Go</a> installed.</p>
+<p>Initialize a Go module and install the required libraries:</p>
+<pre><code class="language-bash">go mod init quantique
+go get github.com/fatih/color
+go get github.com/Delta456/box-cli-maker/v2
+</code></pre>
+<hr />
+<h2 id="-how-to-run"><a class="header" href="#-how-to-run">🛠️ How to Run</a></h2>
+<pre><code class="language-bash">go build quantique.go
+</code></pre>
+<pre><code class="language-bash">./quantique.exe
+</code></pre>
+<hr />
+<h2 id="-cli-preview"><a class="header" href="#-cli-preview">📸 CLI Preview</a></h2>
+<pre><code>╔════════════════════════════════════════════════════╗
+║                     UNIT CONVERTER                ║
+║  Convert Meters ⇌ Feet | Celsius ⇌ Fahrenheit     ║
+║          | Kilograms ⇌ Pounds                     ║
+╚════════════════════════════════════════════════════╝
+</code></pre>
+<hr />
+<h2 id="-file-structure"><a class="header" href="#-file-structure">📁 File Structure</a></h2>
+<pre><code>Quantique/
+├── go.mod
+├── go.sum
+└── main.go
+</code></pre>
+<hr />
+<h2 id="-a-note-from-the-author"><a class="header" href="#-a-note-from-the-author">🤝 A Note from the Author</a></h2>
+<p>A small contribution to the incredible Best GoLang Community Ever</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ccwc-custom-word-count"><a class="header" href="#ccwc-custom-word-count">CCWC (Custom Word Count)</a></h1>
 <p>A Go implementation of the Unix/Linux <code>wc</code> command that counts bytes, lines, words, and characters in text files.</p>
 <h2 id="features"><a class="header" href="#features">Features</a></h2>

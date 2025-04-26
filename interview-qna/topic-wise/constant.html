@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Constant - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,174 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> interview-qa/constants
+<strong>Tags:</strong> [go, constants, beginner]
+]</p>
+<h1 id="the-const-keyword-declares-the-variable-as-constant-which-means-that-it-is-unchangeable-and-read-only"><a class="header" href="#the-const-keyword-declares-the-variable-as-constant-which-means-that-it-is-unchangeable-and-read-only">The const keyword declares the variable as "constant", which means that it is unchangeable and read-only.</a></h1>
+<pre><code class="language-go">package main
+import ("fmt")
+
+const user = "admin" // cannot be changed
+
+func main() {
+  fmt.Println("admin")
+}
+</code></pre>
+<h1 id="constant-rules"><a class="header" href="#constant-rules">Constant Rules</a></h1>
+<h3 id="1-constant-names-follow-the-same-naming-rules-as-variables"><a class="header" href="#1-constant-names-follow-the-same-naming-rules-as-variables">1. Constant names follow the same naming rules as variables</a></h3>
+<h3 id="2-constant-names-are-usually-written-in-uppercase-letters"><a class="header" href="#2-constant-names-are-usually-written-in-uppercase-letters">2. Constant names are usually written in uppercase letters</a></h3>
+<h3 id="3-constants-can-be-declared-both-inside-and-outside-of-a-function"><a class="header" href="#3-constants-can-be-declared-both-inside-and-outside-of-a-function">3. Constants can be declared both inside and outside of a function</a></h3>
+<h1 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h1>
+<h3 id="1-what-is-a-constant-in-go"><a class="header" href="#1-what-is-a-constant-in-go">1. <strong>What is a constant in Go?</strong></a></h3>
+<p><strong>Answer:</strong> A constant is a variable whose value cannot be changed once it is assigned. Constants are declared using the <code>const</code> keyword.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+const PI = 3.14
+
+func main() {
+    fmt.Println("The value of PI is:", PI)
+}
+</code></pre>
+<hr />
+<h3 id="2-can-constants-be-declared-inside-a-function"><a class="header" href="#2-can-constants-be-declared-inside-a-function">2. <strong>Can constants be declared inside a function?</strong></a></h3>
+<p><strong>Answer:</strong> Yes, constants can be declared both inside and outside of a function.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    const GREETING = "Hello, World!"
+    fmt.Println(GREETING)
+}
+</code></pre>
+<hr />
+<h3 id="3-can-constants-hold-values-other-than-numbers"><a class="header" href="#3-can-constants-hold-values-other-than-numbers">3. <strong>Can constants hold values other than numbers?</strong></a></h3>
+<p><strong>Answer:</strong> Yes, constants can hold string, boolean, or even character values.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+const IS_ACTIVE = true
+const MESSAGE = "Welcome to Go!"
+
+func main() {
+    fmt.Println("Is Active:", IS_ACTIVE)
+    fmt.Println("Message:", MESSAGE)
+}
+</code></pre>
+<hr />
+<h3 id="4-can-constants-be-computed-at-runtime"><a class="header" href="#4-can-constants-be-computed-at-runtime">4. <strong>Can constants be computed at runtime?</strong></a></h3>
+<p><strong>Answer:</strong> No, constants must be assigned a value that can be determined at compile time.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+const VALUE = 10 * 2 // Valid
+
+func main() {
+    fmt.Println("Value:", VALUE)
+}
+</code></pre>
+<hr />
+<h3 id="5-what-happens-if-you-try-to-change-a-constants-value"><a class="header" href="#5-what-happens-if-you-try-to-change-a-constants-value">5. <strong>What happens if you try to change a constant's value?</strong></a></h3>
+<p><strong>Answer:</strong> The compiler will throw an error if you try to change the value of a constant.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+const NAME = "John"
+
+func main() {
+    // NAME = "Doe" // Uncommenting this line will cause a compilation error
+    fmt.Println(NAME)
+}
+</code></pre>
+<hr />
+<h3 id="6-can-constants-be-used-in-expressions"><a class="header" href="#6-can-constants-be-used-in-expressions">6. <strong>Can constants be used in expressions?</strong></a></h3>
+<p><strong>Answer:</strong> Yes, constants can be used in expressions to compute other constants.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+const A = 5
+const B = 10
+const SUM = A + B
+
+func main() {
+    fmt.Println("Sum:", SUM)
+}
+</code></pre>
+<hr />
+<h3 id="7-what-is-the-difference-between-const-and-var-in-go"><a class="header" href="#7-what-is-the-difference-between-const-and-var-in-go">7. <strong>What is the difference between <code>const</code> and <code>var</code> in Go?</strong></a></h3>
+<p><strong>Answer:</strong> <code>const</code> is used for values that do not change, while <code>var</code> is used for variables whose values can change.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+const FIXED = 100
+var changeable = 200
+
+func main() {
+    fmt.Println("Fixed:", FIXED)
+    fmt.Println("Changeable:", changeable)
+    changeable = 300
+    fmt.Println("Updated Changeable:", changeable)
+}
+</code></pre>
+<hr />
+<h3 id="8-can-constants-be-of-type-array-or-slice"><a class="header" href="#8-can-constants-be-of-type-array-or-slice">8. <strong>Can constants be of type array or slice?</strong></a></h3>
+<p><strong>Answer:</strong> No, constants cannot be of type array, slice, or map.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    // const ARR = [3]int{1, 2, 3} // This will cause a compilation error
+    fmt.Println("Constants cannot be arrays or slices.")
+}
+</code></pre>
+<hr />
+<h3 id="9-can-constants-be-exported-in-go"><a class="header" href="#9-can-constants-be-exported-in-go">9. <strong>Can constants be exported in Go?</strong></a></h3>
+<p><strong>Answer:</strong> Yes, constants can be exported if their names start with an uppercase letter.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+const ExportedConstant = "I am exported!"
+
+func main() {
+    fmt.Println(ExportedConstant)
+}
+</code></pre>
+<hr />
+<h3 id="10-what-are-untyped-constants-in-go"><a class="header" href="#10-what-are-untyped-constants-in-go">10. <strong>What are untyped constants in Go?</strong></a></h3>
+<p><strong>Answer:</strong> Untyped constants do not have a specific type until they are assigned to a variable.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+import "fmt"
+
+const VALUE = 42
+
+func main() {
+    var x int = VALUE
+    var y float64 = VALUE
+    fmt.Println("x:", x, "y:", y)
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/conditional-statement.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/defer.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +335,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/conditional-statement.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/defer.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

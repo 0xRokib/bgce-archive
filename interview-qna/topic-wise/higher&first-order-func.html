@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Higher&amp;first Order Func - BGCE ARCHIVE</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">BGCE ARCHIVE</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/JsIqbal/bgce-archive" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Higher-Order
+<strong>Tags:</strong> [go, First-Order, Higher-Order]
+]</p>
+<h2 id="first-order-function-and-higher-order-function"><a class="header" href="#first-order-function-and-higher-order-function">First-Order Function and Higher-Order Function</a></h2>
+<h3 id="first-order-function"><a class="header" href="#first-order-function">First-Order Function</a></h3>
+<p>A <strong>first-order function</strong> is a function that operates on basic data types (integers, strings, etc.) and does not take other functions as arguments nor returns a function as its result.</p>
+<h3 id="higher-order-function"><a class="header" href="#higher-order-function">Higher-Order Function</a></h3>
+<p>A <strong>higher-order function</strong> is a function that can accept other functions as arguments and/or return a function as its result. Higher-order functions are key in functional programming paradigms.</p>
+<h3 id="example-code"><a class="header" href="#example-code">Example Code</a></h3>
+<h4 id="first-order-function-1"><a class="header" href="#first-order-function-1">First-Order Function</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// First-order function: does not take or return another function
+func add(a int, b int) int {
+    return a + b
+}
+
+func main() {
+    result := add(5, 3)
+    fmt.Println("Result:", result) // Output: Result: 8
+}
+</code></pre>
+<h4 id="higher-order-function-1"><a class="header" href="#higher-order-function-1">Higher-Order Function</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Higher-order function: takes a function as an argument
+func applyOperation(a int, b int, operation func(int, int) int) int {
+    return operation(a, b)
+}
+
+// Function to be passed as an argument
+func multiply(a int, b int) int {
+    return a * b
+}
+
+func main() {
+    result := applyOperation(5, 3, multiply)
+    fmt.Println("Result:", result) // Output: Result: 15
+}
+</code></pre>
+<h3 id="logic-in-mathematics"><a class="header" href="#logic-in-mathematics">Logic in Mathematics</a></h3>
+<p>In discrete mathematics, logic is used to define and analyze the properties and relationships of objects.</p>
+<ol>
+<li><strong>Object</strong>: An entity that has a physical existence (e.g., people, animals).</li>
+<li><strong>Property</strong>: Characteristics or attributes of objects (e.g., color, height).</li>
+<li><strong>Relation</strong>: Describes how objects are related to each other (e.g., "all customers must pay their pizza bills").</li>
+</ol>
+<p>Example:</p>
+<ul>
+<li>
+<p><strong>Object</strong>: Customer</p>
+</li>
+<li>
+<p><strong>Property</strong>: Has a bill</p>
+</li>
+<li>
+<p><strong>Relation</strong>: Must pay the bill</p>
+</li>
+<li>
+<p><strong>First-Order Logic</strong>: Works with objects, properties, and relations.</p>
+</li>
+<li>
+<p><strong>Higher-Order Logic</strong>: Works with relations between functions and operations.</p>
+</li>
+</ul>
+<p>In the context of functions:</p>
+<ul>
+<li><strong>First-Order Function</strong>: Operates directly on objects and their properties.</li>
+<li><strong>Higher-Order Function</strong>: Operates on relations between functions, allowing for more abstract and flexible operations.</li>
+</ul>
+<h3 id="functional-paradigms"><a class="header" href="#functional-paradigms">Functional Paradigms</a></h3>
+<p>Functional programming is a programming paradigm where programs are constructed by applying and composing functions. It emphasizes <strong>pure functions</strong>, <strong>immutability</strong>, and <strong>higher-order functions</strong>.</p>
+<ul>
+<li><strong>Pure Functions</strong>: Functions that always produce the same output for the same input and have no side effects.</li>
+<li><strong>Immutability</strong>: Data cannot be changed once it is created. New data structures are created with updated values.</li>
+<li><strong>First-Class Functions</strong>: Functions are treated as first-class citizens, meaning they can be assigned to variables, passed as arguments, and returned from other functions.</li>
+<li><strong>Higher-Order Functions</strong>: Functions that take other functions as arguments or return them as results.</li>
+</ul>
+<p>Functional programming languages like <strong>Haskell</strong>, <strong>Racket</strong>, and <strong>Lisp</strong> provide powerful abstractions for working with functions.</p>
+<h3 id="additional-example-code"><a class="header" href="#additional-example-code">Additional Example Code</a></h3>
+<h4 id="higher-order-function-returning-another-function"><a class="header" href="#higher-order-function-returning-another-function">Higher-Order Function Returning Another Function</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Higher-order function: returns another function
+func call() func(int, int) {
+    return add
+}
+
+func add(a, b int) {
+    z := a + b
+    fmt.Println(z)
+}
+
+func main() {
+    // call() is a higher-order function which returns the function add.
+    // The returned function is assigned to a variable f, then f is called with arguments 10, 20.
+    f := call()
+    f(10, 20) // Output: 30
+}
+</code></pre>
+<h4 id="higher-order-function-with-first-class-functions"><a class="header" href="#higher-order-function-with-first-class-functions">Higher-Order Function with First-Class Functions</a></h4>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+// Higher-order function: accepts another function as an argument
+func applyAndReturn(fn func(int, int) int, x int, y int) int {
+    return fn(x, y)
+}
+
+// Function to be passed as an argument
+func subtract(a int, b int) int {
+    return a - b
+}
+
+func main() {
+    result := applyAndReturn(subtract, 10, 5)
+    fmt.Println("Result:", result) // Output: Result: 5
+}
+</code></pre>
+<h3 id="interview-qa-code-examples"><a class="header" href="#interview-qa-code-examples">Interview Q&amp;A (Code Examples)</a></h3>
+<h4 id="1-what-is-a-higher-order-function"><a class="header" href="#1-what-is-a-higher-order-function">1. <strong>What is a higher-order function?</strong></a></h4>
+<p><strong>Question</strong>: What is a higher-order function, and how does it work in Go?</p>
+<p><strong>Answer</strong>:
+A higher-order function is a function that either accepts other functions as parameters or returns a function.</p>
+<p>Example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func applyOperation(a int, b int, operation func(int, int) int) int {
+    return operation(a, b)
+}
+
+func add(a, b int) int {
+    return a + b
+}
+
+func main() {
+    result := applyOperation(3, 4, add)
+    fmt.Println("Result:", result) // Output: Result: 7
+}
+</code></pre>
+<h4 id="2-what-is-a-first-order-function"><a class="header" href="#2-what-is-a-first-order-function">2. <strong>What is a first-order function?</strong></a></h4>
+<p><strong>Question</strong>: Explain a first-order function in Go.</p>
+<p><strong>Answer</strong>:
+A first-order function operates on basic data types and does not take other functions as parameters nor return functions.</p>
+<p>Example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func add(a int, b int) int {
+    return a + b
+}
+
+func main() {
+    result := add(3, 5)
+    fmt.Println("Result:", result) // Output: Result: 8
+}
+</code></pre>
+<h4 id="3-can-you-create-a-function-that-returns-another-function"><a class="header" href="#3-can-you-create-a-function-that-returns-another-function">3. <strong>Can you create a function that returns another function?</strong></a></h4>
+<p><strong>Question</strong>: Write a function that returns another function and demonstrates its usage.</p>
+<p><strong>Answer</strong>:
+Yes, you can create a higher-order function that returns another function. Here's an example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func multiply(a int) func(int) int {
+    return func(b int) int {
+        return a * b
+    }
+}
+
+func main() {
+    multiplyBy2 := multiply(2)
+    fmt.Println("Result:", multiplyBy2(5)) // Output: Result: 10
+}
+</code></pre>
+<h4 id="4-what-is-an-anonymous-function-in-go"><a class="header" href="#4-what-is-an-anonymous-function-in-go">4. <strong>What is an anonymous function in Go?</strong></a></h4>
+<p><strong>Question</strong>: Show an example of an anonymous function in Go.</p>
+<p><strong>Answer</strong>:
+An anonymous function is a function defined without a name, often used for short-lived operations.</p>
+<p>Example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    func(a int, b int) {
+        fmt.Println("Sum:", a+b)
+    }(3, 4) // Output: Sum: 7
+}
+</code></pre>
+<h4 id="5-what-is-an-immediately-invoked-function-expression-iife-in-go"><a class="header" href="#5-what-is-an-immediately-invoked-function-expression-iife-in-go">5. <strong>What is an Immediately Invoked Function Expression (IIFE) in Go?</strong></a></h4>
+<p><strong>Question</strong>: Write a code example for an Immediately Invoked Function Expression (IIFE) in Go.</p>
+<p><strong>Answer</strong>:
+An IIFE is a function that is defined and immediately invoked.</p>
+<p>Example:</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    result := func(a int, b int) int {
+        return a + b
+    }(3, 4)
+
+    fmt.Println("Result:", result) // Output: Result: 7
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../interview-qna/topic-wise/defer.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/iife-func.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../interview-qna/topic-wise/defer.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/iife-func.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

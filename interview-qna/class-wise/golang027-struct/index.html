@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Cf - BGCE ARCHIVE</title>
+        <title>Golang027 Struct - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,27 +158,150 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>[<strong>Author:</strong> @mdimamhosen
-<strong>Date:</strong> 2025-04-20
-<strong>Category:</strong> e.g., link-resouces/problems
-<strong>Tags:</strong> [go, problem solving, cf]
-]</p>
-<h1 id="problem-313---a"><a class="header" href="#problem-313---a">Problem 313 - A</a></h1>
-<h2 id="problem-link"><a class="header" href="#problem-link">Problem Link</a></h2>
-<p><a href="https://codeforces.com/problemset/problem/313/A">CodeForces Problem 313 - A</a></p>
-<h1 id="problem-1676---b"><a class="header" href="#problem-1676---b">Problem 1676 - B</a></h1>
-<h2 id="problem-link-1"><a class="header" href="#problem-link-1">Problem Link</a></h2>
-<p><a href="https://codeforces.com/problemset/problem/1676/B">CodeForces Problem 1676 - B</a></p>
+                        <h1 id="class-27-structs--memory-layout-in-go-"><a class="header" href="#class-27-structs--memory-layout-in-go-">Class 27: Structs &amp; Memory Layout in Go 🧱</a></h1>
+<p>Welcome to Class 27! Today we're diving into <strong>structs</strong>, how to define and instantiate them, and how they interact with Go's memory model. Let's visualize everything from scratch like pros. 🧠💡</p>
+<hr />
+<h2 id="-the-code"><a class="header" href="#-the-code">✍️ The Code</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+type User struct {
+	Name string
+	Age  int
+}
+
+func (usr User) printDetails() {
+	fmt.Println("Name:", usr.Name)
+	fmt.Println("Age:", usr.Age)
+}
+
+func main() {
+	user1 := User{
+		Name: "Ruhin",
+		Age:  21,
+	}
+
+	user2 := User{
+		Name: "Mukim",
+		Age:  15,
+	}
+
+	user1.printDetails()
+	user2.printDetails()
+}
+</code></pre>
+<hr />
+<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🧠 Key Concepts</a></h2>
+<h3 id="-what-is-a-struct"><a class="header" href="#-what-is-a-struct">🧩 What is a Struct?</a></h3>
+<p>A <strong>struct</strong> is a user-defined type in Go used to group related data together. It’s like a custom container for fields.</p>
+<pre><code class="language-go">type User struct {
+	Name string
+	Age  int
+}
+</code></pre>
+<p>This defines a new type called <code>User</code> with fields <code>Name</code> and <code>Age</code>.</p>
+<hr />
+<h3 id="-creating-instances-instantiation"><a class="header" href="#-creating-instances-instantiation">🔨 Creating Instances (Instantiation)</a></h3>
+<p>When we create an actual value using a struct type, that’s called <strong>instantiating</strong>.</p>
+<pre><code class="language-go">user1 := User{
+	Name: "Ruhin",
+	Age:  21,
+}
+</code></pre>
+<p>Here <code>user1</code> is an <strong>instance</strong> of <code>User</code>. This allocates memory to hold <code>Name</code> and <code>Age</code> values.</p>
+<hr />
+<h2 id="-memory-layout-visualization"><a class="header" href="#-memory-layout-visualization">🧠 Memory Layout (Visualization)</a></h2>
+<pre><code>┌─────────────────────────────┐
+│       Code Segment          │
+│-----------------------------│
+│ main, printDetails,         │
+│ type User struct {...}      │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│       Data Segment          │
+│-----------------------------│
+│ -                           │
+│ (Global vars if present)    │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│           Stack             │
+│-----------------------------│
+│ main() frame →              │
+│   user1 → Name: "Ruhin"     │
+│           Age: 21           │
+│   user2 → Name: "Mukim"     │
+│           Age: 15           │
+└─────────────────────────────┘
+</code></pre>
+<blockquote>
+<p>⚠️ NOTE: If a struct is returned from a function or captured by a closure, it may escape to the heap instead of stack.</p>
+</blockquote>
+<hr />
+<h2 id="-example-use-case"><a class="header" href="#-example-use-case">📋 Example Use Case</a></h2>
+<pre><code class="language-go">type Book struct {
+	Title  string
+	Author string
+	Pages  int
+}
+
+book1 := Book{
+	Title: "1984",
+	Author: "George Orwell",
+	Pages: 328,
+}
+</code></pre>
+<p>This lets us build real-world models with multiple fields.</p>
+<hr />
+<h2 id="-role-of-the-garbage-collector-gc"><a class="header" href="#-role-of-the-garbage-collector-gc">🧹 Role of the Garbage Collector (GC)</a></h2>
+<ul>
+<li>If a struct instance <strong>escapes</strong> (used outside the function, stored long-term, etc.), Go stores it on the <strong>heap</strong>.</li>
+<li>Go’s <strong>garbage collector</strong> then tracks and cleans it when it’s no longer in use.</li>
+<li>This means you don’t have to manually <code>free()</code> anything — Go handles memory cleanup for heap objects.</li>
+</ul>
+<hr />
+<h2 id="-tldr"><a class="header" href="#-tldr">🚀 TL;DR</a></h2>
+<ul>
+<li><code>type User struct {...}</code> is metadata → stored in the <strong>Code Segment</strong>.</li>
+<li><code>user1 := User{...}</code> is runtime data → stored in <strong>Stack</strong> or <strong>Heap</strong> depending on usage.</li>
+<li>Structs bundle fields into one logical unit ✅</li>
+<li>Memory layout varies depending on usage → escape analysis decides 📦🧳</li>
+<li>GC only manages objects in the <strong>heap</strong>, not on the <strong>stack</strong> 🧹</li>
+</ul>
+<hr />
+<h3 id="q-is-struct-a-datatype"><a class="header" href="#q-is-struct-a-datatype">Q: Is struct a datatype?</a></h3>
+<p><strong>Ans:</strong>
+Yes, 100% — a struct in Go is a user-defined data type. Think of it like creating your own custom "blueprint" for a data object. 💡</p>
+<p><strong>Here's how it fits in:</strong></p>
+<p>-[] Go has primitive data types like <code>int</code>, <code>string</code>, <code>bool</code>, <code>etc</code>.</p>
+<p>-[] You can then use <code>struct</code> to define a custom data type that groups multiple fields together.</p>
+<p>For example:</p>
+<pre><code class="language-go">type User struct {
+	Name string
+	Age  int
+}
+</code></pre>
+<p>This <code>User</code> struct becomes its own data type, and now you can create instances of it just like you would for <code>int</code> or <code>string</code>:</p>
+<pre><code class="language-go">var u User
+u.Name = "Ruhin"
+u.Age = 21
+</code></pre>
+<p>It’s like building your own Lego brick with a custom shape, and then making as many copies of that brick as you want. 🧱✨</p>
+<blockquote>
+<p>You’re now struct-urally sound in Go! 😎 Next time you model data, flex your type muscles and track those memory segments like a boss.</p>
+</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../../link-resources/Problems/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../../interview-qna/class-wise/golang026-closure/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../../link-resources/Problems/LeetCode/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../interview-qna/class-wise/golang028-receiver-function/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -188,11 +311,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../../link-resources/Problems/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../../interview-qna/class-wise/golang026-closure/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../../link-resources/Problems/LeetCode/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../interview-qna/class-wise/golang028-receiver-function/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

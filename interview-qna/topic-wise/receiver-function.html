@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Receiver Function - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,176 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-22
+<strong>Category:</strong> interview-qa/Receiver Function
+<strong>Tags:</strong> [go, Receiver Function]
+]</p>
+<h1 id="-receiver-function-in-go"><a class="header" href="#-receiver-function-in-go">📦 Receiver Function in Go</a></h1>
+<p>A receiver function in Go is a method bound to a specific type—typically a struct. It enables you to implement object-oriented behavior by defining methods on user-defined types.</p>
+<hr />
+<h2 id="-struct-and-receiver-basics"><a class="header" href="#-struct-and-receiver-basics">🧱 Struct and Receiver Basics</a></h2>
+<h3 id="struct-definition"><a class="header" href="#struct-definition">Struct Definition</a></h3>
+<pre><code class="language-go">// User struct with basic fields
+type User struct {
+	Name string
+	Age  int
+}
+</code></pre>
+<hr />
+<h2 id="-regular-function-vs-receiver-function"><a class="header" href="#-regular-function-vs-receiver-function">📞 Regular Function vs Receiver Function</a></h2>
+<h3 id="regular-function"><a class="header" href="#regular-function">Regular Function</a></h3>
+<pre><code class="language-go">func printUser(user User) {
+	fmt.Println("User Name:", user.Name)
+	fmt.Println("User Age:", user.Age)
+}
+</code></pre>
+<p>This is a standalone function that takes <code>User</code> as a parameter.</p>
+<h3 id="value-receiver-method"><a class="header" href="#value-receiver-method">Value Receiver Method</a></h3>
+<pre><code class="language-go">func (u User) printDetails() {
+	fmt.Println("Name:", u.Name)
+	fmt.Println("Age:", u.Age)
+}
+</code></pre>
+<p>Here, <code>printDetails()</code> is associated with <code>User</code> type using a value receiver. It works on a copy, so original data won’t change.</p>
+<h3 id="pointer-receiver-method"><a class="header" href="#pointer-receiver-method">Pointer Receiver Method</a></h3>
+<pre><code class="language-go">func (u *User) updateAge(newAge int) {
+	u.Age = newAge
+}
+</code></pre>
+<p>This method modifies the original <code>User</code> struct because it uses a pointer receiver.</p>
+<hr />
+<h2 id="-main-function-with-usage"><a class="header" href="#-main-function-with-usage">✅ Main Function with Usage</a></h2>
+<pre><code class="language-go">func main() {
+	user1 := User{Name: "John", Age: 30}
+	user2 := User{Name: "Jane", Age: 25}
+
+	// Regular function call
+	printUser(user1)
+
+	// Receiver function calls
+	user1.printDetails()
+	user2.printDetails()
+
+	// Update age using pointer receiver
+	user1.updateAge(35)
+	fmt.Println("Updated Age of user1:", user1.Age)
+
+	// Demonstrate value receiver (no change to original)
+	user2.call(100)
+	fmt.Println("User2's age after call():", user2.Age)
+}
+</code></pre>
+<hr />
+<h2 id="-additional-receiver-method"><a class="header" href="#-additional-receiver-method">🔍 Additional Receiver Method</a></h2>
+<pre><code class="language-go">// Value receiver that does not affect original struct
+func (u User) call(age int) {
+	u.Age = age
+	fmt.Println("Inside call() - temporary age:", u.Age)
+}
+</code></pre>
+<p>This will not change the actual <code>User.Age</code> outside the function.</p>
+<hr />
+<h2 id="-example-output"><a class="header" href="#-example-output">🧪 Example Output</a></h2>
+<pre><code>User Name: John
+User Age: 30
+Name: John
+Age: 30
+Name: Jane
+Age: 25
+Updated Age of user1: 35
+Inside call() - temporary age: 100
+User2's age after call(): 25
+</code></pre>
+<hr />
+<h2 id="-key-takeaways"><a class="header" href="#-key-takeaways">💡 Key Takeaways</a></h2>
+<ul>
+<li>✅ Value receivers are good for read-only operations.</li>
+<li>✅ Pointer receivers are used when you want to modify the actual data.</li>
+<li>✅ Go supports object-like behavior through receiver functions.</li>
+<li>✅ Methods with pointer receivers can be called on both values and pointers.</li>
+</ul>
+<h2 id="10-interview-questions-and-answers"><a class="header" href="#10-interview-questions-and-answers">10 Interview Questions and Answers</a></h2>
+<ol>
+<li>
+<p><strong>What is a receiver function in Go?</strong></p>
+<ul>
+<li>A receiver function is a method associated with a specific type, allowing you to define methods on structs or other types.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the difference between a value receiver and a pointer receiver?</strong></p>
+<ul>
+<li>A value receiver operates on a copy of the object, while a pointer receiver operates on the actual object, allowing modifications.</li>
+</ul>
+</li>
+<li>
+<p><strong>Can you define multiple receiver functions for the same type?</strong></p>
+<ul>
+<li>Yes, you can define multiple receiver functions for the same type.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the syntax for defining a receiver function?</strong></p>
+<ul>
+<li><code>func (receiverType TypeName) methodName(parameters) {}</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Can receiver functions be used with built-in types?</strong></p>
+<ul>
+<li>No, receiver functions can only be defined for user-defined types.</li>
+</ul>
+</li>
+<li>
+<p><strong>What happens if you call a value receiver function on a pointer?</strong></p>
+<ul>
+<li>Go automatically dereferences the pointer, so the function works as expected.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the purpose of receiver functions?</strong></p>
+<ul>
+<li>They enable object-oriented programming by associating methods with types.</li>
+</ul>
+</li>
+<li>
+<p><strong>Can a receiver function modify the original object?</strong></p>
+<ul>
+<li>Only if it uses a pointer receiver.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the difference between a regular function and a receiver function?</strong></p>
+<ul>
+<li>A regular function is not associated with any type, while a receiver function is tied to a specific type.</li>
+</ul>
+</li>
+<li>
+<p><strong>Can you use receiver functions with interfaces?</strong></p>
+<ul>
+<li>Yes, receiver functions are often used to implement interface methods.</li>
+</ul>
+</li>
+</ol>
+<h2 id="example-output"><a class="header" href="#example-output">Example Output</a></h2>
+<pre><code>User Name: John
+User Age: 30
+User Name: Jane
+User Age: 25
+User Age: 10
+User Age: 20
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/parameter-argument.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/scope.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +337,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/parameter-argument.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/scope.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

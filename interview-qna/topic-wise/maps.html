@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Maps - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,176 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> interview-qa/maps
+<strong>Tags:</strong> [go, maps, data-structure]
+]</p>
+<h1 id="maps"><a class="header" href="#maps">Maps</a></h1>
+<p>Maps are a data structure which allow us to store data values in key:value pairs.
+A map is an unordered and changeable collection that does not allow duplicates.
+The default value of a map is <code>nil</code>.</p>
+<pre><code class="language-go">userInfo := map[string]int{
+    "huxn": 17,
+    "alex": 18,
+    "john": 27,
+}
+
+fmt.Println(userInfo)
+userInfo["jordan"] = 15
+fmt.Println(userInfo["huxn"])
+fmt.Println(userInfo["alex"])
+fmt.Println(userInfo["john"])
+</code></pre>
+<h2 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h2>
+<h3 id="1-how-do-you-create-a-map-in-go"><a class="header" href="#1-how-do-you-create-a-map-in-go">1. How do you create a map in Go?</a></h3>
+<p><strong>Answer:</strong>
+You can create a map using the <code>make</code> function or by using a map literal.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">// Using make function
+userInfo := make(map[string]int)
+userInfo["huxn"] = 17
+userInfo["alex"] = 18
+fmt.Println(userInfo)
+
+// Using map literal
+userInfo := map[string]int{
+    "huxn": 17,
+    "alex": 18,
+}
+fmt.Println(userInfo)
+</code></pre>
+<h3 id="2-how-do-you-check-if-a-key-exists-in-a-map"><a class="header" href="#2-how-do-you-check-if-a-key-exists-in-a-map">2. How do you check if a key exists in a map?</a></h3>
+<p><strong>Answer:</strong>
+You can use the second return value of a map lookup to check if a key exists.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">userInfo := map[string]int{
+    "huxn": 17,
+    "alex": 18,
+}
+
+value, exists := userInfo["huxn"]
+if exists {
+    fmt.Println("Key exists with value:", value)
+} else {
+    fmt.Println("Key does not exist")
+}
+</code></pre>
+<h3 id="3-how-do-you-delete-a-key-from-a-map"><a class="header" href="#3-how-do-you-delete-a-key-from-a-map">3. How do you delete a key from a map?</a></h3>
+<p><strong>Answer:</strong>
+You can use the <code>delete</code> function to remove a key from a map.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">userInfo := map[string]int{
+    "huxn": 17,
+    "alex": 18,
+}
+delete(userInfo, "huxn")
+fmt.Println(userInfo)
+</code></pre>
+<h3 id="4-can-a-map-key-be-of-any-type"><a class="header" href="#4-can-a-map-key-be-of-any-type">4. Can a map key be of any type?</a></h3>
+<p><strong>Answer:</strong>
+No, map keys must be of a type that is comparable (e.g., strings, integers, etc.).</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">// Valid keys
+userInfo := map[string]int{
+    "huxn": 17,
+    "alex": 18,
+}
+
+// Invalid keys (e.g., slices)
+// userInfo := map[[]int]int{} // This will throw an error
+</code></pre>
+<h3 id="5-how-do-you-iterate-over-a-map"><a class="header" href="#5-how-do-you-iterate-over-a-map">5. How do you iterate over a map?</a></h3>
+<p><strong>Answer:</strong>
+You can use a <code>for</code> loop with the <code>range</code> keyword to iterate over a map.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">userInfo := map[string]int{
+    "huxn": 17,
+    "alex": 18,
+}
+
+for key, value := range userInfo {
+    fmt.Printf("Key: %s, Value: %d\n", key, value)
+}
+</code></pre>
+<h3 id="6-what-is-the-zero-value-of-a-map"><a class="header" href="#6-what-is-the-zero-value-of-a-map">6. What is the zero value of a map?</a></h3>
+<p><strong>Answer:</strong>
+The zero value of a map is <code>nil</code>.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">var userInfo map[string]int
+fmt.Println(userInfo == nil) // true
+</code></pre>
+<h3 id="7-can-you-compare-two-maps-in-go"><a class="header" href="#7-can-you-compare-two-maps-in-go">7. Can you compare two maps in Go?</a></h3>
+<p><strong>Answer:</strong>
+No, maps cannot be compared directly. You need to compare them manually by iterating over their keys and values.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">map1 := map[string]int{"huxn": 17, "alex": 18}
+map2 := map[string]int{"huxn": 17, "alex": 18}
+
+// Direct comparison is not allowed
+// fmt.Println(map1 == map2) // This will throw an error
+
+// Manual comparison
+areEqual := true
+for key, value := range map1 {
+    if map2[key] != value {
+        areEqual = false
+        break
+    }
+}
+fmt.Println("Maps are equal:", areEqual)
+</code></pre>
+<h3 id="8-how-do-you-find-the-length-of-a-map"><a class="header" href="#8-how-do-you-find-the-length-of-a-map">8. How do you find the length of a map?</a></h3>
+<p><strong>Answer:</strong>
+You can use the <code>len</code> function to find the number of key-value pairs in a map.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">userInfo := map[string]int{
+    "huxn": 17,
+    "alex": 18,
+}
+fmt.Println("Length of map:", len(userInfo))
+</code></pre>
+<h3 id="9-can-you-nest-maps-in-go"><a class="header" href="#9-can-you-nest-maps-in-go">9. Can you nest maps in Go?</a></h3>
+<p><strong>Answer:</strong>
+Yes, you can create a map where the value is another map.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">nestedMap := map[string]map[string]int{
+    "group1": {
+        "huxn": 17,
+        "alex": 18,
+    },
+    "group2": {
+        "john": 27,
+    },
+}
+fmt.Println(nestedMap)
+</code></pre>
+<h3 id="10-how-do-you-copy-a-map-in-go"><a class="header" href="#10-how-do-you-copy-a-map-in-go">10. How do you copy a map in Go?</a></h3>
+<p><strong>Answer:</strong>
+You need to manually copy the key-value pairs from one map to another.</p>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">originalMap := map[string]int{
+    "huxn": 17,
+    "alex": 18,
+}
+copiedMap := make(map[string]int)
+
+for key, value := range originalMap {
+    copiedMap[key] = value
+}
+fmt.Println("Original Map:", originalMap)
+fmt.Println("Copied Map:", copiedMap)
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/loops.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/numbers.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +337,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/loops.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/numbers.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

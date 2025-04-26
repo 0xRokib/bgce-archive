@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Logical Operator - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,186 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> interview-qa/logical_operators
+<strong>Tags:</strong> [go, logical_operators]
+]</p>
+<h1 id="logical-operators"><a class="header" href="#logical-operators">Logical Operators</a></h1>
+<h2 id="logical-operators-are-used-to-determine-the-logic-between-variables-or-values"><a class="header" href="#logical-operators-are-used-to-determine-the-logic-between-variables-or-values">Logical operators are used to determine the logic between variables or values.</a></h2>
+<h2 id="1-logical-and-"><a class="header" href="#1-logical-and-">1. Logical and (&amp;&amp;)</a></h2>
+<h3 id="returns-true-if-both-statements-are-true"><a class="header" href="#returns-true-if-both-statements-are-true">Returns true if both statements are true</a></h3>
+<h2 id="2-logical-or-"><a class="header" href="#2-logical-or-">2. Logical or (||)</a></h2>
+<h3 id="returns-true-if-one-statements-is-true"><a class="header" href="#returns-true-if-one-statements-is-true">Returns true if one statements is true</a></h3>
+<h2 id="3-logical-not-"><a class="header" href="#3-logical-not-">3. Logical not (!)</a></h2>
+<h3 id="reverse-the-result-returns-false-if-the-result-is-true"><a class="header" href="#reverse-the-result-returns-false-if-the-result-is-true">Reverse the result, returns false if the result is true</a></h3>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(true &amp;&amp; true) // true
+	fmt.Println(true &amp;&amp; false) // false
+
+	fmt.Println(true || true) // true
+	fmt.Println(false || false) // false
+
+	fmt.Println(!true) // false
+	fmt.Println(!false) // true
+}
+</code></pre>
+<h2 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h2>
+<h3 id="1-what-is-the-difference-between--and--in-go"><a class="header" href="#1-what-is-the-difference-between--and--in-go">1. What is the difference between <code>&amp;&amp;</code> and <code>||</code> in Go?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li><code>&amp;&amp;</code> (Logical AND) returns true only if both conditions are true.</li>
+<li><code>||</code> (Logical OR) returns true if at least one condition is true.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(true &amp;&amp; false) // false
+	fmt.Println(true || false) // true
+}
+</code></pre>
+<h3 id="2-how-does-the--operator-work-in-go"><a class="header" href="#2-how-does-the--operator-work-in-go">2. How does the <code>!</code> operator work in Go?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>The <code>!</code> (Logical NOT) operator reverses the boolean value.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(!true)  // false
+	fmt.Println(!false) // true
+}
+</code></pre>
+<h3 id="3-can-logical-operators-be-used-with-non-boolean-values"><a class="header" href="#3-can-logical-operators-be-used-with-non-boolean-values">3. Can logical operators be used with non-boolean values?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>No, logical operators in Go work only with boolean values.</li>
+</ul>
+<h3 id="4-how-can-i-combine-multiple-logical-operators-in-a-single-expression"><a class="header" href="#4-how-can-i-combine-multiple-logical-operators-in-a-single-expression">4. How can I combine multiple logical operators in a single expression?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>You can combine them using parentheses to control precedence.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	fmt.Println((true &amp;&amp; false) || true) // true
+}
+</code></pre>
+<h3 id="5-what-is-the-precedence-of-logical-operators-in-go"><a class="header" href="#5-what-is-the-precedence-of-logical-operators-in-go">5. What is the precedence of logical operators in Go?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li><code>!</code> has the highest precedence, followed by <code>&amp;&amp;</code>, and then <code>||</code>.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(!true || false &amp;&amp; true) // false
+}
+</code></pre>
+<h3 id="6-how-can-i-use-logical-operators-in-conditional-statements"><a class="header" href="#6-how-can-i-use-logical-operators-in-conditional-statements">6. How can I use logical operators in conditional statements?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>Logical operators are often used in <code>if</code> statements to combine conditions.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	if true &amp;&amp; !false {
+		fmt.Println("Condition met")
+	}
+}
+</code></pre>
+<h3 id="7-can-logical-operators-short-circuit-in-go"><a class="header" href="#7-can-logical-operators-short-circuit-in-go">7. Can logical operators short-circuit in Go?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>Yes, <code>&amp;&amp;</code> and <code>||</code> short-circuit. For example, <code>&amp;&amp;</code> stops evaluating if the first condition is false.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(false &amp;&amp; (5 &gt; 3)) // false (5 &gt; 3 is not evaluated)
+}
+</code></pre>
+<h3 id="8-how-can-i-debug-logical-expressions-in-go"><a class="header" href="#8-how-can-i-debug-logical-expressions-in-go">8. How can I debug logical expressions in Go?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>Use <code>fmt.Println</code> to print intermediate results.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	condition1 := true
+	condition2 := false
+	fmt.Println(condition1 &amp;&amp; condition2) // false
+}
+</code></pre>
+<h3 id="9-can-logical-operators-be-used-in-loops"><a class="header" href="#9-can-logical-operators-be-used-in-loops">9. Can logical operators be used in loops?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>Yes, they can be used in loop conditions.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	for i := 0; i &lt; 10 &amp;&amp; i%2 == 0; i++ {
+		fmt.Println(i)
+	}
+}
+</code></pre>
+<h3 id="10-what-happens-if-i-use-logical-operators-with-nil-values"><a class="header" href="#10-what-happens-if-i-use-logical-operators-with-nil-values">10. What happens if I use logical operators with nil values?</a></h3>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>Logical operators cannot be directly used with <code>nil</code>. You need to compare <code>nil</code> explicitly.</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	var ptr *int = nil
+	fmt.Println(ptr == nil || true) // true
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/internal-memory.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/loops.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +347,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/internal-memory.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/loops.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

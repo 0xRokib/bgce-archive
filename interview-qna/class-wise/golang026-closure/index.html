@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Cf - BGCE ARCHIVE</title>
+        <title>Golang026 Closure - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,27 +158,136 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>[<strong>Author:</strong> @mdimamhosen
-<strong>Date:</strong> 2025-04-20
-<strong>Category:</strong> e.g., link-resouces/problems
-<strong>Tags:</strong> [go, problem solving, cf]
-]</p>
-<h1 id="problem-313---a"><a class="header" href="#problem-313---a">Problem 313 - A</a></h1>
-<h2 id="problem-link"><a class="header" href="#problem-link">Problem Link</a></h2>
-<p><a href="https://codeforces.com/problemset/problem/313/A">CodeForces Problem 313 - A</a></p>
-<h1 id="problem-1676---b"><a class="header" href="#problem-1676---b">Problem 1676 - B</a></h1>
-<h2 id="problem-link-1"><a class="header" href="#problem-link-1">Problem Link</a></h2>
-<p><a href="https://codeforces.com/problemset/problem/1676/B">CodeForces Problem 1676 - B</a></p>
+                        <h1 id="class-26-closure--go-internal-memory-deep-dive-"><a class="header" href="#class-26-closure--go-internal-memory-deep-dive-">Class 26: Closure &amp; Go Internal Memory Deep Dive 💡</a></h1>
+<p>Welcome to Class 26, where we uncover the magic behind closures in Go, escape analysis, and how memory is managed under the hood! 🧠🔥</p>
+<hr />
+<h2 id="-the-code"><a class="header" href="#-the-code">🧾 The Code</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+const a = 10
+var p = 100
+
+//Closure
+func outer(money int) func() {
+	age := 30
+	fmt.Println("Age =", age)
+
+	show := func() {
+		money = money + a + p
+		fmt.Println(money)
+	}
+
+	return show
+}
+
+func call() {
+	incr1 := outer(100)
+	incr1() // money = 100 + 10 + 100 = 210
+	incr1() // money = 210 + 10 + 100 = 320
+
+	incr2 := outer(100)
+	incr2()
+	incr2()
+}
+
+func main() {
+	call()
+}
+
+func init() {
+	fmt.Println("=== Bank ===")
+}
+</code></pre>
+<hr />
+<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🔍 Key Concepts</a></h2>
+<h3 id="-what-is-a-closure"><a class="header" href="#-what-is-a-closure">🔒 What is a Closure?</a></h3>
+<p>A <strong>closure</strong> is a function that references variables from outside its own scope. In this case:</p>
+<pre><code class="language-go">show := func() {
+    money = money + a + p
+    fmt.Println(money)
+}
+</code></pre>
+<p><code>show</code> forms a closure by capturing the <code>money</code> variable defined in <code>outer()</code>.</p>
+<h3 id="-why-is-closure-important"><a class="header" href="#-why-is-closure-important">🧠 Why is Closure Important?</a></h3>
+<p>Closures let you encapsulate logic along with state. This is why <code>incr1()</code> and <code>incr2()</code> maintain separate <code>money</code> values even though they use the same function.</p>
+<h3 id="-stack-vs-heap"><a class="header" href="#-stack-vs-heap">🧮 Stack vs Heap</a></h3>
+<ul>
+<li><strong>Stack</strong>: Fast memory, used for function calls and local variables.</li>
+<li><strong>Heap</strong>: Used when variables need to persist beyond the function call (like in closures!).</li>
+</ul>
+<p>Because <code>money</code> needs to stick around <em>after</em> <code>outer()</code> returns, <strong>escape analysis</strong> detects this and allocates <code>money</code> on the heap.</p>
+<h3 id="-what-is-escape-analysis"><a class="header" href="#-what-is-escape-analysis">🧪 What is Escape Analysis?</a></h3>
+<p>Escape analysis is the process that the <strong>Go compiler</strong> uses during the <strong>compilation phase</strong> to determine whether variables can be safely allocated on the stack or must go to the heap.</p>
+<ul>
+<li>✅ If a variable is used <em>only</em> inside a function, it's put on the <strong>stack</strong>.</li>
+<li>🚀 If a variable is used <em>outside</em> (like in a returned closure), it's moved to the <strong>heap</strong>.</li>
+</ul>
+<h3 id="-memory-segments"><a class="header" href="#-memory-segments">🧱 Memory Segments</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Segment</th><th>What's Stored</th></tr></thead><tbody>
+<tr><td>Code Segment</td><td>Compiled instructions (functions)</td></tr>
+<tr><td>Data Segment</td><td>Global and static variables (<code>a</code>, <code>p</code>)</td></tr>
+<tr><td>Stack</td><td>Local variables (<code>age</code>)</td></tr>
+<tr><td>Heap</td><td>Escaping variables (<code>money</code>)</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-visualization"><a class="header" href="#-visualization">🧠 Visualization</a></h2>
+<h3 id="cli-style-memory-layout"><a class="header" href="#cli-style-memory-layout">CLI-Style Memory Layout</a></h3>
+<pre><code>┌─────────────────────────────┐
+│       Code Segment          │
+│-----------------------------│
+│ main, call, init, outer,    │
+│ anonymous show function     │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│       Data Segment          │
+│-----------------------------│
+│ const a = 10                │
+│ var p = 100                 │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│           Stack             │
+│-----------------------------│
+│ outer() frame               │
+│   age = 30                  │
+│   return address            │
+└─────────────────────────────┘
+          ↓
+┌─────────────────────────────┐
+│            Heap             │
+│-----------------------------│
+│ money = 100 (for incr1)     │
+│ money = 100 (for incr2)     │
+└─────────────────────────────┘
+</code></pre>
+<p>Each closure has its own <code>money</code> on the heap. Every call to <code>outer(100)</code> results in a new memory block being allocated.</p>
+<h3 id="garbage-collectors-role-"><a class="header" href="#garbage-collectors-role-">Garbage Collector’s Role 🧹</a></h3>
+<p>When the closure is no longer referenced (e.g., <code>incr1</code> or <code>incr2</code> goes out of scope), the <strong>Garbage Collector</strong> detects that the heap memory (e.g., <code>money</code>) is unreachable. It then safely reclaims that memory so your program doesn’t become a memory hoarder. This is vital for maintaining efficiency, especially when many closures are involved.</p>
+<p>GC is triggered automatically and runs concurrently with your program. It uses a combination of <strong>mark-and-sweep</strong> and <strong>concurrent garbage collection techniques</strong> to do this efficiently.</p>
+<hr />
+<h2 id="-tldr"><a class="header" href="#-tldr">🧠 TL;DR</a></h2>
+<ul>
+<li>Closures can capture and remember variable state 🔁</li>
+<li>Escape analysis figures out which variables must live on the heap 📦</li>
+<li>Stack is temporary, heap is persistent (with GC 🧹)</li>
+<li>Go separates memory into Code, Data, Stack, Heap — each with its role 🧩</li>
+<li>GC ensures unused heap memory (like old closure data) is recycled ♻️</li>
+</ul>
+<hr />
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../../link-resources/Problems/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../../interview-qna/class-wise/golang025-end_of_internal-memory/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../../link-resources/Problems/LeetCode/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../interview-qna/class-wise/golang027-struct/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -188,11 +297,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../../link-resources/Problems/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../../interview-qna/class-wise/golang025-end_of_internal-memory/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../../link-resources/Problems/LeetCode/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../interview-qna/class-wise/golang027-struct/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

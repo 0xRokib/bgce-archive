@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Cf - BGCE ARCHIVE</title>
+        <title>Golang023 Fof Vs Hof - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,27 +158,123 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>[<strong>Author:</strong> @mdimamhosen
-<strong>Date:</strong> 2025-04-20
-<strong>Category:</strong> e.g., link-resouces/problems
-<strong>Tags:</strong> [go, problem solving, cf]
-]</p>
-<h1 id="problem-313---a"><a class="header" href="#problem-313---a">Problem 313 - A</a></h1>
-<h2 id="problem-link"><a class="header" href="#problem-link">Problem Link</a></h2>
-<p><a href="https://codeforces.com/problemset/problem/313/A">CodeForces Problem 313 - A</a></p>
-<h1 id="problem-1676---b"><a class="header" href="#problem-1676---b">Problem 1676 - B</a></h1>
-<h2 id="problem-link-1"><a class="header" href="#problem-link-1">Problem Link</a></h2>
-<p><a href="https://codeforces.com/problemset/problem/1676/B">CodeForces Problem 1676 - B</a></p>
+                        <h1 id="class-23-functional-programming-concepts-in-go"><a class="header" href="#class-23-functional-programming-concepts-in-go">Class 23: Functional Programming Concepts in Go</a></h1>
+<h2 id="code-example"><a class="header" href="#code-example">Code Example</a></h2>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func add(a int, b int) { // Parameter: a and b
+	c := a + b
+	fmt.Println(c)
+}
+
+func main() {
+	add(2, 5) // 2 and 5 are arguments
+	processOperation(4, 5, add)
+	sum := call() // function expression
+	sum(4, 7)
+}
+
+func processOperation(a int, b int, op func(p int, q int)) { // Higher order function
+	op(a, b)
+}
+
+func call() func(x int, y int) {
+	return add
+}
+</code></pre>
+<hr />
+<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🧠 Key Concepts</a></h2>
+<h3 id="1-parameter-vs-argument"><a class="header" href="#1-parameter-vs-argument">1. <strong>Parameter vs Argument</strong></a></h3>
+<ul>
+<li><strong>Parameter</strong>: The variable listed inside the function definition. (e.g., <code>a int, b int</code> in <code>add(a, b)</code>)</li>
+<li><strong>Argument</strong>: The actual value passed to the function when it's called. (e.g., <code>add(2, 5)</code>)</li>
+</ul>
+<h3 id="2-first-order-function"><a class="header" href="#2-first-order-function">2. <strong>First Order Function</strong></a></h3>
+<p>A regular function that does not take another function as input or return one.</p>
+<ul>
+<li>Examples:
+<ul>
+<li>Named function: <code>func add(a, b int)</code></li>
+<li>Anonymous function: <code>func(a int, b int) { ... }</code></li>
+<li>IIFE (Immediately Invoked Function Expression): <code>func(a, b int) { ... }(5, 7)</code></li>
+<li>Function expression: <code>sum := func(a, b int) { ... }</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-higher-order-function"><a class="header" href="#3-higher-order-function">3. <strong>Higher Order Function</strong></a></h3>
+<p>A function that <strong>takes a function as a parameter</strong>, <strong>returns a function</strong>, or <strong>both</strong>.</p>
+<ul>
+<li>Example:
+<ul>
+<li><code>processOperation</code> takes a function <code>op</code> as a parameter</li>
+<li><code>call()</code> returns a function <code>add</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="4-callback-function"><a class="header" href="#4-callback-function">4. <strong>Callback Function</strong></a></h3>
+<ul>
+<li>A function that is passed into another function to be executed later.</li>
+<li>In <code>processOperation(4, 5, add)</code>, the function <code>add</code> is a callback.</li>
+</ul>
+<h3 id="5-first-class-citizen-function"><a class="header" href="#5-first-class-citizen-function">5. <strong>First-Class Citizen (Function)</strong></a></h3>
+<ul>
+<li>In Go, functions can be assigned to variables, passed as arguments, and returned from other functions.</li>
+<li>This makes them <em>first-class citizens</em>.</li>
+</ul>
+<hr />
+<h2 id="-conceptual-context-functional-paradigm"><a class="header" href="#-conceptual-context-functional-paradigm">🧠 Conceptual Context (Functional Paradigm)</a></h2>
+<blockquote>
+<p>Functional programming treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.</p>
+</blockquote>
+<h3 id="inspiration-from-mathematics"><a class="header" href="#inspiration-from-mathematics">Inspiration from Mathematics</a></h3>
+<ul>
+<li><strong>First Order Logic</strong>: Objects with properties (e.g., <code>Person</code>, <code>Car</code>, etc.)</li>
+<li><strong>Higher Order Logic</strong>: Functions and their relation with other functions (like in Go's higher-order functions)</li>
+</ul>
+<p>Languages like <strong>Haskell</strong>, <strong>Racket</strong>, etc., are built on deep functional paradigms.</p>
+<p>Go borrows <strong>some</strong> of these concepts, but it is still <strong>imperative and procedural</strong> by nature.</p>
+<hr />
+<h2 id="-cli-visualization-call-stack--segments"><a class="header" href="#-cli-visualization-call-stack--segments">📟 CLI Visualization (Call Stack + Segments)</a></h2>
+<h3 id="1-data-segment"><a class="header" href="#1-data-segment">1. <strong>Data Segment</strong></a></h3>
+<ul>
+<li><code>add</code> (global function definition)</li>
+<li><code>call</code> (returns a function)</li>
+<li><code>processOperation</code> (stored function)</li>
+</ul>
+<h3 id="2-code-execution-flow-stack-frames"><a class="header" href="#2-code-execution-flow-stack-frames">2. <strong>Code Execution Flow (Stack Frames)</strong></a></h3>
+<pre><code class="language-shell">Call Stack:
+┌──────────────────────────┐
+│ main()                   │
+│ ├── add(2, 5)            │ =&gt; prints 7
+│ ├── processOperation     │
+│ │   └── op(4, 5) =&gt; add  │ =&gt; prints 9
+│ ├── call()               │ =&gt; returns add
+│ └── sum(4, 7)            │ =&gt; prints 11
+└──────────────────────────┘
+</code></pre>
+<p>Everything runs in the order written, but since functions are first-class, Go can pass and return them like variables.</p>
+<hr />
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<ul>
+<li>🌱 Go supports functional programming <strong>concepts</strong> like first-class and higher-order functions.</li>
+<li>💡 You can pass around functions like variables — extremely powerful for modular and clean code.</li>
+<li>🧠 Understanding <strong>first order vs higher order functions</strong>, <strong>parameters vs arguments</strong>, and <strong>callback functions</strong> gives you a major edge in writing elegant Go code.</li>
+</ul>
+<hr />
+<p>✅ This was a big brain class. You crushed it!</p>
+<hr />
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../../link-resources/Problems/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../../interview-qna/class-wise/golang022-function-expression-example/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../../link-resources/Problems/LeetCode/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../interview-qna/class-wise/golang024-internal-memory/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -188,11 +284,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../../link-resources/Problems/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../../interview-qna/class-wise/golang022-function-expression-example/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../../link-resources/Problems/LeetCode/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../interview-qna/class-wise/golang024-internal-memory/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

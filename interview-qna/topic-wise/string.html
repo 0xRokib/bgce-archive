@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>String - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,131 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> interview-qa/strings
+<strong>Tags:</strong> [go, strings, operations]]</p>
+<h1 id="golang-strings"><a class="header" href="#golang-strings">GoLang Strings</a></h1>
+<p>This document provides an overview of string operations in GoLang with examples.</p>
+<h2 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h2>
+<h3 id="1-how-do-you-concatenate-strings-in-go"><a class="header" href="#1-how-do-you-concatenate-strings-in-go">1. How do you concatenate strings in Go?</a></h3>
+<p>You can concatenate strings using the <code>+</code> operator.</p>
+<pre><code class="language-go">fmt.Println("Hello, " + "World!")
+</code></pre>
+<h3 id="2-how-do-you-find-the-length-of-a-string-in-go"><a class="header" href="#2-how-do-you-find-the-length-of-a-string-in-go">2. How do you find the length of a string in Go?</a></h3>
+<p>Use the <code>len</code> function to get the length of a string.</p>
+<pre><code class="language-go">message := "Hello World!"
+fmt.Println("Length:", len(message))
+</code></pre>
+<h3 id="3-how-do-you-extract-a-substring-in-go"><a class="header" href="#3-how-do-you-extract-a-substring-in-go">3. How do you extract a substring in Go?</a></h3>
+<p>Use slice notation to extract substrings.</p>
+<pre><code class="language-go">message := "Hello World!"
+fmt.Println("Substring:", message[0:5]) // "Hello"
+</code></pre>
+<h3 id="4-how-do-you-compare-two-strings-in-go"><a class="header" href="#4-how-do-you-compare-two-strings-in-go">4. How do you compare two strings in Go?</a></h3>
+<p>You can use <code>==</code> and <code>!=</code> operators or the <code>strings.Compare</code> function.</p>
+<pre><code class="language-go">msg1 := "one"
+msg2 := "two"
+fmt.Println("Equal?", msg1 == msg2)
+fmt.Println("Not Equal?", msg1 != msg2)
+fmt.Println(strings.Compare(msg1, msg2))
+</code></pre>
+<h3 id="5-how-do-you-check-if-a-string-contains-a-substring"><a class="header" href="#5-how-do-you-check-if-a-string-contains-a-substring">5. How do you check if a string contains a substring?</a></h3>
+<p>Use the <code>strings.Contains</code> function.</p>
+<pre><code class="language-go">message := "Hello World!"
+fmt.Println(strings.Contains(message, "World")) // true
+</code></pre>
+<h3 id="6-how-do-you-convert-a-string-to-uppercase-or-lowercase"><a class="header" href="#6-how-do-you-convert-a-string-to-uppercase-or-lowercase">6. How do you convert a string to uppercase or lowercase?</a></h3>
+<p>Use <code>strings.ToUpper</code> and <code>strings.ToLower</code> functions.</p>
+<pre><code class="language-go">message := "Hello World!"
+fmt.Println(strings.ToUpper(message)) // "HELLO WORLD!"
+fmt.Println(strings.ToLower(message)) // "hello world!"
+</code></pre>
+<h3 id="7-how-do-you-split-a-string-into-substrings"><a class="header" href="#7-how-do-you-split-a-string-into-substrings">7. How do you split a string into substrings?</a></h3>
+<p>Use the <code>strings.Split</code> function.</p>
+<pre><code class="language-go">message := "Hello World!"
+fmt.Println(strings.Split(message, " ")) // ["Hello", "World!"]
+</code></pre>
+<h3 id="8-how-do-you-replace-a-substring-in-a-string"><a class="header" href="#8-how-do-you-replace-a-substring-in-a-string">8. How do you replace a substring in a string?</a></h3>
+<p>Use the <code>strings.Replace</code> function.</p>
+<pre><code class="language-go">message := "Hello World!"
+fmt.Println(strings.Replace(message, "World", "Go", 1)) // "Hello Go!"
+</code></pre>
+<h3 id="9-how-do-you-trim-spaces-from-a-string"><a class="header" href="#9-how-do-you-trim-spaces-from-a-string">9. How do you trim spaces from a string?</a></h3>
+<p>Use the <code>strings.TrimSpace</code> function.</p>
+<pre><code class="language-go">message := "  Hello World!  "
+fmt.Println(strings.TrimSpace(message)) // "Hello World!"
+</code></pre>
+<h3 id="10-how-do-you-get-the-first-character-of-a-string"><a class="header" href="#10-how-do-you-get-the-first-character-of-a-string">10. How do you get the first character of a string?</a></h3>
+<p>Use indexing to access the first character.</p>
+<pre><code class="language-go">message := "Hello World!"
+fmt.Printf("First character: %c\n", message[0])
+</code></pre>
+<h2 id="basic-string-operations"><a class="header" href="#basic-string-operations">Basic String Operations</a></h2>
+<h3 id="concatenation"><a class="header" href="#concatenation">Concatenation</a></h3>
+<p>You can concatenate strings using the <code>+</code> operator.</p>
+<pre><code class="language-go">fmt.Println("Hello, " + "World!")
+</code></pre>
+<h3 id="formatting-strings"><a class="header" href="#formatting-strings">Formatting Strings</a></h3>
+<p>Go provides several ways to format strings using <code>fmt.Printf</code>.</p>
+<pre><code class="language-go">message := "Hello World!"
+fmt.Printf("Data: %v\n", message)
+fmt.Printf("Data: %+v\n", message)
+fmt.Printf("Data: %#v\n", message)
+fmt.Printf("Data: %T\n", message)
+fmt.Printf("Data: %q\n", message)
+fmt.Printf("First character: %c\n", message[0])
+</code></pre>
+<h3 id="string-length"><a class="header" href="#string-length">String Length</a></h3>
+<p>You can get the length of a string using the <code>len</code> function.</p>
+<pre><code class="language-go">fmt.Println("Length:", len(message))
+</code></pre>
+<h3 id="substrings"><a class="header" href="#substrings">Substrings</a></h3>
+<p>You can extract substrings using slice notation.</p>
+<pre><code class="language-go">fmt.Println("Substring:", message[0:5]) // this will print "Hello"
+</code></pre>
+<h3 id="string-comparison"><a class="header" href="#string-comparison">String Comparison</a></h3>
+<p>You can compare strings using <code>==</code> and <code>!=</code> operators or the <code>strings.Compare</code> function.</p>
+<pre><code class="language-go">msg1 := "one"
+msg2 := "two"
+
+fmt.Println("Equal?", msg1 == msg2)
+fmt.Println("Not Equal?", msg1 != msg2)
+fmt.Println(strings.Compare(msg1, msg2))
+</code></pre>
+<h2 id="additional-string-functions"><a class="header" href="#additional-string-functions">Additional String Functions</a></h2>
+<h3 id="contains"><a class="header" href="#contains">Contains</a></h3>
+<p>Check if a string contains a substring.</p>
+<pre><code class="language-go">fmt.Println(strings.Contains(message, "World")) // true
+</code></pre>
+<h3 id="toupper-and-tolower"><a class="header" href="#toupper-and-tolower">ToUpper and ToLower</a></h3>
+<p>Convert strings to upper or lower case.</p>
+<pre><code class="language-go">fmt.Println(strings.ToUpper(message)) // "HELLO WORLD!"
+fmt.Println(strings.ToLower(message)) // "hello world!"
+</code></pre>
+<h3 id="split"><a class="header" href="#split">Split</a></h3>
+<p>Split a string into a slice of substrings.</p>
+<pre><code class="language-go">fmt.Println(strings.Split(message, " ")) // ["Hello", "World!"]
+</code></pre>
+<h3 id="replace"><a class="header" href="#replace">Replace</a></h3>
+<p>Replace occurrences of a substring.</p>
+<pre><code class="language-go">fmt.Println(strings.Replace(message, "World", "Go", 1)) // "Hello Go!"
+</code></pre>
+<h3 id="trim"><a class="header" href="#trim">Trim</a></h3>
+<p>Trim leading and trailing spaces.</p>
+<pre><code class="language-go">fmt.Println(strings.TrimSpace("  Hello World!  ")) // "Hello World!"
+</code></pre>
+<p>Refer to the <a href="https://golang.org/pkg/strings/">Go documentation</a> for more string functions and detailed usage.</p>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/slice.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/struct.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +292,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/slice.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/struct.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

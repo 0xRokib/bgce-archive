@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Slice - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,174 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> interview-qa/slices
+<strong>Tags:</strong> [go, slices, arrays, make]</p>
+<h1 id="slices"><a class="header" href="#slices">Slices</a></h1>
+<p>Slices are also used to store multiple values of the same type in a single variable, however unlike arrays, the length of a slice can grow and shrink as you see fit.</p>
+<p>There are several ways to create a slice 👇</p>
+<ol>
+<li>Using the <code>[]datatype{values}</code> format</li>
+<li>Create a slice from an array</li>
+<li>Using the <code>make()</code> function</li>
+</ol>
+<pre><code class="language-go">// name := []datatype{values}
+// name := []int{}
+package main
+import ("fmt")
+
+func main() {
+  myslice1 := []int{}
+  fmt.Println(len(myslice1))
+  fmt.Println(cap(myslice1))
+  fmt.Println(myslice1)
+
+  myslice2 := []string{"Go", "Slices", "Are", "Powerful"}
+  fmt.Println(len(myslice2))
+  fmt.Println(cap(myslice2))
+  fmt.Println(myslice2)
+}
+</code></pre>
+<h2 id="make-method"><a class="header" href="#make-method">Make() Method</a></h2>
+<p>The <code>make</code> function will create a zeroed array and return a slice referencing an array. This is a great way to create a dynamically sized array. To create a slice using the <code>make</code> function, we need to specify three arguments: type, length, and capacity.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    slice := make([]string, 3, 5)
+    fmt.Println("Length", len(slice))
+    fmt.Println("Capacity", cap(slice))
+    fmt.Println(slice)
+}
+</code></pre>
+<h2 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h2>
+<h3 id="1-how-do-you-create-an-empty-slice-in-go"><a class="header" href="#1-how-do-you-create-an-empty-slice-in-go">1. How do you create an empty slice in Go?</a></h3>
+<p><strong>Answer:</strong> Use <code>[]datatype{}</code> to create an empty slice.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    myslice := []int{}
+    fmt.Println("Empty Slice:", myslice) // []
+}
+</code></pre>
+<h3 id="2-how-do-you-create-a-slice-with-initial-values"><a class="header" href="#2-how-do-you-create-a-slice-with-initial-values">2. How do you create a slice with initial values?</a></h3>
+<p><strong>Answer:</strong> Use <code>[]datatype{values}</code>.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    myslice := []int{1, 2, 3}
+    fmt.Println("Slice with Values:", myslice) // [1 2 3]
+}
+</code></pre>
+<h3 id="3-how-do-you-create-a-slice-from-an-array"><a class="header" href="#3-how-do-you-create-a-slice-from-an-array">3. How do you create a slice from an array?</a></h3>
+<p><strong>Answer:</strong> Use slicing syntax <code>array[start:end]</code>.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    arr := [5]int{1, 2, 3, 4, 5}
+    myslice := arr[1:4]
+    fmt.Println("Slice from Array:", myslice) // [2 3 4]
+}
+</code></pre>
+<h3 id="4-how-do-you-use-the-make-function-to-create-a-slice"><a class="header" href="#4-how-do-you-use-the-make-function-to-create-a-slice">4. How do you use the <code>make</code> function to create a slice?</a></h3>
+<p><strong>Answer:</strong> Use <code>make(type, length, capacity)</code>.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    myslice := make([]int, 3, 5)
+    fmt.Println("Slice with Make:", myslice) // [0 0 0]
+}
+</code></pre>
+<h3 id="5-how-do-you-append-elements-to-a-slice"><a class="header" href="#5-how-do-you-append-elements-to-a-slice">5. How do you append elements to a slice?</a></h3>
+<p><strong>Answer:</strong> Use the <code>append</code> function.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    myslice := []int{1, 2, 3}
+    myslice = append(myslice, 4, 5)
+    fmt.Println("Appended Slice:", myslice) // [1 2 3 4 5]
+}
+</code></pre>
+<h3 id="6-how-do-you-copy-one-slice-to-another"><a class="header" href="#6-how-do-you-copy-one-slice-to-another">6. How do you copy one slice to another?</a></h3>
+<p><strong>Answer:</strong> Use the <code>copy</code> function.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    src := []int{1, 2, 3}
+    dest := make([]int, len(src))
+    copy(dest, src)
+    fmt.Println("Copied Slice:", dest) // [1 2 3]
+}
+</code></pre>
+<h3 id="7-how-do-you-find-the-length-and-capacity-of-a-slice"><a class="header" href="#7-how-do-you-find-the-length-and-capacity-of-a-slice">7. How do you find the length and capacity of a slice?</a></h3>
+<p><strong>Answer:</strong> Use <code>len(slice)</code> and <code>cap(slice)</code>.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    myslice := []int{1, 2, 3}
+    fmt.Println("Length:", len(myslice)) // 3
+    fmt.Println("Capacity:", cap(myslice)) // 3
+}
+</code></pre>
+<h3 id="8-how-do-you-create-a-multidimensional-slice"><a class="header" href="#8-how-do-you-create-a-multidimensional-slice">8. How do you create a multidimensional slice?</a></h3>
+<p><strong>Answer:</strong> Use slices of slices.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    matrix := [][]int{
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9},
+    }
+    fmt.Println("Multidimensional Slice:", matrix)
+}
+</code></pre>
+<h3 id="9-how-do-you-remove-an-element-from-a-slice"><a class="header" href="#9-how-do-you-remove-an-element-from-a-slice">9. How do you remove an element from a slice?</a></h3>
+<p><strong>Answer:</strong> Use slicing to exclude the element.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    myslice := []int{1, 2, 3, 4, 5}
+    myslice = append(myslice[:2], myslice[3:]...)
+    fmt.Println("Slice after Removal:", myslice) // [1 2 4 5]
+}
+</code></pre>
+<h3 id="10-how-do-you-iterate-over-a-slice-in-go"><a class="header" href="#10-how-do-you-iterate-over-a-slice-in-go">10. How do you iterate over a slice in Go?</a></h3>
+<p><strong>Answer:</strong> Use a <code>for</code> loop or <code>range</code>.</p>
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+    myslice := []int{1, 2, 3}
+    for i, v := range myslice {
+        fmt.Printf("Index: %d, Value: %d\n", i, v)
+    }
+}
+</code></pre>
+<h2 id="array-vs-slice"><a class="header" href="#array-vs-slice">Array vs Slice</a></h2>
+<ul>
+<li>ongbhongchong vugichugi</li>
+</ul>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/scope.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/string.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +335,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/scope.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/string.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

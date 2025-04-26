@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Class 15 - BGCE ARCHIVE</title>
+        <title>Loops - BGCE ARCHIVE</title>
 
 
         <!-- Custom HTML head -->
@@ -158,16 +158,172 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <p>[<strong>Author:</strong> @mdimamhosen
+<strong>Date:</strong> 2025-04-19
+<strong>Category:</strong> e.g., interview-qa/topic_name
+<strong>Tags:</strong> [go, concurrency, channels]
+]</p>
+<h1 id="while-loop"><a class="header" href="#while-loop">While Loop</a></h1>
+<h2 id="unlike-other-programming-languages-go-doesnt-have-a-dedicated-keyword-for-a-while-loop-however-we-can-use-the-for-loop-to-perform-the-functionality-of-a-while-loop"><a class="header" href="#unlike-other-programming-languages-go-doesnt-have-a-dedicated-keyword-for-a-while-loop-however-we-can-use-the-for-loop-to-perform-the-functionality-of-a-while-loop">Unlike other programming languages, Go doesn't have a dedicated keyword for a while loop. However, we can use the for loop to perform the functionality of a while loop.</a></h2>
+<pre><code class="language-go">// Program to print numbers between 0 and 10
+package main
+import ("fmt")
+
+func main() {
+  number := 0
+
+  for number &lt;= 10 {
+    fmt.Println(number)
+    number++
+  }
+}
+</code></pre>
+<h2 id="frequently-asked-questions"><a class="header" href="#frequently-asked-questions">Frequently Asked Questions</a></h2>
+<h3 id="1-how-can-we-implement-an-infinite-loop-in-go"><a class="header" href="#1-how-can-we-implement-an-infinite-loop-in-go">1. How can we implement an infinite loop in Go?</a></h3>
+<p><strong>Answer:</strong> In Go, an infinite loop can be implemented using the <code>for</code> loop without any condition.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  for {
+    fmt.Println("This is an infinite loop")
+  }
+}
+</code></pre>
+<h3 id="2-how-do-you-break-out-of-a-loop-in-go"><a class="header" href="#2-how-do-you-break-out-of-a-loop-in-go">2. How do you break out of a loop in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>break</code> statement to exit a loop prematurely.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  for i := 0; i &lt; 10; i++ {
+    if i == 5 {
+      break
+    }
+    fmt.Println(i)
+  }
+}
+</code></pre>
+<h3 id="3-how-do-you-skip-an-iteration-in-a-loop-in-go"><a class="header" href="#3-how-do-you-skip-an-iteration-in-a-loop-in-go">3. How do you skip an iteration in a loop in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>continue</code> statement to skip the current iteration and move to the next one.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  for i := 0; i &lt; 10; i++ {
+    if i%2 == 0 {
+      continue
+    }
+    fmt.Println(i)
+  }
+}
+</code></pre>
+<h3 id="4-can-we-use-labels-with-loops-in-go"><a class="header" href="#4-can-we-use-labels-with-loops-in-go">4. Can we use labels with loops in Go?</a></h3>
+<p><strong>Answer:</strong> Yes, labels can be used to control nested loops.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+OuterLoop:
+  for i := 0; i &lt; 3; i++ {
+    for j := 0; j &lt; 3; j++ {
+      if i == 1 &amp;&amp; j == 1 {
+        break OuterLoop
+      }
+      fmt.Println(i, j)
+    }
+  }
+}
+</code></pre>
+<h3 id="5-how-do-you-implement-a-do-while-loop-in-go"><a class="header" href="#5-how-do-you-implement-a-do-while-loop-in-go">5. How do you implement a do-while loop in Go?</a></h3>
+<p><strong>Answer:</strong> Go does not have a <code>do-while</code> loop, but it can be simulated using a <code>for</code> loop.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  number := 0
+  for {
+    fmt.Println(number)
+    number++
+    if number &gt; 5 {
+      break
+    }
+  }
+}
+</code></pre>
+<h3 id="6-how-can-you-iterate-over-a-slice-in-go"><a class="header" href="#6-how-can-you-iterate-over-a-slice-in-go">6. How can you iterate over a slice in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>range</code> keyword to iterate over a slice.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  numbers := []int{1, 2, 3, 4, 5}
+  for index, value := range numbers {
+    fmt.Printf("Index: %d, Value: %d\n", index, value)
+  }
+}
+</code></pre>
+<h3 id="7-how-do-you-iterate-over-a-map-in-go"><a class="header" href="#7-how-do-you-iterate-over-a-map-in-go">7. How do you iterate over a map in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>range</code> keyword to iterate over a map.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  myMap := map[string]int{"a": 1, "b": 2, "c": 3}
+  for key, value := range myMap {
+    fmt.Printf("Key: %s, Value: %d\n", key, value)
+  }
+}
+</code></pre>
+<h3 id="8-how-do-you-iterate-over-a-string-in-go"><a class="header" href="#8-how-do-you-iterate-over-a-string-in-go">8. How do you iterate over a string in Go?</a></h3>
+<p><strong>Answer:</strong> Use the <code>range</code> keyword to iterate over a string.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  str := "hello"
+  for index, char := range str {
+    fmt.Printf("Index: %d, Character: %c\n", index, char)
+  }
+}
+</code></pre>
+<h3 id="9-how-do-you-use-a-loop-to-calculate-the-factorial-of-a-number-in-go"><a class="header" href="#9-how-do-you-use-a-loop-to-calculate-the-factorial-of-a-number-in-go">9. How do you use a loop to calculate the factorial of a number in Go?</a></h3>
+<p><strong>Answer:</strong> Use a <code>for</code> loop to calculate the factorial.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  number := 5
+  factorial := 1
+  for i := 1; i &lt;= number; i++ {
+    factorial *= i
+  }
+  fmt.Println("Factorial:", factorial)
+}
+</code></pre>
+<h3 id="10-how-do-you-use-a-loop-to-reverse-a-slice-in-go"><a class="header" href="#10-how-do-you-use-a-loop-to-reverse-a-slice-in-go">10. How do you use a loop to reverse a slice in Go?</a></h3>
+<p><strong>Answer:</strong> Use a <code>for</code> loop to swap elements in the slice.</p>
+<pre><code class="language-go">package main
+import ("fmt")
+
+func main() {
+  numbers := []int{1, 2, 3, 4, 5}
+  for i, j := 0, len(numbers)-1; i &lt; j; i, j = i+1, j-1 {
+    numbers[i], numbers[j] = numbers[j], numbers[i]
+  }
+  fmt.Println("Reversed Slice:", numbers)
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../interview-qna/class-wise/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../interview-qna/topic-wise/logical-operator.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../interview-qna/topic-wise/maps.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +333,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../interview-qna/class-wise/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../interview-qna/topic-wise/logical-operator.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../interview-qna/class-wise/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../interview-qna/topic-wise/maps.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
