@@ -312,10 +312,17 @@ func main() {
     }
 }
 </code></pre>
-<h2 id="array-vs-slice"><a class="header" href="#array-vs-slice">Array vs Slice</a></h2>
-<ul>
-<li>ongbhongchong vugichugi</li>
-</ul>
+<h2 id="-array-vs-slice"><a class="header" href="#-array-vs-slice">⚡ Array vs Slice</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Feature</th><th>Array</th><th>Slice</th></tr></thead><tbody>
+<tr><td>Size</td><td>Fixed</td><td>Dynamic (can grow/shrink)</td></tr>
+<tr><td>Type</td><td>Value type</td><td>Reference type</td></tr>
+<tr><td>Memory</td><td>All data copied on assignment</td><td>Just the slice descriptor copied (shallow copy)</td></tr>
+<tr><td>Creation</td><td><code>var a [5]int</code></td><td><code>var s []int</code> or slicing an array</td></tr>
+<tr><td>Common Usage</td><td>Rare (low-level memory control)</td><td>Very common</td></tr>
+<tr><td>Performance</td><td>No hidden cost</td><td>Some overhead with dynamic growth</td></tr>
+</tbody></table>
+</div>
+<hr />
 
                     </main>
 
