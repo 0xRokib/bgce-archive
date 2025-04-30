@@ -174,8 +174,8 @@
 <div class="table-wrapper"><table><thead><tr><th>Concept</th><th>Explanation</th></tr></thead><tbody>
 <tr><td><strong>Compilation Phase</strong></td><td>Parses and compiles source code into a binary executable. No code runs yet.</td></tr>
 <tr><td><strong>Execution Phase</strong></td><td>Runs the compiled binary, starting from <code>init()</code> and then <code>main()</code>.</td></tr>
-<tr><td><strong>Code Segment</strong></td><td>Where compiled functions (like <code>main</code>, <code>call</code>, and anonymous functions) live.</td></tr>
-<tr><td><strong>Data Segment</strong></td><td>Holds global variables and constants (like <code>p</code> and <code>a</code>).</td></tr>
+<tr><td><strong>Code Segment</strong></td><td>Where compiled functions (<code>main</code>, <code>call</code>, anonymous <code>add</code>) and constants (<code>a</code>) are stored as part of executable instructions.</td></tr>
+<tr><td><strong>Data Segment</strong></td><td>Holds global variables (like <code>p</code>).</td></tr>
 <tr><td><strong>Function Expressions</strong></td><td>Treated as runtime function objects, stored in code segment.</td></tr>
 </tbody></table>
 </div>
@@ -223,8 +223,8 @@ func init() {
 </ul>
 <p>Binary includes:</p>
 <ul>
-<li>Code Segment: <code>main</code>, <code>call</code>, anonymous function</li>
-<li>Data Segment: <code>const a</code>, <code>var p</code></li>
+<li>Code Segment: <code>const a</code>, <code>main</code>, <code>call</code>, anonymous function</li>
+<li>Data Segment: <code>var p</code></li>
 <li>No execution happens here.</li>
 </ul>
 <hr />
@@ -241,13 +241,13 @@ func init() {
 <pre><code>┌─────────────────────────────┐
 │       Code Segment          │
 │-----------------------------│
-│ main, call, init, add-func  │
+│ const a = 10                |
+| main, call, init, add-func  │
 └─────────────────────────────┘
           ↓
 ┌─────────────────────────────┐
 │       Data Segment          │
 │-----------------------------│
-│ const a = 10                │
 │ var p = 100                 │
 └─────────────────────────────┘
           ↓
@@ -255,8 +255,8 @@ func init() {
 │           Stack             │
 │-----------------------------│
 │ call() frame → add func     │
-│   x=5,y=6,z=11               │
-│   x=100,y=10,z=110           │
+│   x=5,y=6,z=11              │
+│   x=100,y=10,z=110          │
 └─────────────────────────────┘
 </code></pre>
 <hr />
