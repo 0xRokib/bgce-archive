@@ -129,7 +129,7 @@
                         <a href="../../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/JsIqbal/bgce-archive" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/NesoHQ/bgce-archive.git" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -226,8 +226,8 @@ func init() {
 </ul>
 <h3 id="-memory-segments"><a class="header" href="#-memory-segments">🧱 Memory Segments</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>Segment</th><th>What's Stored</th></tr></thead><tbody>
-<tr><td>Code Segment</td><td>Compiled instructions (functions)</td></tr>
-<tr><td>Data Segment</td><td>Global and static variables (<code>a</code>, <code>p</code>)</td></tr>
+<tr><td>Code Segment</td><td>Compiled instructions and const (functions, <code>a</code>)</td></tr>
+<tr><td>Data Segment</td><td>Global variables (<code>p</code>)</td></tr>
 <tr><td>Stack</td><td>Local variables (<code>age</code>)</td></tr>
 <tr><td>Heap</td><td>Escaping variables (<code>money</code>)</td></tr>
 </tbody></table>
@@ -238,15 +238,15 @@ func init() {
 <pre><code>┌─────────────────────────────┐
 │       Code Segment          │
 │-----------------------------│
-│ main, call, init, outer,    │
+│ const a = 10,               |
+| main, call, init, outer,    │
 │ anonymous show function     │
 └─────────────────────────────┘
           ↓
 ┌─────────────────────────────┐
 │       Data Segment          │
 │-----------------------------│
-│ const a = 10                │
-│ var p = 100                 │
+│ var p = 100                 │              
 └─────────────────────────────┘
           ↓
 ┌─────────────────────────────┐
@@ -278,6 +278,10 @@ func init() {
 <li>GC ensures unused heap memory (like old closure data) is recycled ♻️</li>
 </ul>
 <hr />
+<p>[<strong>Author:</strong> @ifrunruhin12
+<strong>Date:</strong> 2025-05-01
+<strong>Category:</strong> interview-qa/class-wise
+]</p>
 
                     </main>
 

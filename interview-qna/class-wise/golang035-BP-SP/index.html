@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Golang035 Bp Sp - BGCE ARCHIVE</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">BGCE ARCHIVE</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/NesoHQ/bgce-archive.git" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-cpu-structure-and-stack-frame-execution-notes"><a class="header" href="#-cpu-structure-and-stack-frame-execution-notes">🧠 CPU Structure and Stack Frame Execution Notes</a></h1>
+<h2 id="-cpu-two-core-components"><a class="header" href="#-cpu-two-core-components">🔹 CPU: Two Core Components</a></h2>
+<ol>
+<li>
+<p><strong>Processing Unit</strong></p>
+<ul>
+<li><strong>Arithmetic Logic Unit (ALU)</strong>: Performs all arithmetic and logical operations.</li>
+<li><strong>Control Unit (CU)</strong>: Directs operations within the CPU; controls input/output and instruction decoding.</li>
+</ul>
+</li>
+<li>
+<p><strong>Register Set</strong></p>
+<ul>
+<li><strong>Program Counter (PC)</strong>: Holds the address of the next instruction to be executed.</li>
+<li><strong>Stack Pointer (SP)</strong>: Points to the top of the current stack in memory.</li>
+<li><strong>Base Pointer (BP)</strong>: Points to the base of the current function stack frame.</li>
+<li><strong>Instruction Register (IR)</strong>: Holds the currently executing instruction.</li>
+<li><strong>General Purpose Registers</strong>: For temporary data manipulation.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="-bits-and-bytes"><a class="header" href="#-bits-and-bytes">🔹 Bits and Bytes</a></h2>
+<ul>
+<li><strong>8-bit = 1 byte</strong></li>
+<li><strong>32-bit = 4 bytes</strong></li>
+<li><strong>64-bit = 8 bytes</strong></li>
+</ul>
+<p>Memory addressing = ( 2^n )</p>
+<hr />
+<h2 id="-ram-addressing-on-32-bit-system"><a class="header" href="#-ram-addressing-on-32-bit-system">🔹 RAM Addressing on 32-bit System</a></h2>
+<p>Memory cells increase by 4 bytes (since 32-bit = 4 bytes):</p>
+<pre><code>Address:  0   4   8  12  16  20  24  ...
+         [ ] [ ] [ ] [ ] [ ] [ ] [ ]
+</code></pre>
+<hr />
+<h2 id="-os-ram-and-process-execution"><a class="header" href="#-os-ram-and-process-execution">🔹 OS, RAM, and Process Execution</a></h2>
+<ol>
+<li><strong>OS pulls executable code</strong> from HDD → loads into <strong>RAM</strong></li>
+<li><strong>OS creates a process</strong></li>
+<li><strong>RAM segments the process memory into:</strong>
+<ul>
+<li>Code Segment (for constants and instructions)</li>
+<li>Data Segment (for global/static variables)</li>
+<li>Stack (for function calls and local variables)</li>
+<li>Heap (for dynamically allocated memory)</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="-stack-frame-in-function-call"><a class="header" href="#-stack-frame-in-function-call">🔹 Stack Frame in Function Call</a></h2>
+<ul>
+<li>The OS sets up <strong>SP</strong> and <strong>BP</strong>.</li>
+<li><strong>SP &lt; BP</strong> (SP points lower in memory).</li>
+</ul>
+<h3 id="stack-frame-layout"><a class="header" href="#stack-frame-layout">Stack Frame Layout:</a></h3>
+<pre><code>[ Local Variables        ]   &lt;-- SP (grows downward)
+[ Old Base Pointer       ]
+[ Return Address         ]
+[ Parameters (right→left)]   &lt;-- BP
+</code></pre>
+<ul>
+<li><strong>Return Address</strong> is typically at <code>BP + 4</code>, <code>+8</code>, <code>+16</code>, etc.</li>
+<li>Using <strong>BP</strong>, the CPU can easily access:
+<ul>
+<li>Function parameters</li>
+<li>Return address</li>
+<li>Local variables</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="-stack-frame-exit"><a class="header" href="#-stack-frame-exit">🔹 Stack Frame Exit</a></h2>
+<ul>
+<li>Stack frame pops:
+<ul>
+<li>Local variables</li>
+<li>Old BP is restored</li>
+<li>SP is reset</li>
+<li>Execution jumps to Return Address</li>
+</ul>
+</li>
+</ul>
+<h3 id="final-condition"><a class="header" href="#final-condition">Final Condition:</a></h3>
+<pre><code>BP == SP  =&gt; Stack Frame Closed
+</code></pre>
+<hr />
+<h2 id="-diagram-stack-frame-example-32-bit"><a class="header" href="#-diagram-stack-frame-example-32-bit">🧭 Diagram: Stack Frame Example (32-bit)</a></h2>
+<pre><code class="language-plaintext">Memory Address ↓
+
++----------------------+  &lt;- BP
+| Parameter 1          |
++----------------------+
+| Parameter 2          |
++----------------------+
+| Return Address       | &lt;- BP + 4
++----------------------+
+| Old Base Pointer     | &lt;- BP + 8
++----------------------+
+| Local Variable A     | &lt;- SP
++----------------------+
+
+Stack grows downward ↓
+</code></pre>
+<hr />
+<h2 id="-summary"><a class="header" href="#-summary">✅ Summary</a></h2>
+<ul>
+<li>CPU is divided into <strong>Processing Unit</strong> and <strong>Register Set</strong></li>
+<li>The <strong>Stack Frame</strong> is key to function call handling</li>
+<li><strong>Base Pointer (BP)</strong> acts as a fixed reference point</li>
+<li><strong>Stack Pointer (SP)</strong> moves during function execution</li>
+<li><strong>Returning</strong> from a function resets <strong>BP</strong> and <strong>SP</strong></li>
+</ul>
+<hr />
+<blockquote>
+<p>Understanding stack frames is essential for debugging, compiler design, and low-level programming.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../interview-qna/class-wise/golang031-slice/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../../interview-qna/topic-wise/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../interview-qna/class-wise/golang031-slice/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../../interview-qna/topic-wise/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
