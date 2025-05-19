@@ -158,49 +158,50 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="class-29---go-arrays-and-memory-layout"><a class="header" href="#class-29---go-arrays-and-memory-layout">Class 29 - Go Arrays and Memory Layout</a></h1>
+                        <h1 id="কলাস-২৯---অযারে-array-এবং-মেমোরি-লেআউট"><a class="header" href="#কলাস-২৯---অযারে-array-এবং-মেমোরি-লেআউট">ক্লাস ২৯ - অ্যারে (Array) এবং মেমোরি লেআউট</a></h1>
 <p>📅 <em>Date: April 24, 2025</em></p>
-<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🔑 Key Concepts</a></h2>
-<h3 id="-what-is-an-array"><a class="header" href="#-what-is-an-array">✅ What is an Array?</a></h3>
+<h2 id="-মূল-বিষয়বসতু"><a class="header" href="#-মূল-বিষয়বসতু">🔑 মূল বিষয়বস্তু</a></h2>
+<h3 id="-অযারে-array-কী"><a class="header" href="#-অযারে-array-কী">✅ অ্যারে (Array) কী?</a></h3>
 <ul>
-<li>An <strong>array</strong> is a fixed-size collection of elements of the same type.</li>
-<li>In Go, arrays are <strong>value types</strong>, meaning they are copied when passed around.</li>
+<li><strong>অ্যারে</strong> হলো এক ধরনের ডেটা স্ট্রাকচার, যেখানে নির্দিষ্ট সাইজের একই টাইপের একাধিক উপাদান (Element) থাকে।</li>
+<li><code>Go</code> তে, অ্যারে হলো <strong>value type</strong>, যার মানে হলো, ফাংশনে পাস করলে এর কপি তৈরি হয়।</li>
 </ul>
-<h3 id="-array-in-go"><a class="header" href="#-array-in-go">🧠 Array in Go</a></h3>
-<pre><code class="language-go">var arr [2]int       // Declares an array of 2 integers. Default values: [0, 0]
-arr[0] = 3           // Assigning values using index
+<h3 id="-go-তে-অযারে"><a class="header" href="#-go-তে-অযারে">🧠 Go তে অ্যারে</a></h3>
+<pre><code class="language-go">var arr [2]int       // ২ টি ইন্টিজারের একটি ডিক্লেয়ার করে যার ডিফল্ট ভ্যালু: [0, 0]
+arr[0] = 3           // ইনডেক্স ব্যবহার করে ভ্যালু এসাইন করে
 arr[1] = 6
 
-// Short way of declaring an array with values
+// সংক্ষেপে ভ্যালুসহ অ্যারে ডিক্লেয়ার করা
 arr := [2]int{3, 6}
 </code></pre>
-<h3 id="-indexing"><a class="header" href="#-indexing">💡 Indexing</a></h3>
+<h3 id="-ইনডেকসিং"><a class="header" href="#-ইনডেকসিং">💡 ইনডেক্সিং</a></h3>
 <ul>
-<li>Arrays in Go are <strong>zero-indexed</strong>, meaning the first element is accessed with <code>array[0]</code>.</li>
+<li>Go অ্যারে <strong>জিরো-ইনডেক্সড</strong>, অর্থাৎ প্রথম উপাদান array[0] দিয়ে অ্যাক্সেস করা হয়।</li>
 </ul>
-<h3 id="-default-values"><a class="header" href="#-default-values">⚙️ Default Values</a></h3>
+<h3 id="-ডিফলট-মান-default-value"><a class="header" href="#-ডিফলট-মান-default-value">⚙️ ডিফল্ট মান (Default Value)</a></h3>
+<p>ডিফল্ট মান মানে হলো কোনো ভেরিয়েবল বা ডেটা টাইপকে শুরুতে কোনো মান না দিলে, প্রোগ্রামিং ভাষা নিজে থেকে যে মান সেট করে।</p>
 <ul>
-<li>If you declare an array without initializing it, Go assigns default values:
+<li>যদি অ্যারে ডিক্লেয়ার করা হয় কিন্তু ইনিশিয়ালাইজ না করা হয়, Go কিছু ডিফল্ট ভ্যালু সেট করে:
 <ul>
-<li>For <code>int</code>, <code>float</code>, etc: <code>0</code></li>
-<li>For <code>string</code>: <code>""</code> (empty string)</li>
-<li>For <code>bool</code>: <code>false</code></li>
-<li>For pointers/interfaces: <code>nil</code></li>
+<li><code>int</code>, <code>float</code> ইত্যাদির জন্য <code>0</code></li>
+<li><code>string</code> এর জন্য <code>""</code> (ফাঁকা স্ট্রিং)</li>
+<li><code>bool</code> এর জন্য <code>false</code></li>
+<li><code>pointers/interfaces</code> এর জন্য <code>nil</code></li>
 </ul>
 </li>
 </ul>
-<h3 id="-memory-layout-visualization"><a class="header" href="#-memory-layout-visualization">🔍 Memory Layout Visualization</a></h3>
-<p>Example:</p>
+<h3 id="-মেমোরি-লেআউট-ভিজযুয়ালাইজেশন"><a class="header" href="#-মেমোরি-লেআউট-ভিজযুয়ালাইজেশন">🔍 মেমোরি লেআউট ভিজ্যুয়ালাইজেশন</a></h3>
+<p>উদাহরণ:</p>
 <pre><code class="language-go">arr := [2]int{3, 6}
 </code></pre>
-<p><strong>Memory Layout</strong></p>
+<p><strong>মেমোরি লেআউট</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Address</th><th>Value</th><th>Meaning</th></tr></thead><tbody>
 <tr><td>0x1000</td><td>3</td><td>arr[0]</td></tr>
 <tr><td>0x1004</td><td>6</td><td>arr[1]</td></tr>
 </tbody></table>
 </div>
-<p>Note: The actual address is abstract. The concept is: array elements are stored <strong>contiguously</strong> in memory.</p>
-<p>Another example:</p>
+<p>নোট: আসল এড্রেস এখানে কল্পনা করা হয়েছে। মূল ধারণা হলো, অ্যারের সব উপাদান মেমোরিতে একসাথে (contiguously) সংরক্ষিত থাকে।</p>
+<p>আরেকটি উদাহরণ:</p>
 <pre><code class="language-go">arr2 := [3]string{"I", "love", "you"}
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Index</th><th>Value</th></tr></thead><tbody>
@@ -209,9 +210,9 @@ arr := [2]int{3, 6}
 <tr><td>2</td><td>"you"</td></tr>
 </tbody></table>
 </div>
-<p>Accessing <code>arr2[1]</code> returns <code>"love"</code>.</p>
+<p><code>arr2[1]</code> এক্সেস করলে <code>"love"</code> রিটার্ন করে।</p>
 <hr />
-<h2 id="-full-code-example-from-class"><a class="header" href="#-full-code-example-from-class">🧪 Full Code Example (From Class)</a></h2>
+<h2 id="-কলাসের-কোড-উদাহরণসহ"><a class="header" href="#-কলাসের-কোড-উদাহরণসহ">🧪 ক্লাসের কোড উদাহরণসহ</a></h2>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -226,15 +227,15 @@ func main() {
 }
 </code></pre>
 <hr />
-<h2 id="-summary"><a class="header" href="#-summary">📦 Summary</a></h2>
+<h2 id="-সারাংশ"><a class="header" href="#-সারাংশ">📦 সারাংশ</a></h2>
 <ul>
-<li>Arrays are great for working with fixed-size collections.</li>
-<li>Be aware of default values.</li>
-<li>They're stored contiguously in memory.</li>
-<li>Go makes it easy to work with arrays, and it's a good base before moving to slices!</li>
+<li>অ্যারে নির্দিষ্ট সাইজের ডেটা সংরক্ষণে ভালো।</li>
+<li>ডিফল্ট মান সম্পর্কে সচেতন থাকুন।</li>
+<li>মেমোরিতে একসাথে (contiguously) সংরক্ষিত থাকে।</li>
+<li>Go তে অ্যারের সাথে কাজ করা সহজ, যা স্লাইসে যাওয়ার আগে ভালো ভিত্তি তৈরি করে।</li>
 </ul>
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
+<p>[<strong>Author:</strong> @ifrunruhin12, @nazma98
+<strong>Date:</strong> 2025-05-01 - 2025-05-17
 <strong>Category:</strong> interview-qa/class-wise
 ]</p>
 

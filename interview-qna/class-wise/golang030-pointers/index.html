@@ -158,70 +158,70 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="class-30-pointers-in-go"><a class="header" href="#class-30-pointers-in-go">Class 30: Pointers in Go</a></h1>
-<h2 id="what-is-a-pointer"><a class="header" href="#what-is-a-pointer">What is a Pointer?</a></h2>
-<p>A <strong>pointer</strong> is a variable that stores the <strong>memory address</strong> of another variable.</p>
-<p>In Go, memory is divided into several segments:</p>
+                        <h1 id="কলাস-৩০-go-পযেনটার"><a class="header" href="#কলাস-৩০-go-পযেনটার">ক্লাস ৩০: Go পয়েন্টার</a></h1>
+<h2 id="পযেনটার-কি"><a class="header" href="#পযেনটার-কি">পয়েন্টার কি?</a></h2>
+<p><strong>পয়েন্টার</strong> হলো এমন একটি ভেরিয়েবল যা আরেকটি ভেরিয়েবলের মেমোরি এড্রেস সংরক্ষণ করে।</p>
+<p>Go তে মেমোরি কয়েকটি ভাগে বিভক্ত থাকে। যেমন:</p>
 <ul>
-<li><strong>Code segment</strong>: Stores compiled program instructions (functions).</li>
-<li><strong>Data segment</strong>: Stores global/static variables and constants.</li>
-<li><strong>Heap</strong>: Stores dynamically allocated memory.</li>
-<li><strong>Stack</strong>: Stores local variables and function call information.</li>
+<li><strong>কোড সেগমেন্ট</strong>: কম্পাইল করা প্রোগ্রামের নির্দেশনা (ফাংশন) সংরক্ষণ করে।</li>
+<li><strong>ডেটা সেগমেন্ট</strong>: গ্লোবাল/স্ট্যাটিক ভেরিয়েবল এবং কনস্ট্যান্ট সংরক্ষণ করে।</li>
+<li><strong>স্ট্যাক</strong>: লোকাল ভেরিয়েবল এবং ফাংশন কলের তথ্য সংরক্ষণ করে।</li>
+<li><strong>হিপ</strong>: ডায়নামিকালি অ্যালোকেট করা মেমোরি সংরক্ষণ করে।</li>
 </ul>
-<p>Pointers help us interact directly with memory addresses.</p>
+<p>পয়েন্টারের মাধ্যমে সরাসরি মেমোরি এড্রেসের সাথে কাজ করা যায়।</p>
 <hr />
-<h2 id="symbols-to-know"><a class="header" href="#symbols-to-know">Symbols to Know:</a></h2>
+<h2 id="গুরুতবপূরণ-চিহনগুলো"><a class="header" href="#গুরুতবপূরণ-চিহনগুলো">গুরুত্বপূর্ণ চিহ্নগুলো:</a></h2>
 <ul>
-<li><code>&amp;</code> (Ampersand): Used to get the <strong>address</strong> of a variable.</li>
-<li><code>*</code> (Star/Dereference operator): Used to get the <strong>value</strong> stored at a memory address.</li>
+<li><code>&amp;</code> (Ampersand): <strong>ভেরিয়েবলের এড্রেস</strong> পেতে ব্যবহার হয়।</li>
+<li><code>*</code> (Star/Dereference operator): <strong>মেমোরি এড্রেসে থাকা মান</strong> পেতে ব্যবহার হয়।</li>
 </ul>
-<p>Example:</p>
+<p>উদাহরণ:</p>
 <pre><code class="language-go">x := 20
-p := &amp;x // p holds the address of x
+p := &amp;x // p ভেরিয়েবল, x এর এড্রেস রাখে
 
-*p = 30 // change value at address p (which changes x)
+*p = 30 // এড্রেস p তে থাকা মান (x) পরিবর্তন করে
 
 fmt.Println(x)  // 30
-fmt.Println(p)  // address of x
-fmt.Println(*p) // 30 (value at address)
+fmt.Println(p)  // x এর এড্রেস
+fmt.Println(*p) // 30 (এড্রেসে থাকা মান)
 </code></pre>
 <hr />
-<h2 id="why-use-pointers"><a class="header" href="#why-use-pointers">Why Use Pointers?</a></h2>
+<h2 id="পযেনটার-কেন-বযবহার-করবেন"><a class="header" href="#পযেনটার-কেন-বযবহার-করবেন">পয়েন্টার কেন ব্যবহার করবেন?</a></h2>
 <ul>
-<li><strong>Efficiency</strong>: Instead of copying big structures (like arrays), just pass their memory address.</li>
-<li><strong>Shared Modification</strong>: If multiple functions need to modify the same data.</li>
-<li><strong>Memory Management</strong>: Especially important in lower-level or high-performance programming.</li>
+<li><strong>ইফিসিয়েন্সি (Efficiency)</strong>: বড় স্ট্রাকচার (যেমন অ্যারে) কপি না করে শুধুমাত্র তাদের মেমোরি এড্রেস পাস করা যায়।</li>
+<li><strong>শেয়ারড মডিফিকেশন (Shared Modification)</strong>: যখন একাধিক ফাংশনকে একই ডেটা পরিবর্তন করতে হয়।</li>
+<li><strong>মেমোরি ম্যানেজমেন্ট (Memory Management)</strong>: লো-লেভেল বা হাই-পারফরম্যান্স প্রোগ্রামিংয়ে বিশেষভাবে গুরুত্বপূর্ণ।</li>
 </ul>
-<p>Without pointers, every function call would copy entire objects. That's sloooow and wasteful!</p>
+<p>পয়েন্টার ছাড়া, প্রতিটি ফাংশন কলের সময় পুরো অবজেক্ট কপি করতে হতো। এটা ধীর গতির এবং মেমোরি অপচয় করে!</p>
 <hr />
-<h2 id="pass-by-value-vs-pass-by-reference"><a class="header" href="#pass-by-value-vs-pass-by-reference">Pass by Value vs Pass by Reference</a></h2>
-<p><strong>Pass by Value</strong>:</p>
+<h2 id="পাস-বাই-ভযালু-pass-by-value-vs-পাস-বাই-রেফারেনস-pass-by-reference"><a class="header" href="#পাস-বাই-ভযালু-pass-by-value-vs-পাস-বাই-রেফারেনস-pass-by-reference">পাস বাই ভ্যালু (Pass by Value) vs পাস বাই রেফারেন্স (Pass by Reference)</a></h2>
+<p><strong>পাস বাই ভ্যালু (Pass by Value)</strong>:</p>
 <ul>
-<li>A copy of the variable is passed.</li>
-<li>Changes inside the function don't affect the original.</li>
+<li>ভেরিয়েবলের একটি কপি পাস করা হয়।</li>
+<li>ফাংশনের ভেতরে পরিবর্তন অরিজিনাল ভেরিয়েবলকে প্রভাবিত করে না।</li>
 </ul>
 <pre><code class="language-go">func print(numbers [3]int) {
 	fmt.Println(numbers)
 }
 
 arr := [3]int{1, 2, 3}
-print(arr) // Passing a copy
+print(arr) // একটি কপি পাস
 </code></pre>
-<p><strong>Pass by Reference</strong>:</p>
+<p><strong>পাস বাই রেফারেন্স (Pass by Reference)</strong>:</p>
 <ul>
-<li>Pass the address instead of copying.</li>
-<li>Changes inside the function affect the original.</li>
+<li>কপি না করে ভেরিয়েবলের এড্রেস পাস করা হয়।</li>
+<li>ফাংশনের ভেতরে করা পরিবর্তন অরিজিনাল ভেরিয়েবলকে প্রভাবিত করে।</li>
 </ul>
 <pre><code class="language-go">func print2(numbers *[3]int) {
 	fmt.Println(numbers)
 }
 
 arr := [3]int{1, 2, 3}
-print2(&amp;arr) // Passing a pointer
+print2(&amp;arr) // একটি পয়েন্টার পাস
 </code></pre>
 <hr />
-<h2 id="struct-pointers-and-why-go-is-chill-with-them"><a class="header" href="#struct-pointers-and-why-go-is-chill-with-them">Struct Pointers (and why Go is chill with them)</a></h2>
-<p>When you have a pointer to a struct, Go is smart enough to let you access fields without needing <code>*</code> every time.</p>
+<h2 id="সটরাকট-পয়েনটার-and-why-go-is-chill-with-them"><a class="header" href="#সটরাকট-পয়েনটার-and-why-go-is-chill-with-them">স্ট্রাক্ট পয়েন্টার (and why Go is chill with them)</a></h2>
+<p>যখন স্ট্রাক্ট এ পয়েন্টার থাকে, Go বার বার * (dereference) করার পরিবর্তে নিজেই বুঝে নিয়ে field access দেয়।</p>
 <pre><code class="language-go">user1 := User{
 	Name: "Ruhin",
 	Age: 21,
@@ -230,7 +230,7 @@ print2(&amp;arr) // Passing a pointer
 p2 := &amp;user1
 fmt.Println(p2.Age) // no need to write (*p2).Age
 </code></pre>
-<p>Go automatically dereferences it for you. Big W.</p>
+<p>Go নিজে থেকে pointer কে dereference করে field টা দেয়। অসাধারণ, তাই না?</p>
 <hr />
 <h2 id="full-code-example-from-class"><a class="header" href="#full-code-example-from-class">Full Code Example from Class:</a></h2>
 <pre><code class="language-go">package main
@@ -255,7 +255,7 @@ func main() {
 	x := 20
 	p := &amp;x
 	*p = 30
-	
+
 	fmt.Println(x)           // 30
 	fmt.Println("Address:", p)
 	fmt.Println("Value:", *p)
@@ -274,20 +274,20 @@ func main() {
 }
 </code></pre>
 <hr />
-<h1 id="memory-layout-visualization-cli-style"><a class="header" href="#memory-layout-visualization-cli-style">Memory Layout Visualization (CLI-Style)</a></h1>
+<h1 id="মেমরি-লেআউটের-ভিজযুয়ালাইজেশন-cli"><a class="header" href="#মেমরি-লেআউটের-ভিজযুয়ালাইজেশন-cli">মেমরি লেআউটের ভিজ্যুয়ালাইজেশন (CLI)</a></h1>
 <pre><code>+--------------------+----------------------------------+
-| Segment            | What's stored                   |
+| সেগমেন্ট             |  কি আছে                 |
 +--------------------+----------------------------------+
 | Code Segment       | main(), print(), print2()        |
-| Data Segment       | (none for local vars here)       |
+| Data Segment       | (এখানে কোনো গ্লোবাল ভ্যারিয়েবল নেই)       |
 | Stack              | arr [3]int {1,2,3}, x=30         |
 |                    | p (pointer to x)                 |
 |                    | user1 (User struct)              |
 |                    | p2 (pointer to user1)            |
-| Heap               | (unused for this simple program) |
+| Heap               | (এই প্রোগ্রামে ব্যবহার হয়নি) |
 +--------------------+----------------------------------+
 </code></pre>
-<h3 id="detailed-memory-visualization-addresses-and-values"><a class="header" href="#detailed-memory-visualization-addresses-and-values">Detailed Memory Visualization (Addresses and Values)</a></h3>
+<h3 id="বিসতারিত-মেমরি-ভিজযুয়ালাইজেশন-এডরেস-এবং-মানসহ"><a class="header" href="#বিসতারিত-মেমরি-ভিজযুয়ালাইজেশন-এডরেস-এবং-মানসহ">বিস্তারিত মেমরি ভিজ্যুয়ালাইজেশন (এড্রেস এবং মানসহ)</a></h3>
 <pre><code>Stack Memory:
 
 [ Address 0x1000 ] x = 30
@@ -300,14 +300,14 @@ Code Segment:
 - Compiled code of main, print, print2
 
 Data Segment:
-- Empty (no global variables/constants)
+-  খালি (কোন গ্লোবাল ভ্যারিয়েবল নেই)
 
 Heap:
-- Not used in this example
+- এই প্রোগ্রামে ব্যবহার হয়নি
 </code></pre>
 <hr />
-<h1 id="extra-example-swapping-two-numbers-with-pointers"><a class="header" href="#extra-example-swapping-two-numbers-with-pointers">Extra Example: Swapping Two Numbers with Pointers</a></h1>
-<p>Without Pointers (FAIL):</p>
+<h1 id="আরও-উদাহরণ-পযেনটার-বযবহার-করে-দুইটি-নমবর-বিনিময-swap-করা"><a class="header" href="#আরও-উদাহরণ-পযেনটার-বযবহার-করে-দুইটি-নমবর-বিনিময-swap-করা">আরও উদাহরণ: পয়েন্টার ব্যবহার করে দুইটি নম্বর বিনিময় (Swap) করা</a></h1>
+<p><strong>পয়েন্টার ছাড়া (FAIL)</strong>:</p>
 <pre><code class="language-go">func swap(x, y int) {
 	temp := x
 	x = y
@@ -320,7 +320,7 @@ func main() {
 	fmt.Println(a, b) // still 1 2
 }
 </code></pre>
-<p>With Pointers (WIN):</p>
+<p><strong>পয়েন্টার ব্যবহার করে (WIN)</strong>:</p>
 <pre><code class="language-go">func swap(x, y *int) {
 	temp := *x
 	*x = *y
@@ -334,13 +334,13 @@ func main() {
 }
 </code></pre>
 <hr />
-<h1 id="quick-summary"><a class="header" href="#quick-summary">Quick Summary</a></h1>
+<h1 id="সংকষিপত-সারাংশ"><a class="header" href="#সংকষিপত-সারাংশ">সংক্ষিপ্ত সারাংশ</a></h1>
 <ul>
-<li><code>&amp;</code> gets the address.</li>
-<li><code>*</code> gets the value at an address.</li>
-<li>Pointers = efficient + powerful.</li>
-<li>Struct pointer fields are auto-dereferenced.</li>
-<li>Pass big things (like arrays, structs) by pointer to save memory.</li>
+<li><code>&amp;</code> দিয়ে ভেরিয়েবলের ঠিকানা পাওয়া যায়।</li>
+<li><code>*</code> দিয়ে ঠিকানায় থাকা মান পাওয়া যায়।</li>
+<li>Pointers = efficient + powerful</li>
+<li>struct pointer থাকলে Go নিজে থেকে field access দেয়, আলাদা dereference করার দরকার নেই।</li>
+<li>বড় ডেটা (array, struct) পাস করার সময় পয়েন্টার ব্যবহার করে মেমোরি সেভ করা যায়।</li>
 </ul>
 <hr />
 <p><strong>Bro Tip</strong>:</p>
@@ -348,8 +348,8 @@ func main() {
 <p>When in doubt, think: "Am I copying a whole dang castle, or just giving a map to it?"</p>
 </blockquote>
 <p>Pointers = the map. ✅</p>
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
+<p>[<strong>Author:</strong> @ifrunruhin12, @nazma98
+<strong>Date:</strong> 2025-05-01 - 2025-05-17
 <strong>Category:</strong> interview-qa/class-wise
 ]</p>
 

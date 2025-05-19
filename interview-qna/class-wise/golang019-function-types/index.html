@@ -158,24 +158,94 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="function-types"><a class="header" href="#function-types">Function types</a></h1>
-<ul>
-<li>standard or named fucntion</li>
-<li>Anonymous function</li>
-<li>Function expression or assign function in variable</li>
-<li>Higher order fucntion or first class function</li>
-<li>Callback fucntion</li>
-<li>Variadic function</li>
-<li>Init function - you cannot call this, Computer calls it</li>
-<li>Closure - close over</li>
-<li>Defer function - last in first out</li>
-<li>Receiver function or method</li>
-<li>IIFE- Immediately invoked function expression</li>
-</ul>
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
-<strong>Category:</strong> interview-qa/class-wise
-]</p>
+                        <h1 id="-class-19-function-types-in-go"><a class="header" href="#-class-19-function-types-in-go">🧠 Class 19: Function Types in Go</a></h1>
+<h2 id="1-standard-function-নিরধারিত-function"><a class="header" href="#1-standard-function-নিরধারিত-function">1️⃣ Standard Function (নির্ধারিত function)</a></h2>
+<p>একটি সাধারণভাবে নামযুক্ত function যা <code>func</code> কীওয়ার্ড দিয়ে তৈরি করা হয়।</p>
+<pre><code class="language-go">func add() {
+    fmt.Println("Hello!")
+}
+</code></pre>
+<h2 id="2-anonymous-function-নামহীন-function"><a class="header" href="#2-anonymous-function-নামহীন-function">2️⃣ Anonymous Function (নামহীন function)</a></h2>
+<p>এই ফাংশনের কোনো নাম থাকে না। একে ইনলাইন বা তৎক্ষণাৎ ব্যবহার করা যায়।</p>
+<pre><code class="language-go">func() {
+    fmt.Println("I have no name!")
+}()
+</code></pre>
+<h2 id="3-function-expression-ভেরিযেবলে-function-সংরকষণ"><a class="header" href="#3-function-expression-ভেরিযেবলে-function-সংরকষণ">3️⃣ Function Expression (ভেরিয়েবলে function সংরক্ষণ)</a></h2>
+<p>ফাংশনটিকে একটি ভেরিয়েবলে সংরক্ষণ করে পরে ব্যবহার করা হয়।</p>
+<pre><code class="language-go">hello := func() {
+    fmt.Println("Hi there!")
+}
+hello()
+</code></pre>
+<h2 id="4-higher-order-function--first-class-function"><a class="header" href="#4-higher-order-function--first-class-function">4️⃣ Higher-Order Function / First-Class Function</a></h2>
+<p>যে function অন্য ফাংশনকে প্যারামিটার হিসেবে গ্রহণ করে অথবা function রিটার্ন করে।</p>
+<pre><code class="language-go">func operate(a int, b int, fn func(int, int) int) int {
+    return fn(a, b)
+}
+</code></pre>
+<h2 id="5-callback-function-পুনরায-কল-করা-হয-এমন-function"><a class="header" href="#5-callback-function-পুনরায-কল-করা-হয-এমন-function">5️⃣ Callback Function (পুনরায় কল করা হয় এমন function)</a></h2>
+<p>একটি function যা আরেকটি ফাংশনে প্যারামিটার হিসেবে পাঠানো হয় এবং নির্দিষ্ট সময়ে কল করা হয়।</p>
+<pre><code class="language-go">func process(callback func()) {
+    callback()
+}
+</code></pre>
+<h2 id="6-variadic-function-বহু-সংখযক-পযারামিটার-গরহণ-করে"><a class="header" href="#6-variadic-function-বহু-সংখযক-পযারামিটার-গরহণ-করে">6️⃣ Variadic Function (বহু সংখ্যক প্যারামিটার গ্রহণ করে)</a></h2>
+<p>একটি function যা পরিবর্তনশীল সংখ্যক আর্গুমেন্ট গ্রহণ করতে পারে।</p>
+<pre><code class="language-go">func sum(nums ...int) {
+    total := 0
+    for _, num := range nums {
+        total += num
+    }
+    fmt.Println(total)
+}
+</code></pre>
+<h2 id="7-init-function-go-নিজে-থেকে-কল-করে"><a class="header" href="#7-init-function-go-নিজে-থেকে-কল-করে">7️⃣ Init Function (Go নিজে থেকে কল করে)</a></h2>
+<p>Go প্রোগ্রাম রান করার সময় <code>main()</code> এর আগেই <code>init()</code> ফাংশনটি কল হয়। এটি ম্যানুয়ালি কল করা যায় না।</p>
+<pre><code class="language-go">func init() {
+    fmt.Println("Initializing...")
+}
+</code></pre>
+<h2 id="8-closure-বাইরের-সকোপের-ভেরিযেবল-বনধ-করে-ফেলে"><a class="header" href="#8-closure-বাইরের-সকোপের-ভেরিযেবল-বনধ-করে-ফেলে">8️⃣ Closure (বাইরের স্কোপের ভেরিয়েবল বন্ধ করে ফেলে)</a></h2>
+<p>একটি function যা বাইরের স্কোপের ভেরিয়েবল "বন্ধ" বা retain করে রাখে।</p>
+<pre><code class="language-go">func outer() func() int {
+    count := 0
+    return func() int {
+        count++
+        return count
+    }
+}
+</code></pre>
+<h2 id="9-defer-function-শেষে-কল-হয়-stack-এর-last-in-first-out-নিয়মে"><a class="header" href="#9-defer-function-শেষে-কল-হয়-stack-এর-last-in-first-out-নিয়মে">9️⃣ Defer Function (শেষে কল হয় Stack এর Last In First Out নিয়মে)</a></h2>
+<p><code>defer</code> কীওয়ার্ড ব্যবহারে ফাংশনটি পরে কল হয়, সাধারণত function শেষ হওয়ার আগে।</p>
+<pre><code class="language-go">func test() {
+    defer fmt.Println("Three")
+    defer fmt.Println("Two")
+    fmt.Println("One")
+}
+</code></pre>
+<p>🟢 output:</p>
+<pre><code>One
+Two
+Three
+</code></pre>
+<h2 id="-receiver-function--method-struct-এর-সাথে-যুকত-function"><a class="header" href="#-receiver-function--method-struct-এর-সাথে-যুকত-function">🔟 Receiver Function / Method (struct এর সাথে যুক্ত function)</a></h2>
+<p>Go তে struct এর সাথে method সংযুক্ত করা যায়।</p>
+<pre><code class="language-go">type Person struct {
+    name string
+}
+
+func (p Person) add() {
+    fmt.Println("Hello", p.name)
+}
+</code></pre>
+<h2 id="11-iife---immediately-invoked-function-expression"><a class="header" href="#11-iife---immediately-invoked-function-expression">1️⃣1️⃣ IIFE - Immediately Invoked Function Expression</a></h2>
+<p>একটি function যা একসাথে define এবং invoke করা হয়।</p>
+<pre><code class="language-go">func(msg string) {
+    fmt.Println(msg)
+}("IIFE Example")
+</code></pre>
+<p>[Author: @ifrunruhin12 @shahriar-em0n  Date: 2025-05-01 Category: interview-qa/class-wise ]</p>
 
                     </main>
 

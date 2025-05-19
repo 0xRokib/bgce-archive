@@ -158,99 +158,85 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-class-21--expressions-anonymous-functions--iife-in-go"><a class="header" href="#-class-21--expressions-anonymous-functions--iife-in-go">📘 Class 21 – Expressions, Anonymous Functions &amp; IIFE in Go</a></h1>
-<h3 id="-video-name"><a class="header" href="#-video-name">🎥 Video Name:</a></h3>
-<p><strong>Anonymous function, Expression &amp; IIFE</strong></p>
-<hr />
-<h2 id="-code-written-in-this-class"><a class="header" href="#-code-written-in-this-class">📦 Code Written in This Class</a></h2>
-<pre><code class="language-go">// Anonymous function
-// IIFE - Immediately Invoked Function Expression
+                        <h1 id="class-21--expression-anonymous-function-ও-iife---in-go"><a class="header" href="#class-21--expression-anonymous-function-ও-iife---in-go">Class 21 – expression, anonymous function ও IIFE - in go</a></h1>
+<h2 id="-ভিডিও-নাম-anonymous-function-expression-ও-iife"><a class="header" href="#-ভিডিও-নাম-anonymous-function-expression-ও-iife">🎥 ভিডিও নাম: anonymous function, expression ও IIFE</a></h2>
+<h2 id="-code-written-in-this-class"><a class="header" href="#-code-written-in-this-class">🔤 Code Written in This Class</a></h2>
+<pre><code class="language-go">// anonymous function
+// IIFE - ইমিডিয়েটলি ইনভোকড function expression
 
 package main
 
 import "fmt"
 
 func main() {
-	// Anonymous function
-	func(a int, b int) {
-		c := a + b
-		fmt.Println(c)
-	}(5, 7) // IIFE
+    // anonymous function
+    func(a int, b int) {
+        c := a + b
+        fmt.Println(c)
+    }(5, 7) // IIFE
 }
 
 func init() {
-	fmt.Println("I'll be called first")
+    fmt.Println("আমি সবার আগে কল হব")
 }
 </code></pre>
-<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🧠 Key Concepts</a></h2>
-<h3 id="-expression-in-go"><a class="header" href="#-expression-in-go">🧮 Expression in Go</a></h3>
-<blockquote>
-<p>An expression is any snippet of code that evaluates to a value.</p>
-</blockquote>
-<p><strong>Examples:</strong></p>
-<pre><code class="language-go">a + b          // is an expression
-func(x, y){}   // is a function expression
+<h2 id="-মূল-ধারণাসমূহ"><a class="header" href="#-মূল-ধারণাসমূহ">🧠 মূল ধারণাসমূহ</a></h2>
+<h3 id="go-তে-expression-expression"><a class="header" href="#go-তে-expression-expression">Go-তে Expression (expression)</a></h3>
+<p>expression হলো যেকোনো code snippet যা কোনো মান (value) রিটার্ন করে।</p>
+<p>example:</p>
+<pre><code class="language-go">a + b          // একটি expression
+func(x, y){}   // একটি function expression
 </code></pre>
-<p>Expressions can be used as values, passed around, or even executed immediately — which leads us to…</p>
-<h3 id="-anonymous-function"><a class="header" href="#-anonymous-function"><strong>🧙 Anonymous Function</strong></a></h3>
-<p>An <strong>anonymous function</strong> is a function <strong>without a name.</strong></p>
-<p>Instead of:</p>
-<pre><code class="language-go">func add(a, b int) int {
-	return a + b
-}
-</code></pre>
-<p>You write:</p>
+<p>expression মান হিসেবে ব্যবহার, pass অথবা সাথে সাথেই execute করা যায়।</p>
+<h3 id="anonymous-function"><a class="header" href="#anonymous-function">anonymous function</a></h3>
+<p>anonymous function হলো নামবিহীন function।</p>
 <pre><code class="language-go">func(a, b int) int {
-	return a + b
+    return a + b
 }
 </code></pre>
-<p>✅ You can assign it to a variable, pass it as an argument, or invoke it on the spot.</p>
+<p>✅ এটি ভ্যারিয়েবল হিসেবে সংরক্ষণ, আর্গুমেন্ট হিসেবে pass বা সাথে সাথেই কল করা যায়।</p>
 <h3 id="-iife-immediately-invoked-function-expression"><a class="header" href="#-iife-immediately-invoked-function-expression">⚡ IIFE (Immediately Invoked Function Expression)</a></h3>
-<blockquote>
-<p>An <strong>IIFE</strong> is an anonymous function that is <strong>executed immediately</strong> right after it's defined.</p>
-</blockquote>
-<p>Syntax:</p>
+<p>IIFE হলো এমন একটি anonymous function যেটি ডিক্লেয়ার করার সাথেসাথে execute হয়।</p>
 <pre><code class="language-go">func(a int, b int) {
-	// do stuff
+    // কাজ
 }(5, 7)
 </code></pre>
-<p><strong>Use-case</strong>: You want to run a small block of logic <strong>immediately, without polluting the namespace</strong> with a new function name.</p>
-<h2 id="-cli-style-execution-visualization"><a class="header" href="#-cli-style-execution-visualization">🖥️ CLI-style Execution Visualization</a></h2>
-<pre><code>=========== Compilation Phase =============
-Found init() ✅
-Found main() ✅
+<p><strong>ব্যবহার:</strong> ছোট লজিক ব্লক তাৎক্ষণিক চালানোর জন্য উপযোগী, নতুন নাম না দিয়েই।</p>
+<h3 id="-cli---execution-vizualization"><a class="header" href="#-cli---execution-vizualization">🖥️ CLI-  execution vizualization</a></h3>
+<pre><code>=========== compilation ধাপ =============
+init() function খুঁজে পাওয়া গেছে ✅
+main() function খুঁজে পাওয়া গেছে ✅
 
-=========== Execution Phase ===============
+=========== এক্সিকিউশন ধাপ =============
 
-🔁 init() runs first
-→ Prints: I'll be called first
+🔁 init() প্রথমে চলে
+→ আউটপুট: আমি সবার আগে কল হব
 
-🧠 Data Segment:
-(No global vars in this case)
+🧠 ডেটা সেগমেন্ট:
+(কোনো গ্লোবাল ভ্যারিয়েবল নেই)
 
-📚 Stack Frame:
+📚 stack frame:
 ┌─────────────────────┐
 │    main()           │
 │ ┌─────────────────┐ │
-│ │  anonymous func │ │
+│ │  anonymous function │ │
 │ └─────────────────┘ │
 └─────────────────────┘
 
-main() calls an IIFE:
-→ Passes 5 and 7
-→ Inside IIFE: c := 5 + 7 = 12
-→ Prints: 12
+main() একটি IIFE কল করে:
+→ 5 এবং 7 pass করে
+→ ভিতরে: c := 5 + 7 = 12
+→ output: 12
 
-=========== Execution Complete =============
+=========== execution সম্পূর্ণ ============
 </code></pre>
-<h2 id="-tldr"><a class="header" href="#-tldr">🧵 TL;DR</a></h2>
-<p>-[] ✅ Expressions return values and can be assigned or executed.</p>
-<p>-[] 🧪 Anonymous functions have no name, great for quick logic blocks.</p>
-<p>-[] 🚀 IIFE: Define &amp; execute in one go. Great for one-off logic.</p>
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
-<strong>Category:</strong> interview-qa/class-wise
-]</p>
+<h3 id="-tldr-সংকষেপে"><a class="header" href="#-tldr-সংকষেপে">🧵 TL;DR (সংক্ষেপে)</a></h3>
+<ul>
+<li>[]  expression- মান রিটার্ন করে, এসাইন বা execute করা যায়।</li>
+<li>[]  anonymous function- দ্রুত লজিক ব্লক চালাতে ব্যবহৃত হয়।</li>
+<li>[]  IIFE- ডিফাইন এবং execute একসাথে — একবারের কাজের জন্য দারুন!</li>
+</ul>
+<p>[Author: @ifrunruhin12 @shahriar-em0n  Date: 2025-05-01 Category: interview-qa/class-wise ]</p>
 
                     </main>
 

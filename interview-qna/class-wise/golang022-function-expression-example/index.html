@@ -158,129 +158,132 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-class-22--function-expressions--shadowing-in-go"><a class="header" href="#-class-22--function-expressions--shadowing-in-go">📘 Class 22 – Function Expressions &amp; Shadowing in Go</a></h1>
-<h3 id="-video-name"><a class="header" href="#-video-name">🎥 Video Name:</a></h3>
-<p><strong>Function Expression Example</strong></p>
+                        <h1 id="-class-22--go-function-expression--shadowing"><a class="header" href="#-class-22--go-function-expression--shadowing">📘 CLass 22 – Go Function Expression &amp; Shadowing</a></h1>
+<p>🎥 <strong>ভিডিও নাম:</strong> Function Expression Example</p>
 <hr />
-<h2 id="-code-1-working-example"><a class="header" href="#-code-1-working-example">✅ Code 1: Working Example</a></h2>
+<h2 id="-example-1"><a class="header" href="#-example-1">✅ Example 1:</a></h2>
 <pre><code class="language-go">package main
 
 import "fmt"
 
-// Global function expression
+// গ্লোবাল ফাংশন এক্সপ্রেশন
 var add = func(x, y int) {
-	fmt.Println(x + y)
+    fmt.Println(x + y)
 }
 
 func main() {
-	add(4, 7) // Calls the global `add`
+    add(4, 7) // গ্লোবাল `add` কল হচ্ছে
 
-	// Function expression assigned to local variable
-	add := func(a int, b int) {
-		c := a + b
-		fmt.Println(c)
-	}
+    // লোকাল ভেরিয়েবলে ফাংশন এক্সপ্রেশন অ্যাসাইন করা
+    add := func(a int, b int) {
+        c := a + b
+        fmt.Println(c) কোড ২
+    }
 
-	add(2, 3) // Calls the local `add`
+    add(2, 3) // এখন লোকাল `add` কল হচ্ছে
 }
 
 func init() {
-	fmt.Println("I will be called first")
-}
+    fmt.Println("আমি প্রথমে কল হব")
 </code></pre>
-<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🧠 Key Concepts</a></h2>
+<hr />
+<h2 id="-মূল-ধারণাসমূহ"><a class="header" href="#-মূল-ধারণাসমূহ">🧠 মূল ধারণাসমূহ</a></h2>
 <h3 id="-function-expression"><a class="header" href="#-function-expression">🔧 Function Expression</a></h3>
-<p>A function <strong>assigned to a variable</strong>. It allows us to:</p>
-<p>-[] Store logic in a variable</p>
-<p>-[] Treat functions like first-class citizens</p>
-<p>-[] Create inline, nameless (anonymous) functions</p>
-<p><strong>Example:</strong></p>
+<p>যখন কোনো ফাংশনকে একটি ভেরিয়েবলে সংরক্ষণ করা হয়। এর মাধ্যমে আমরা —</p>
+<ul>
+<li>logic একটি ভেরিয়েবলে রাখতে পারি</li>
+<li>ফাংশনকে ফার্স্ট-ক্লাস সিটিজেন হিসেবে ব্যবহার করতে পারি</li>
+<li>inline বা anonymous ফাংশন তৈরি করতে পারি</li>
+</ul>
+<p><strong>উদাহরণ:</strong></p>
 <pre><code class="language-go">add := func(a int, b int) {
-	fmt.Println(a + b)
+    fmt.Println(a + b)
 }
 </code></pre>
+<hr />
 <h3 id="-shadowing"><a class="header" href="#-shadowing">🧱 Shadowing</a></h3>
-<p>When a variable in a <strong>smaller (local) scope</strong> has the <strong>same name</strong> as one in a <strong>larger (outer) scope</strong>, it "shadows" or hides it temporarily.</p>
-<p>In the <code>main()</code> function:</p>
+<p>যখন একটি ছোট স্কোপে (লোকাল স্কোপে) থাকা ভেরিয়েবলের নাম বড় স্কোপে থাকা একই নামের ভেরিয়েবলকে ঢেকে ফেলে বা “শ্যাডো” করে।</p>
 <pre><code class="language-go">add := func(a int, b int) {...}
 </code></pre>
-<p>This local <code>add</code> shadows the global <code>add</code> from that point onward.</p>
-<h2 id="-execution-visualization-working-example"><a class="header" href="#-execution-visualization-working-example">🖥️ Execution Visualization (Working Example)</a></h2>
-<pre><code>========== Compilation Phase ==========
-✔ Found init()
-✔ Found main()
-✔ Global `add` assigned to function
+<p>এই <code>add</code> লোকাল স্কোপে গ্লোবাল <code>add</code> কে ঢেকে দেয়।</p>
+<hr />
+<h3 id="--cli---execution-vizualization"><a class="header" href="#--cli---execution-vizualization">🖥️  CLI-  execution vizualization</a></h3>
+<pre><code>========== কম্পাইলেশন ফেজ ==========
+✔ init() পাওয়া গেছে
+✔ main() পাওয়া গেছে
+✔ গ্লোবাল `add` ফাংশন অ্যাসাইন করা হয়েছে
 
-========== Execution Begins ===========
-
+========== এক্সিকিউশন শুরু ==========
 init():
-→ Prints: I will be called first
+→ প্রিন্ট করে: আমি প্রথমে কল হব
 
 main():
-→ Calls global `add(4, 7)` → Prints: 11
+→ গ্লোবাল `add(4, 7)` → প্রিন্ট: 11
 
-Local Scope in main():
+main() এর ভিতরের লোকাল স্কোপ:
 ┌──────── Stack Frame ───────┐
 │ main()                     │
 │ ┌──────────────┐          │
-│ │ add (local)  │────────┐ │
+│ │ add (লোকাল)  │────────┐ │
 │ └──────────────┘        │ │
 └─────────────────────────┘ │
-       (shadows global) ◄───┘
+       (গ্লোবালটিকে ঢেকে দেয়) ◄───┘
 
-→ Calls local `add(2, 3)` → Prints: 5
+→ লোকাল `add(2, 3)` → প্রিন্ট: 5
 
-========== Execution Ends ==========
+========== এক্সিকিউশন শেষ ==========
 </code></pre>
-<h2 id="-code-2-fails-to-compile"><a class="header" href="#-code-2-fails-to-compile">❌ Code 2: Fails to Compile</a></h2>
+<hr />
+<h2 id="-example--2-কমপাইল-হয-না"><a class="header" href="#-example--2-কমপাইল-হয-না">❌ Example  2: কম্পাইল হয় না</a></h2>
 <pre><code class="language-go">package main
 
 import "fmt"
 
-// Global function expression
+// গ্লোবাল ফাংশন এক্সপ্রেশন
 var add = func(x, y int) {
-	fmt.Println(x + y)
+    fmt.Println(x + y)
 }
 
 func main() {
-	adder(4, 7) // ❌ ERROR: undefined: adder
+    adder(4, 7) // ❌ ERROR: undefined: adder
 
-	// Function expression or Assign function in variable
-	adder := func(a int, b int) {
-		c := a + b
-		fmt.Println(c)
-	}
+    adder := func(a int, b int) {
+        c := a + b
+        fmt.Println(c)
+    }
 
-	add(2, 3)
+    add(2, 3)
 }
 
 func init() {
-	fmt.Println("I will be called first")
+    fmt.Println("আমি প্রথমে কল হব")
 }
 </code></pre>
-<h3 id="-why-it-fails"><a class="header" href="#-why-it-fails">❌ Why it fails</a></h3>
-<p>This line:</p>
+<hr />
+<h2 id="-কেন-এটা-কাজ-করে-না"><a class="header" href="#-কেন-এটা-কাজ-করে-না">❌ কেন এটা কাজ করে না?</a></h2>
+<p>এই লাইনটি:</p>
 <pre><code class="language-go">adder(4, 7)
 </code></pre>
-<p>is <strong>above</strong> the declaration:</p>
+<p>ডিক্লেয়ারেশনের উপরে আছে:</p>
 <pre><code class="language-go">adder := func(a int, b int) { ... }
 </code></pre>
-<h3 id="-the-problem-temporal-dead-zone"><a class="header" href="#-the-problem-temporal-dead-zone">⛔ The Problem: Temporal Dead Zone</a></h3>
-<p>In Go, <strong>you can't use a variable before it's declared</strong>, even if it’s in the same block.</p>
-<p>So, when you try to use <code>adder</code>, it hasn’t been declared yet. Hence:</p>
+<p>🛑 <strong>সমস্যা: Temporal Dead Zone</strong></p>
+<p>Go তে তুমি কোনো ভেরিয়েবলকে তার ডিক্লেয়ারেশনের আগে ব্যবহার করতে পারো না even একই ব্লকের মধ্যেও।</p>
+<p>তাই <code>adder</code> ব্যবহার করার সময়ে সেটি এখনো ডিক্লেয়ার হয়নি।</p>
+<p>ভুল:</p>
 <pre><code class="language-bash">./main.go:10:2: undefined: adder
 </code></pre>
+<hr />
 <h2 id="-tldr"><a class="header" href="#-tldr">📚 TL;DR</a></h2>
-<p>Concept | Meaning
-Function Expression | A function assigned to a variable
-Anonymous Function | A function with no name
-Shadowing | Local variable hides the same-named global one
-Temporal Dead Zone | You can't use variables before their declaration in Go
-IIFE vs Assignment | IIFE executes immediately; assignment waits to be called explicitly</p>
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
-<strong>Category:</strong> interview-qa/class-wise
-]</p>
+<div class="table-wrapper"><table><thead><tr><th>ধারণা</th><th>অর্থ</th></tr></thead><tbody>
+<tr><td>Function Expression</td><td>একটি ভেরিয়েবলে সংরক্ষিত ফাংশন</td></tr>
+<tr><td>Anonymous Function</td><td>নামবিহীন ফাংশন</td></tr>
+<tr><td>Shadowing</td><td>লোকাল ভেরিয়েবল গ্লোবালটিকে ঢেকে দেয়</td></tr>
+<tr><td>Temporal Dead Zone</td><td>ডিক্লেয়ারেশনের আগে কোনো ভেরিয়েবল ব্যবহার করা যায় না</td></tr>
+<tr><td>IIFE vs Assignment</td><td>IIFE সাথে সাথে চলে; অ্যাসাইনমেন্ট পরে কল করতে হয়</td></tr>
+</tbody></table>
+</div>
+<p>[Author: @ifrunruhin12 @shahriar-em0n  Date: 2025-05-01 Category: interview-qa/class-wise ]</p>
 
                     </main>
 

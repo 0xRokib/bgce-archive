@@ -158,23 +158,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="class-28-receiver-functions-in-go"><a class="header" href="#class-28-receiver-functions-in-go">Class 28: Receiver Functions in Go</a></h1>
-<h2 id="-key-concept-receiver-functions"><a class="header" href="#-key-concept-receiver-functions">🔑 Key Concept: Receiver Functions</a></h2>
-<p>In Go, a <strong>receiver function</strong> (also called a <strong>method</strong>) is a function that is associated with a particular <strong>type</strong> (usually a struct). It allows us to add behavior to data types, like attaching functions to objects in other languages (e.g., methods in OOP).</p>
+                        <h1 id="কলাস-২৮-go-তে-রিসিভার-ফাংশন-receiver-functions"><a class="header" href="#কলাস-২৮-go-তে-রিসিভার-ফাংশন-receiver-functions">ক্লাস ২৮: Go তে রিসিভার ফাংশন (Receiver Functions)</a></h1>
+<h2 id="-মূল-ধারণা--রিসিভার-ফাংশন"><a class="header" href="#-মূল-ধারণা--রিসিভার-ফাংশন">🔑 মূল ধারণা: : রিসিভার ফাংশন</a></h2>
+<p>Go তে, একটি <strong>রিসিভার ফাংশন (receiver function)</strong> (যাকে <strong>method</strong> ও বলা হয়) হলো এমন একটি ফাংশন যা কোনো নির্দিষ্ট টাইপ <strong>(সাধারণত struct)</strong> এর সাথে জুড়ে থাকে। এটা আমাদের ডেটাটাইপের কোনো কাজ বা ব্যবহার যুক্ত করার সুযোগ দেয়, যেমন অন্য প্রোগ্রামিং ভাষায় অবজেক্টের method থাকে।</p>
 <hr />
-<h2 id="-what-is-a-receiver-function"><a class="header" href="#-what-is-a-receiver-function">🧠 What Is a Receiver Function?</a></h2>
-<p>A <strong>receiver function</strong> is defined like a normal function, but with a special receiver parameter placed between the <code>func</code> keyword and the function name.</p>
+<h2 id="-রিসিভার-ফাংশন-কি"><a class="header" href="#-রিসিভার-ফাংশন-কি">🧠 রিসিভার ফাংশন কি?</a></h2>
+<p>একটা <strong>রিসিভার ফাংশন</strong> দেখতে সাধারণ ফাংশনের মতোই, কিন্তু <code>func</code> কী-ওয়ার্ড এবং ফাংশনের নামের মাঝে একটা বিশেষ receiver parameter থাকে।</p>
 <pre><code class="language-go">func (r ReceiverType) FunctionName(params) returnType {
     // function body
 }
 </code></pre>
-<p>The receiver type can be:</p>
+<p>রিসিভার টাইপটি হতে পারে:</p>
 <ul>
-<li>A <strong>value receiver</strong>: <code>(t Type)</code> → receives a copy</li>
-<li>A <strong>pointer receiver</strong>: <code>(t *Type)</code> → receives a reference (can modify original)</li>
+<li>একটি <strong>ভ্যালু রিসিভার (value receiver)</strong>: <code>(t Type)</code> → একটি কপি রিসিভ করে</li>
+<li>একটি <strong>পয়েন্টার রিসিভার (pointer receiver)</strong>: <code>(t *Type)</code> → একটি রেফারেন্স রিসিভ করে (অরিজিনাল ডেটা পরিবর্তন করতে পারে)</li>
 </ul>
 <hr />
-<h2 id="-from-the-project-code"><a class="header" href="#-from-the-project-code">🏗️ From the Project Code</a></h2>
+<h2 id="-পরোজেকটের-কোড-থেকে-দেখতে-পাই"><a class="header" href="#-পরোজেকটের-কোড-থেকে-দেখতে-পাই">🏗️ প্রোজেক্টের কোড থেকে দেখতে পাই</a></h2>
 <pre><code class="language-go">func (todos *Todos) add(title string) {
     todo := Todo{
         Title: title,
@@ -185,23 +185,25 @@
     *todos = append(*todos, todo)
 }
 </code></pre>
+<p>হলো রিসিভার
+এই মেথড টি এর সাথে এটাচড</p>
 <ul>
-<li><code>todos *Todos</code> is the <strong>receiver</strong></li>
-<li>This method is attached to <code>Todos</code> (which is a custom type: <code>[]Todo</code>)</li>
-<li>The <code>*Todos</code> pointer allows modifications to the original slice</li>
+<li><code>todos *Todos</code> হলো <strong>রিসিভার</strong></li>
+<li>এই method টি <code>Todos</code> এর সাথে যুক্ত (<code>[]Todo</code>: একটি কাস্টম টাইপ)</li>
+<li><code>*Todos</code> পয়েন্টারটি অরিজিনাল স্লাইসকে পরিবর্তন করতে দেয়</li>
 </ul>
-<p>Example usage from <code>main.go</code>:</p>
+<p><code>main.go</code> এ ব্যবহারের উদাহরণ:</p>
 <pre><code class="language-go">todos.add("Buy milk")
 </code></pre>
 <hr />
-<h2 id="-why-use-receiver-functions"><a class="header" href="#-why-use-receiver-functions">🔁 Why Use Receiver Functions?</a></h2>
+<h2 id="-রিসিভার-ফাংশন-কেন-বযবহার-করব"><a class="header" href="#-রিসিভার-ফাংশন-কেন-বযবহার-করব">🔁 রিসিভার ফাংশন কেন ব্যবহার করব?</a></h2>
 <ul>
-<li>Organize logic with the data it operates on ✅</li>
-<li>Achieve OOP-like behavior in Go ✅</li>
-<li>Maintain cleaner and modular code ✅</li>
+<li>ডেটার সাথে সম্পর্কিত লজিক গুছিয়ে রাখা ✅</li>
+<li>Go-তে OOP-এর মতো আচরণ পাওয়া ✅</li>
+<li>কোডকে আরও পরিষ্কার ও মডুলার রাখা ✅</li>
 </ul>
 <hr />
-<h2 id="-extra-simple-example"><a class="header" href="#-extra-simple-example">💡 Extra Simple Example</a></h2>
+<h2 id="-আরও-সহজ-উদাহরণ"><a class="header" href="#-আরও-সহজ-উদাহরণ">💡 আরও সহজ উদাহরণ</a></h2>
 <pre><code class="language-go">type User struct {
     Name string
 }
@@ -224,22 +226,22 @@ func main() {
 }
 </code></pre>
 <hr />
-<h2 id="-summary"><a class="header" href="#-summary">⚙️ Summary</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody>
-<tr><td>Receiver</td><td>The type a method is attached to (e.g., <code>*Todos</code>)</td></tr>
-<tr><td>Value Receiver</td><td>Gets a copy of the value; doesn't affect the original</td></tr>
-<tr><td>Pointer Receiver</td><td>Gets a reference; can modify the original</td></tr>
+<h2 id="--সারাংশ"><a class="header" href="#--সারাংশ">⚙️ ⚙️ সারাংশ</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>টার্ম</th><th>অর্থ</th></tr></thead><tbody>
+<tr><td>Receiver</td><td>যে টাইপের সাথে মেথড যুক্ত থাকে (যেমন, <code>*Todos</code>)</td></tr>
+<tr><td>Value Receiver</td><td>ডেটার কপি পায়; আসল ডেটা পরিবর্তন করতে পারে না</td></tr>
+<tr><td>Pointer Receiver</td><td>ডেটার রেফারেন্স পায়; আসল ডেটা পরিবর্তন করতে পারে</td></tr>
 </tbody></table>
 </div>
 <hr />
-<h2 id="-visualizing-it"><a class="header" href="#-visualizing-it">📘 Visualizing It</a></h2>
-<p>Think of <code>todos.add()</code> as calling a behavior of the object:</p>
+<h2 id="-ভিজযুয়ালাইজেশন"><a class="header" href="#-ভিজযুয়ালাইজেশন">📘 ভিজ্যুয়ালাইজেশন</a></h2>
+<p><code>todos.add()</code>কে অবজেক্টের কোনো কাজ বা আচরণ কল করার মতো ভাবা যেতে পারে:</p>
 <pre><code class="language-go">object.method()
 </code></pre>
-<p>This pattern lets <code>Todos</code> have its own custom logic, like <code>add</code>, <code>delete</code>, <code>toggle</code>, <code>print</code>, etc., just like class methods in Python/Java.</p>
+<p>এই প্যাটার্নটি <code>Todos</code> কে কাস্টম লজিক যোগ করার সুযোগ দেয়, যেমন <code>add</code>, <code>delete</code>, <code>toggle</code>, <code>print</code> ইত্যাদি, ঠিক Python বা Java-এর ক্লাস মেথডের মতো।</p>
 <hr />
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
+<p>[<strong>Author:</strong> @ifrunruhin12, @nazma98
+<strong>Date:</strong> 2025-05-01 - 2025-05-17
 <strong>Category:</strong> interview-qa/class-wise
 ]</p>
 

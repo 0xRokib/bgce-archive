@@ -158,29 +158,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="class-25---internal-memory-deep-dive-compilation--execution-phases"><a class="header" href="#class-25---internal-memory-deep-dive-compilation--execution-phases">Class 25 - Internal Memory Deep Dive: Compilation &amp; Execution Phases</a></h1>
-<hr />
-<h2 id="-topics-covered"><a class="header" href="#-topics-covered">✨ Topics Covered</a></h2>
-<p>This class focused on the internal workings of a Go program with a spotlight on what happens under the hood during:</p>
+                        <h1 id="কলাস-২৫---ইনটারনাল-মেমরি-গভীর-বিশলেষণ-কমপাইলেশন-ও-একসিকিউশন-পরযায"><a class="header" href="#কলাস-২৫---ইনটারনাল-মেমরি-গভীর-বিশলেষণ-কমপাইলেশন-ও-একসিকিউশন-পরযায">ক্লাস ২৫ - ইন্টারনাল মেমরি গভীর বিশ্লেষণ: কম্পাইলেশন ও এক্সিকিউশন পর্যায়</a></h1>
+<h2 id="-আলোচিত-বিষযবসতু"><a class="header" href="#-আলোচিত-বিষযবসতু">✨ আলোচিত বিষয়বস্তু</a></h2>
+<p>এই ক্লাসে একটি Go প্রোগ্রামের অভ্যন্তরীণ কার্যকলাপ নিয়ে আলোচনা করা হয়েছে, বিশেষ করে নিচের বিষয়গুলোর ওপর:</p>
 <ul>
-<li><strong>Compilation Phase</strong></li>
-<li><strong>Execution Phase</strong></li>
-<li>How Go builds a binary with <code>go build</code></li>
-<li>What gets stored in that binary (functions, constants, globals, etc.)</li>
-<li>How function expressions (e.g., <code>add := func(...)</code>) are treated in memory</li>
+<li><strong>কম্পাইলেশন পর্যায় (Compilation Phase)</strong></li>
+<li><strong>এক্সিকিউশন পর্যায় / রানটাইম (Execution Phase / Runtime)</strong></li>
+<li>Go কীভাবে <code>go build</code> দিয়ে বাইনারি ফাইল তৈরি করে</li>
+<li>সেই বাইনারি ফাইলে কী কী সংরক্ষিত হয় (ফাংশন, কনস্ট্যান্ট, গ্লোবাল ভেরিয়েবল ইত্যাদি)</li>
+<li>ফাংশন এক্সপ্রেশনের (যেমন, <code>add := func(...)</code>) মেমরিতে কীভাবে হ্যান্ডল করা হয়</li>
 </ul>
-<hr />
-<h2 id="-key-concepts"><a class="header" href="#-key-concepts">👍 Key Concepts</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Concept</th><th>Explanation</th></tr></thead><tbody>
-<tr><td><strong>Compilation Phase</strong></td><td>Parses and compiles source code into a binary executable. No code runs yet.</td></tr>
-<tr><td><strong>Execution Phase</strong></td><td>Runs the compiled binary, starting from <code>init()</code> and then <code>main()</code>.</td></tr>
-<tr><td><strong>Code Segment</strong></td><td>Where compiled functions (<code>main</code>, <code>call</code>, anonymous <code>add</code>) and constants (<code>a</code>) are stored as part of executable instructions.</td></tr>
-<tr><td><strong>Data Segment</strong></td><td>Holds global variables (like <code>p</code>).</td></tr>
-<tr><td><strong>Function Expressions</strong></td><td>Treated as runtime function objects, stored in code segment.</td></tr>
+<h2 id="-আলোচনার-বিষয়বসতু"><a class="header" href="#-আলোচনার-বিষয়বসতু">👍 আলোচনার বিষয়বস্তু</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>ধারনা</th><th>ব্যাখ্যা</th></tr></thead><tbody>
+<tr><td><strong>কম্পাইলেশন পর্যায়</strong></td><td>সোর্স কোডকে বাইনারি এক্সিকিউটেবল এ পরিণত করে। এখনো কোনো কোড রান হয় না।</td></tr>
+<tr><td><strong>এক্সিকিউশন পর্যায়</strong></td><td>কম্পাইল হওয়া বাইনারি ফাইল রান করে, প্রথমে <code>init()</code> এবং তারপর <code>main()</code> থেকে শুরু হয়।</td></tr>
+<tr><td><strong>কোড সেগমেন্ট</strong></td><td>কম্পাইল হওয়া ফাংশন (<code>main</code>, <code>call</code>, anonymous <code>add</code>) এবং কনস্ট্যান্ট (<code>a</code>) এক্সিকিউটেবল ইন্সট্রাকশনের অংশ হিসেবে এখানে সংরক্ষিত থাকে।</td></tr>
+<tr><td><strong>ডেটা সেগমেন্ট</strong></td><td>গ্লোবাল ভেরিয়েবল (যেমন, <code>p</code>) এখানে সংরক্ষিত হয়।</td></tr>
+<tr><td><strong>ফাংশন এক্সপ্রেশন</strong></td><td>রানটাইমে ফাংশন অবজেক্ট হিসেবে বিবেচিত হয় এবং কোড সেগমেন্টে সংরক্ষিত থাকে।</td></tr>
 </tbody></table>
 </div>
 <hr />
-<h2 id="-code-used-in-class-25"><a class="header" href="#-code-used-in-class-25">📋 Code Used in Class 25</a></h2>
+<h2 id="-কলাস-২৫-এর-কোড"><a class="header" href="#-কলাস-২৫-এর-কোড">📋 ক্লাস ২৫ এর কোড:</a></h2>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -207,37 +205,36 @@ func init() {
 	fmt.Println("Hello")
 }
 </code></pre>
-<hr />
-<h2 id="-compilation-phase-visualized"><a class="header" href="#-compilation-phase-visualized">🔄 Compilation Phase Visualized</a></h2>
-<h3 id="go-build-maingo"><a class="header" href="#go-build-maingo"><code>go build main.go</code></a></h3>
+<h2 id="-কমপাইলেশন-পরযাযের-ভিজযুযালাইজেশন"><a class="header" href="#-কমপাইলেশন-পরযাযের-ভিজযুযালাইজেশন">🔄 কম্পাইলেশন পর্যায়ের ভিজ্যুয়ালাইজেশন</a></h2>
+<pre><code>go build main.go
+</code></pre>
 <ul>
-<li><strong>Parser/Compiler</strong> checks for syntax, scope, and dependencies.</li>
-<li>Stores:
+<li><strong>পার্সার/কম্পাইলার</strong>: সিনট্যাক্স, স্কোপ এবং ডিপেন্ডেন্সি যাচাই করে।</li>
+<li><strong>সংরক্ষণ করে:</strong>
 <ul>
-<li>Constants: <code>a = 10</code></li>
-<li>Globals: <code>p = 100</code></li>
-<li>Functions: <code>init</code>, <code>main</code>, <code>call</code>, and the anonymous <code>add</code> function inside <code>call</code></li>
+<li>কনস্ট্যান্ট: a = 10</li>
+<li>গ্লোবাল ভেরিয়েবল: p = 100</li>
+<li>ফাংশন: <code>init</code>, <code>main</code>, <code>call</code>, এবং <code>call</code> এর ভেতরের anonymous <code>add</code> ফাংশন</li>
+<li>প্রয়োজনীয় মেশিন কোড + মেটাডাটার <code>বাইনারি</code> জেনারেট করে</li>
 </ul>
 </li>
-<li>Generates a <strong>binary</strong> that includes all necessary machine code + metadata.</li>
 </ul>
-<p>Binary includes:</p>
+<p>বাইনারি ফাইলে থাকে:</p>
 <ul>
-<li>Code Segment: <code>const a</code>, <code>main</code>, <code>call</code>, anonymous function</li>
-<li>Data Segment: <code>var p</code></li>
-<li>No execution happens here.</li>
+<li>কোড সেগমেন্ট: কনস্ট্যান্ট <code>a</code>, <code>main</code>, <code>call</code>, anonymous ফাংশন</li>
+<li>ডেটা সেগমেন্ট: ভ্যারিয়েবল <code>p</code></li>
+<li>এখানে কোনো এক্সিকিউশন হয় না।</li>
 </ul>
-<hr />
-<h2 id="-execution-phase-visualized"><a class="header" href="#-execution-phase-visualized">⏱ Execution Phase Visualized</a></h2>
-<pre><code>   1. init()            =&gt; "Hello"
-   2. main()            =&gt; calls call()
-   3. call()            =&gt; declares and invokes add()
+<h2 id="-একসিকিউশন-পরযাযের-ভিজযুযালাইজেশন"><a class="header" href="#-একসিকিউশন-পরযাযের-ভিজযুযালাইজেশন">⏱ এক্সিকিউশন পর্যায়ের ভিজ্যুয়ালাইজেশন</a></h2>
+<pre><code>   ১. init()            =&gt; "Hello"
+   ২. main()            =&gt; call() ফাংশনকে কল করে
+   ৩. call()            =&gt; add() ফাংশনকে ডিক্লেয়ার এবং কল করে
        - add(5, 6)      =&gt; 11
        - add(100, 10)   =&gt; 110
-   4. fmt.Println(a)    =&gt; 10
+   ৪. fmt.Println(a)    =&gt; 10
 </code></pre>
 <hr />
-<h2 id="-memory-layout"><a class="header" href="#-memory-layout">🧠 Memory Layout</a></h2>
+<h2 id="-মেমরি-লেআউট"><a class="header" href="#-মেমরি-লেআউট">🧠 মেমরি লেআউট</a></h2>
 <pre><code>┌─────────────────────────────┐
 │       Code Segment          │
 │-----------------------------│
@@ -260,17 +257,17 @@ func init() {
 └─────────────────────────────┘
 </code></pre>
 <hr />
-<h2 id="-summary"><a class="header" href="#-summary">🔹 Summary</a></h2>
+<h2 id="সারাংশ"><a class="header" href="#সারাংশ">🔹সারাংশ</a></h2>
 <ul>
-<li>Go runs in <strong>two phases</strong>: Compilation and Execution.</li>
-<li>During <strong>compilation</strong>, Go prepares memory layout, compiles functions and expressions.</li>
-<li>In <strong>execution</strong>, it runs <code>init()</code> and then <code>main()</code>.</li>
-<li><strong>Function expressions</strong> like <code>add := func(...)</code> are first-class values and live in the code segment.</li>
-<li>The resulting binary from <code>go build</code> holds everything: code, data, metadata.</li>
+<li>একটি Go প্রোগ্রাম <strong>দুইটি পর্যায়ে</strong> রান হয়: কম্পাইলেশন এবং এক্সিকিউশন।</li>
+<li><strong>কম্পাইলেশন</strong> চলাকালে, Go মেমরি লেআউট প্রস্তুত করে, ফাংশন এবং এক্সপ্রেশন কম্পাইল করে।</li>
+<li><strong>এক্সিকিউশন</strong> পর্যায়ে, প্রথমে <code>init()</code> এবং তারপর <code>main()</code> রান হয়।</li>
+<li><strong>ফাংশন এক্সপ্রেশন</strong> (যেমন, <code>add := func(...)</code>) হলো <code>ফার্স্ট ক্লাস ভ্যালু</code>, যা কোড সেগমেন্টে সংরক্ষিত থাকে।</li>
+<li><code>go build</code> থেকে তৈরি হওয়া বাইনারি ফাইলে কোড, ডেটা, এবং মেটাডাটা সহ প্রয়োজনীয় সবকিছু থাকে।</li>
 </ul>
 <hr />
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
+<p>[<strong>Author:</strong> @ifrunruhin12, @nazma98
+<strong>Date:</strong> 2025-05-01 - 2025-05-14
 <strong>Category:</strong> interview-qa/class-wise
 ]</p>
 

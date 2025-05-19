@@ -158,10 +158,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="class-26-closure--go-internal-memory-deep-dive-"><a class="header" href="#class-26-closure--go-internal-memory-deep-dive-">Class 26: Closure &amp; Go Internal Memory Deep Dive 💡</a></h1>
-<p>Welcome to Class 26, where we uncover the magic behind closures in Go, escape analysis, and how memory is managed under the hood! 🧠🔥</p>
+                        <h1 id="কলাস-২৬-কলোজার-এবং-go-এর-অভযনতরীণ-মেমোরি-গভীর-বিশলেষণ-"><a class="header" href="#কলাস-২৬-কলোজার-এবং-go-এর-অভযনতরীণ-মেমোরি-গভীর-বিশলেষণ-">ক্লাস ২৬: ক্লোজার এবং Go এর অভ্যন্তরীণ মেমোরি গভীর বিশ্লেষণ 💡</a></h1>
+<p>এই ক্লাসে আমরা closure, escape analysis নিয়ে বিস্তারিত পড়াশুনা করব এবং অভ্যন্তরীণ মেমরি কিভাবে মেনেজ করা হয় তা জানব! 🧠🔥</p>
 <hr />
-<h2 id="-the-code"><a class="header" href="#-the-code">🧾 The Code</a></h2>
+<h2 id="-কলাস-২৬-এর-কোড"><a class="header" href="#-কলাস-২৬-এর-কোড">📋 ক্লাস ২৬ এর কোড:</a></h2>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -201,42 +201,40 @@ func init() {
 }
 </code></pre>
 <hr />
-<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🔍 Key Concepts</a></h2>
-<h3 id="-what-is-a-closure"><a class="header" href="#-what-is-a-closure">🔒 What is a Closure?</a></h3>
-<p>A <strong>closure</strong> is a function that references variables from outside its own scope. In this case:</p>
+<h2 id="-মূল-বিষয়বসতু"><a class="header" href="#-মূল-বিষয়বসতু">🔍 মূল বিষয়বস্তু</a></h2>
+<h3 id="কলোজার-closure-কী"><a class="header" href="#কলোজার-closure-কী">🔒ক্লোজার (Closure) কী?</a></h3>
+<p><strong>ক্লোজার</strong> এমন একটি ফাংশন যা তার নিজস্ব স্কোপের বাইরের ভেরিয়েবলগুলোর সাথে সম্পর্ক স্থাপন করতে পারে। এই ক্ষেত্রে:</p>
 <pre><code class="language-go">show := func() {
     money = money + a + p
     fmt.Println(money)
 }
 </code></pre>
-<p><code>show</code> forms a closure by capturing the <code>money</code> variable defined in <code>outer()</code>.</p>
-<h3 id="-why-is-closure-important"><a class="header" href="#-why-is-closure-important">🧠 Why is Closure Important?</a></h3>
-<p>Closures let you encapsulate logic along with state. This is why <code>incr1()</code> and <code>incr2()</code> maintain separate <code>money</code> values even though they use the same function.</p>
-<h3 id="-stack-vs-heap"><a class="header" href="#-stack-vs-heap">🧮 Stack vs Heap</a></h3>
+<p><code>show</code> ফাংশনটি <code>outer()</code> ফাংশনের ভেতরের <code>money</code> ভেরিয়েবলটি মনে রাখার মাধ্যমে একটি ক্লোজার তৈরি করে।</p>
+<h3 id="-কলোজার-কেন-গুরুতবপূরণ"><a class="header" href="#-কলোজার-কেন-গুরুতবপূরণ">🧠 ক্লোজার কেন গুরুত্বপূর্ণ?</a></h3>
+<p>ক্লোজার যুক্তি ও অবস্থাকে একসাথে ধরে রাখতে সাহায্য করে। এজন্য <code>incr1()</code> এবং <code>incr2()</code> একই ফাংশন ব্যবহার করলেও আলাদা <code>money</code> মান ধরে রাখতে পারে।</p>
+<h3 id="-সটযাক-বনাম-হিপ"><a class="header" href="#-সটযাক-বনাম-হিপ">🧮 স্ট্যাক বনাম হিপ</a></h3>
+<p><strong>স্ট্যাক</strong>: দ্রুত মেমোরি, ফাংশন কল এবং লোকাল ভেরিয়েবলের জন্য ব্যবহৃত হয়।</p>
+<p><strong>হিপ</strong>: যখন ভেরিয়েবল ফাংশন কলের পরেও থাকা দরকার (যেমন ক্লোজারে), তখন ব্যবহৃত হয়।</p>
+<p><code>money</code> ফাংশন <code>outer()</code> শেষ হওয়ার পরও থাকতে হবে, তাই এস্কেপ অ্যানালাইসিস এটা বুঝে <code>money</code> হিপে রাখে।</p>
+<h3 id="-এসকেপ-অযানালাইসিস-escape-analysis-কী"><a class="header" href="#-এসকেপ-অযানালাইসিস-escape-analysis-কী">🧪 এস্কেপ অ্যানালাইসিস (Escape Analysis) কী?</a></h3>
+<p><strong>এস্কেপ অ্যানালাইসিস</strong> হলো একটি প্রক্রিয়া যার মাধ্যমে <strong>Go কম্পাইলার</strong> ফাংশনগুলো <strong>কম্পাইল করার সময়</strong> বুঝতে পারে কোন ভেরিয়েবল স্ট্যাকে নিরাপদে রাখা যাবে আর কোনগুলো হিপে পাঠাতে হবে।</p>
 <ul>
-<li><strong>Stack</strong>: Fast memory, used for function calls and local variables.</li>
-<li><strong>Heap</strong>: Used when variables need to persist beyond the function call (like in closures!).</li>
+<li>✅ যদি কোনো ভেরিয়েবল <strong>শুধুমাত্র ফাংশনের ভেতর</strong> ব্যবহার হয়, তাহলে সেটি <strong>স্ট্যাকে</strong> রাখা হয়।</li>
+<li>🚀 যদি কোনো ভেরিয়েবল <strong>ফাংশনের বাইরে (যেমন একটি রিটার্ন করা ক্লোজারে)</strong> ব্যবহার হয়, তাহলে সেটি হিপে স্থানান্তরিত হয়।</li>
 </ul>
-<p>Because <code>money</code> needs to stick around <em>after</em> <code>outer()</code> returns, <strong>escape analysis</strong> detects this and allocates <code>money</code> on the heap.</p>
-<h3 id="-what-is-escape-analysis"><a class="header" href="#-what-is-escape-analysis">🧪 What is Escape Analysis?</a></h3>
-<p>Escape analysis is the process that the <strong>Go compiler</strong> uses during the <strong>compilation phase</strong> to determine whether variables can be safely allocated on the stack or must go to the heap.</p>
-<ul>
-<li>✅ If a variable is used <em>only</em> inside a function, it's put on the <strong>stack</strong>.</li>
-<li>🚀 If a variable is used <em>outside</em> (like in a returned closure), it's moved to the <strong>heap</strong>.</li>
-</ul>
-<h3 id="-memory-segments"><a class="header" href="#-memory-segments">🧱 Memory Segments</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Segment</th><th>What's Stored</th></tr></thead><tbody>
-<tr><td>Code Segment</td><td>Compiled instructions and const (functions, <code>a</code>)</td></tr>
-<tr><td>Data Segment</td><td>Global variables (<code>p</code>)</td></tr>
-<tr><td>Stack</td><td>Local variables (<code>age</code>)</td></tr>
-<tr><td>Heap</td><td>Escaping variables (<code>money</code>)</td></tr>
+<h3 id="-মেমোরি-সেগমেনট"><a class="header" href="#-মেমোরি-সেগমেনট">🧱 মেমোরি সেগমেন্ট</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>সেগমেন্ট</th><th>কী সংরক্ষণ করে</th></tr></thead><tbody>
+<tr><td>কোড সেগমেন্ট</td><td>কম্পাইল করা নির্দেশাবলী এবং কনস্ট্যান্ট (ফাংশন, <code>a</code>)</td></tr>
+<tr><td>ডেটা সেগমেন্ট</td><td>গ্লোবাল ভেরিয়েবল (<code>p</code>)</td></tr>
+<tr><td>স্ট্যাক</td><td>লোকাল ভেরিয়েবল (<code>age</code>)</td></tr>
+<tr><td>হিপ</td><td>এস্কেপিং ভেরিয়েবল (<code>money</code>)</td></tr>
 </tbody></table>
 </div>
 <hr />
-<h2 id="-visualization"><a class="header" href="#-visualization">🧠 Visualization</a></h2>
-<h3 id="cli-style-memory-layout"><a class="header" href="#cli-style-memory-layout">CLI-Style Memory Layout</a></h3>
+<h2 id="-ভিজযুযালাইজেশন"><a class="header" href="#-ভিজযুযালাইজেশন">🧠 ভিজ্যুয়ালাইজেশন</a></h2>
+<h3 id="cli-সটাইল-মেমোরি-বিনযাস"><a class="header" href="#cli-সটাইল-মেমোরি-বিনযাস">CLI-স্টাইল মেমোরি বিন্যাস</a></h3>
 <pre><code>┌─────────────────────────────┐
-│       Code Segment          │
+│       কোড সেগমেন্ট         │
 │-----------------------------│
 │ const a = 10,               |
 | main, call, init, outer,    │
@@ -244,13 +242,13 @@ func init() {
 └─────────────────────────────┘
           ↓
 ┌─────────────────────────────┐
-│       Data Segment          │
+│        ডেটা সেগমেন্ট            │
 │-----------------------------│
-│ var p = 100                 │              
+│ var p = 100                 │
 └─────────────────────────────┘
           ↓
 ┌─────────────────────────────┐
-│           Stack             │
+│            স্ট্যাক              │
 │-----------------------------│
 │ outer() frame               │
 │   age = 30                  │
@@ -258,28 +256,28 @@ func init() {
 └─────────────────────────────┘
           ↓
 ┌─────────────────────────────┐
-│            Heap             │
+│            হিপ             │
 │-----------------------------│
 │ money = 100 (for incr1)     │
 │ money = 100 (for incr2)     │
 └─────────────────────────────┘
 </code></pre>
-<p>Each closure has its own <code>money</code> on the heap. Every call to <code>outer(100)</code> results in a new memory block being allocated.</p>
-<h3 id="garbage-collectors-role-"><a class="header" href="#garbage-collectors-role-">Garbage Collector’s Role 🧹</a></h3>
-<p>When the closure is no longer referenced (e.g., <code>incr1</code> or <code>incr2</code> goes out of scope), the <strong>Garbage Collector</strong> detects that the heap memory (e.g., <code>money</code>) is unreachable. It then safely reclaims that memory so your program doesn’t become a memory hoarder. This is vital for maintaining efficiency, especially when many closures are involved.</p>
-<p>GC is triggered automatically and runs concurrently with your program. It uses a combination of <strong>mark-and-sweep</strong> and <strong>concurrent garbage collection techniques</strong> to do this efficiently.</p>
+<p>প্রতিটি ক্লোজারের জন্য হিপে নিজস্ব <code>money</code> থাকে। প্রতিবার <code>outer(100)</code> কল করার সময় একটি নতুন মেমোরি ব্লক অ্যালোকেট করা হয়।</p>
+<h3 id="গারবেজ-কালেকটরের-ভূমিকা-"><a class="header" href="#গারবেজ-কালেকটরের-ভূমিকা-">গারবেজ কালেক্টরের ভূমিকা 🧹</a></h3>
+<p>যখন কোনো ক্লোজার আর রেফারেন্স করা হয় না (যেমন <code>incr1</code> বা <code>incr2</code> স্কোপের বাইরে চলে যায়), তখন <code>গারবেজ কালেক্টর</code> সেই হিপ মেমোরি (যেমন <code>money</code>) মুছে ফেলে, যাতে অপ্রয়োজনীয় মেমোরি দখল না থাকে। অনেক ক্লোজার থাকলে কর্মদক্ষতা বজায় রাখতে এটা খুবই গুরুত্বপূর্ণ।</p>
+<p>GC স্বয়ংক্রিয়ভাবে ট্রিগার হয় এবং প্রোগ্রামের সাথে একযোগে চলে। এটি কার্যকরভাবে কাজ করার জন্য <strong>mark-and-sweep</strong> এবং <strong>concurrent garbage collection techniques</strong> ব্যবহার করে।</p>
 <hr />
-<h2 id="-tldr"><a class="header" href="#-tldr">🧠 TL;DR</a></h2>
+<h2 id="-সংকষেপে"><a class="header" href="#-সংকষেপে">🧠 সংক্ষেপে</a></h2>
 <ul>
-<li>Closures can capture and remember variable state 🔁</li>
-<li>Escape analysis figures out which variables must live on the heap 📦</li>
-<li>Stack is temporary, heap is persistent (with GC 🧹)</li>
-<li>Go separates memory into Code, Data, Stack, Heap — each with its role 🧩</li>
-<li>GC ensures unused heap memory (like old closure data) is recycled ♻️</li>
+<li>ক্লোজার ভেরিয়েবলের অবস্থা ধরে রাখতে পারে 🔁</li>
+<li>এস্কেপ অ্যানালাইসিস নির্ধারণ করে কোন ভেরিয়েবল হিপে রাখা প্রয়োজন 📦</li>
+<li>স্ট্যাক সাময়িক, হিপ স্থায়ী (GC 🧹 এর সাথে)</li>
+<li>Go মেমোরি চারটি ভাগে ভাগ করে: কোড, ডেটা, স্ট্যাক, হীপ 🧩</li>
+<li>GC অপ্রচলিত হীপ মেমোরি পুনর্ব্যবহারযোগ্য করে তোলে ♻️</li>
 </ul>
 <hr />
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
+<p>[<strong>Author:</strong> @ifrunruhin12, @nazma98
+<strong>Date:</strong> 2025-05-01 - 2025-05-17
 <strong>Category:</strong> interview-qa/class-wise
 ]</p>
 

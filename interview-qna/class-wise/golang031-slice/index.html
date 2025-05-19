@@ -158,144 +158,141 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-slice-deep-dive-in-go"><a class="header" href="#-slice-deep-dive-in-go">📚 Slice Deep Dive in Go</a></h1>
-<hr />
-<h1 id="-class-31-slice"><a class="header" href="#-class-31-slice">📌 Class 31: Slice</a></h1>
-<h3 id="-key-topics"><a class="header" href="#-key-topics">🚀 Key topics</a></h3>
-<ol>
-<li>What is a Slice?</li>
-<li>How many parts does a Slice have?</li>
-<li>How to determine Pointer, Length, and Capacity of a Slice?</li>
-<li>Creating a Slice from an existing Array</li>
-<li>Creating a Slice from an existing Slice</li>
-<li>Slice Literal</li>
-<li>Creating a Slice with <code>make()</code> (length only)</li>
-<li>Creating a Slice with <code>make()</code> (length and capacity)</li>
-<li>Creating an Empty or Nil Slice</li>
-<li>Appending elements to a Slice</li>
-<li>What happens internally when appending (Heap and Underlying Array behavior)</li>
-<li>How the underlying array increases dynamically</li>
-<li>Some interesting examples and interview questions</li>
-<li>Variadic Functions</li>
-</ol>
-<hr />
-<h1 id="-1-what-is-a-slice"><a class="header" href="#-1-what-is-a-slice">🧠 1. What is a Slice?</a></h1>
+                        <h1 id="-কলাস-৩১-go-সলাইস-slice"><a class="header" href="#-কলাস-৩১-go-সলাইস-slice">📚 ক্লাস ৩১: Go স্লাইস (Slice)</a></h1>
+<h2 id="-মূল-বিষযসমূহ"><a class="header" href="#-মূল-বিষযসমূহ">🚀 মূল বিষয়সমূহ</a></h2>
 <ul>
-<li>A <strong>slice</strong> is a lightweight data structure in Go.</li>
-<li>Think of it like a dynamic view over an <strong>array</strong>.</li>
-<li>Unlike arrays, slices can grow and shrink.</li>
-</ul>
-<p><strong>Key Points:</strong></p>
-<ul>
-<li>Slices are not arrays.</li>
-<li>Slices are built <em>on top of</em> arrays.</li>
+<li>স্লাইস কী?</li>
+<li>একটি স্লাইসে কয়টি অংশ থাকে?</li>
+<li>স্লাইসের Pointer, Length, এবং Capacity নির্ণয় করা</li>
+<li>বিদ্যমান Array থেকে স্লাইস তৈরি</li>
+<li>বিদ্যমান Slice থেকে নতুন Slice তৈরি</li>
+<li>Slice Literal (সরাসরি ঘোষণা)</li>
+<li><code>make()</code> দিয়ে Slice তৈরি (শুধু length)</li>
+<li><code>make()</code> দিয়ে Slice তৈরি (length এবং capacity)</li>
+<li>খালি বা Nil Slice তৈরি</li>
+<li>স্লাইসে নতুন উপাদান যোগ করা (append)</li>
+<li><code>append</code> করার সময় অভ্যন্তরীণ প্রক্রিয়া (Heap এবং Underlying Array)</li>
+<li>Underlying Array কীভাবে গতিশীলভাবে বাড়ে</li>
+<li>কিছু মজার উদাহরণ এবং ইন্টারভিউ প্রশ্ন</li>
+<li>ভ্যারিয়েডিক ফাংশন (Variadic Functions)</li>
 </ul>
 <hr />
-<h1 id="-2-how-many-parts-does-a-slice-have"><a class="header" href="#-2-how-many-parts-does-a-slice-have">🔥 2. How many parts does a Slice have?</a></h1>
-<p>Under the hood, a Slice is a <strong>struct</strong> with three fields:</p>
+<h1 id="-১-সলাইস-কী"><a class="header" href="#-১-সলাইস-কী">🧠 ১. স্লাইস কী?</a></h1>
+<ul>
+<li><strong>স্লাইস</strong> হলো Go এর একটি ফ্লেক্সিবল ডেটা স্ট্রাকচার।</li>
+<li>এটি মূলত array এর উপরে নির্মিত একটি <strong>dynamic view</strong>।</li>
+<li>array এর মত হলেও, slice এর সাইজ পরিবর্তন করা যায় (বড় বা ছোট করা যায়)।</li>
+</ul>
+<p><strong>মূল পয়েন্ট:</strong></p>
+<ul>
+<li>স্লাইস array নয়।</li>
+<li>স্লাইস array এর উপরে তৈরি হয়।</li>
+</ul>
+<hr />
+<h1 id="-২-একটি-সলাইসের-কয়টি-অংশ-থাকে"><a class="header" href="#-২-একটি-সলাইসের-কয়টি-অংশ-থাকে">🔥 ২. একটি স্লাইসের কয়টি অংশ থাকে?</a></h1>
+<p>স্লাইস মূলত একটি <strong>struct</strong> যা তিনটি অংশ নিয়ে গঠিত:</p>
 <pre><code class="language-go">struct Slice {
-    pointer *T // Pointer to the underlying array
-    length  int // Current number of elements
-    capacity int // Maximum number of elements (until reallocation)
-}
+    pointer *T // underlying array কে পয়েন্ট করে
+    length  int // বর্তমান elements সংখ্যা
+    capacity int // সর্বোচ্চ elements সংখ্যা (রিয়ালোকেশন পর্যন্ত)
+	}
 </code></pre>
-<p>You can think of a slice as a "window" into an array.</p>
+<p>স্লাইসকে মূলত একটি array এর "উইন্ডো" হিসেবে ভাবা যেতে পারে।</p>
 <hr />
-<h1 id="-3-how-to-determine-pointer-length-and-capacity"><a class="header" href="#-3-how-to-determine-pointer-length-and-capacity">🕵️‍♂️ 3. How to determine Pointer, Length, and Capacity</a></h1>
-<p>Use:</p>
+<h1 id="-৩-পযেনটার-লেনথ-এবং-কযাপাসিটি-নিরধারণ-করার-উপায"><a class="header" href="#-৩-পযেনটার-লেনথ-এবং-কযাপাসিটি-নিরধারণ-করার-উপায">🕵️‍♂️ ৩. পয়েন্টার, লেন্থ এবং ক্যাপাসিটি নির্ধারণ করার উপায়</a></h1>
+<p>নিম্নোক্ত built-in ফাংশন ব্যবহার করে স্লাইসের লেন্থ এবং ক্যাপাসিটি বের করা যায়:</p>
 <ul>
 <li><code>len(slice)</code> ➡️ Length</li>
 <li><code>cap(slice)</code> ➡️ Capacity</li>
 </ul>
-<p>Example:</p>
-<pre><code class="language-go">s := arr[1:4] // From index 1 to 3
+<p>উদাহরণ:</p>
+<pre><code class="language-go">s := arr[1:4] // ইনডেক্স 1 থেকে 3
 fmt.Println(len(s)) // 3
-fmt.Println(cap(s)) // depends on how much array is left after index 1
+fmt.Println(cap(s)) //  ইনডেক্স 1 এর পর থেকে অ্যারের শেষ পর্যন্ত
 </code></pre>
 <hr />
-<h1 id="-4-creating-a-slice-from-an-existing-array"><a class="header" href="#-4-creating-a-slice-from-an-existing-array">🏗 4. Creating a Slice from an existing Array</a></h1>
+<h1 id="-৪-অযারে-থেকে-সলাইস-তৈরি-করা"><a class="header" href="#-৪-অযারে-থেকে-সলাইস-তৈরি-করা">🏗 ৪. অ্যারে থেকে স্লাইস তৈরি করা</a></h1>
 <pre><code class="language-go">arr := [6]string{"This", "is", "a", "Go", "interview", "Questions"}
 s := arr[1:4] // slice ["is", "a", "Go"]
 </code></pre>
 <ul>
-<li><code>pointer</code>: points to index 1 of <code>arr</code></li>
-<li><code>length</code>: 3 (from index 1 to 3)</li>
-<li><code>capacity</code>: 5 (indexes 1 to 5)</li>
+<li><code>pointer</code>: <code>arr</code> এর 1 নম্বর ইনডেক্স নির্দেশ করে</li>
+<li><code>length</code>: 3 (ইনডেক্স 1 থেকে 3)</li>
+<li><code>capacity</code>: 5 (ইনডেক্স 1 থেকে 5)</li>
 </ul>
 <hr />
-<h1 id="-5-creating-a-slice-from-an-existing-slice"><a class="header" href="#-5-creating-a-slice-from-an-existing-slice">🔄 5. Creating a Slice from an existing Slice</a></h1>
+<h1 id="-৫-সলাইস-থেকে-নতুন-সলাইস-তৈরি"><a class="header" href="#-৫-সলাইস-থেকে-নতুন-সলাইস-তৈরি">🔄 ৫. স্লাইস থেকে নতুন স্লাইস তৈরি</a></h1>
 <pre><code class="language-go">s1 := s[1:2] // Slice "a"
 </code></pre>
 <ul>
-<li>This slice is again a <strong>view</strong> into the same array!</li>
-<li>Changing <code>s1</code> can affect <code>arr</code>.</li>
+<li><code>s1</code> স্লাইসটি একই অ্যারের একটি <strong>view</strong>!</li>
+<li><code>s1</code> পরিবর্তন করলে <code>arr</code> এর মানও পরিবর্তিত হতে পারে।</li>
 </ul>
 <hr />
-<h1 id="-6-slice-literal"><a class="header" href="#-6-slice-literal">✍️ 6. Slice Literal</a></h1>
-<p>Create a slice without needing an array explicitly.</p>
+<h1 id="-6-সলাইস-লিটারেল"><a class="header" href="#-6-সলাইস-লিটারেল">✍️ 6. স্লাইস লিটারেল</a></h1>
+<p>একটি স্লাইস তৈরি করতে সরাসরি মান ব্যবহার করা যায়, আলাদা করে অ্যারে তৈরি করার প্রয়োজন নেই।</p>
 <pre><code class="language-go">s2 := []int{3, 4, 7}
 </code></pre>
-<p>Here Go automatically creates an underlying array.</p>
-<hr />
-<h1 id="-7-creating-a-slice-with-make-length-only"><a class="header" href="#-7-creating-a-slice-with-make-length-only">🏗️ 7. Creating a Slice with <code>make()</code> (length only)</a></h1>
+<h2 id="এখানে-go-সবযংকরিযভাবে-একটি-underlying-অযারে-তৈরি-করে"><a class="header" href="#এখানে-go-সবযংকরিযভাবে-একটি-underlying-অযারে-তৈরি-করে">এখানে Go স্বয়ংক্রিয়ভাবে একটি underlying অ্যারে তৈরি করে।</a></h2>
+<h1 id="-৭-make-দিযে-একটি-সলাইস-তৈরি-করা"><a class="header" href="#-৭-make-দিযে-একটি-সলাইস-তৈরি-করা">🏗️ ৭. make() দিয়ে একটি স্লাইস তৈরি করা</a></h1>
 <pre><code class="language-go">s3 := make([]int, 3)
 </code></pre>
 <ul>
-<li>Creates a slice of 3 zeroed elements.</li>
+<li><code>make()</code> দিয়ে ৩টি শূন্য মান (zero) সহ একটি স্লাইস তৈরি করে। অর্থাৎ, ৩টি ফাঁকা এলিমেন্ট থাকবে।</li>
 <li><code>len = 3</code>, <code>cap = 3</code></li>
 </ul>
 <hr />
-<h1 id="-8-creating-a-slice-with-make-length-and-capacity"><a class="header" href="#-8-creating-a-slice-with-make-length-and-capacity">🏗️🏗️ 8. Creating a Slice with <code>make()</code> (length and capacity)</a></h1>
+<h1 id="-৮-make-দিযে-একটি-সলাইস-তৈরি-করা-length-এবং-capacity"><a class="header" href="#-৮-make-দিযে-একটি-সলাইস-তৈরি-করা-length-এবং-capacity">🏗️🏗️ ৮. <code>make()</code> দিয়ে একটি স্লাইস তৈরি করা (length এবং capacity)</a></h1>
 <pre><code class="language-go">s4 := make([]int, 3, 5)
 </code></pre>
 <ul>
-<li><code>len = 3</code>, but it can grow up to <code>cap = 5</code> before reallocating.</li>
+<li><code>len = 3</code>, কিন্তু ক্যাপাসিটি <code>cap = 5</code> পর্যন্ত হতে পারে রিঅ্যালোকেশন এর আগ পর্যন্ত</li>
 </ul>
 <hr />
-<h1 id="-9-creating-an-empty-or-nil-slice"><a class="header" href="#-9-creating-an-empty-or-nil-slice">🕳 9. Creating an Empty or Nil Slice</a></h1>
+<h1 id="-9-শুনয-সলাইস-তৈরি-empty--nil-slice"><a class="header" href="#-9-শুনয-সলাইস-তৈরি-empty--nil-slice">🕳 9. শুন্য স্লাইস তৈরি (Empty / Nil Slice)</a></h1>
 <pre><code class="language-go">var s5 []int
 </code></pre>
 <ul>
 <li><code>len = 0</code>, <code>cap = 0</code></li>
-<li>Still valid! You can append to it.</li>
+<li>Still valid! এতে নতুন এলিমেন্ট যোগ (append) করা যাবে।</li>
 </ul>
 <hr />
-<h1 id="-10-appending-elements-to-a-slice"><a class="header" href="#-10-appending-elements-to-a-slice">➕ 10. Appending Elements to a Slice</a></h1>
+<h1 id="-১০-সলাইসে-নতুন-এলিমেনট-যোগ--এপেনড-করা"><a class="header" href="#-১০-সলাইসে-নতুন-এলিমেনট-যোগ--এপেনড-করা">➕ ১০. স্লাইসে নতুন এলিমেন্ট যোগ / এপেন্ড করা</a></h1>
 <pre><code class="language-go">s6 := append(s6, 1)
 </code></pre>
 <ul>
-<li>Go handles growing the underlying array if needed.</li>
-<li>May involve <em>allocating a bigger array</em> and copying elements.</li>
+<li>Go নিজে থেকে underlying অ্যারে বড় করে।</li>
+<li><em>অনেক বড় অ্যারে</em> তৈরি এবং আগের এলিমেন্টগুলো কপি করার কাজও করে থাকে।</li>
 </ul>
 <hr />
-<h1 id="-11-what-happens-internally-with-append"><a class="header" href="#-11-what-happens-internally-with-append">🧬 11. What Happens Internally with Append</a></h1>
-<p>When a slice reaches capacity:</p>
+<h1 id="-১১-এপেনড-করার-সময়-আসলে-কী-হয়"><a class="header" href="#-১১-এপেনড-করার-সময়-আসলে-কী-হয়">🧬 ১১. এপেন্ড করার সময় আসলে কী হয়?</a></h1>
+<p>যখন একটি স্লাইস এর capacity পূর্ণ হয়:</p>
 <ul>
-<li>A <strong>new array</strong> (usually double the size) is created.</li>
-<li>Old elements are copied into the new array.</li>
+<li>একটি <strong>নতুন অ্যারে</strong> (সাধারণত দ্বিগুণ সাইজের) তৈরি করা হয়।</li>
+<li>আগের অ্যারের সমস্ত elements নতুন অ্যারেতে কপি করা হয়।</li>
 </ul>
-<p>This is why sometimes appending seems "fast" and sometimes causes big memory ops.</p>
+<p>এ কারণেই কখনও কখনও অ্যাপেন্ড করা দ্রুত মনে হয় এবং কখনও বড় মেমরি অপারেশন তৈরি করতে পারে।</p>
 <hr />
-<h1 id="-12-how-underlying-array-increases"><a class="header" href="#-12-how-underlying-array-increases">📈 12. How Underlying Array Increases</a></h1>
-<p><strong>Capacity Growth Pattern:</strong> (simplified)</p>
+<h1 id="-১২-underlying-array-কিভাবে-বৃদধি-পায"><a class="header" href="#-১২-underlying-array-কিভাবে-বৃদধি-পায">📈 ১২. Underlying Array কিভাবে বৃদ্ধি পায়:</a></h1>
+<p><strong>যে প্যাটার্নে ক্যাপাসিটি পায় (Capacity Growth Pattern):</strong> (simplified)</p>
 <ul>
 <li>Cap 1 ➡️ 2 ➡️ 4 ➡️ 8 ➡️ 16 ➡️ ...</li>
 </ul>
-<p>This is an optimization trick to ensure appends are amortized O(1).</p>
+<p>এটি একটি অপ্টিমাইজেশন কৌশল যা নিশ্চিত করে যেন অ্যাপেন্ড অপারেশনগুলো গড়ে O(1) সময়ে সম্পন্ন হয়।</p>
 <hr />
-<h1 id="go-slice-growth-understanding-the-dynamics-of-len-and-cap"><a class="header" href="#go-slice-growth-understanding-the-dynamics-of-len-and-cap">Go Slice Growth: Understanding the Dynamics of <code>len</code> and <code>cap</code></a></h1>
-<p>Go slices are a powerful and flexible data structure, providing a dynamic array-like abstraction. One of the key features of slices is their ability to grow automatically when elements are appended. Understanding how and when a slice grows—along with the mechanics of memory allocation—can lead to more efficient use of slices in your programs.</p>
-<p>In this document, we'll break down how Go slices grow, covering:</p>
+<h1 id="go-slice-বৃদধি-len-এবং-cap-এর-ডাযনামিকস-বোঝা"><a class="header" href="#go-slice-বৃদধি-len-এবং-cap-এর-ডাযনামিকস-বোঝা">Go Slice বৃদ্ধি: <code>len</code> এবং <code>cap</code> এর ডায়নামিক্স বোঝা</a></h1>
+<p>Go স্লাইস একটি শক্তিশালী এবং ফ্লেক্সিবল ডেটা স্ট্রাকচার, যা ডায়নামিক অ্যারের মতো কাজ করে। এর একটি মূল বৈশিষ্ট্য হলো, যখন নতুন এলিমেন্ট যোগ করা হয়, তখন স্লাইস নিজে নিজেই বৃদ্ধি পায়। স্লাইস কীভাবে এবং কখন বৃদ্ধি পায়, আর এর মেমরি অ্যালোকেশনের পদ্ধতি বুঝলে অনেক ইফিশিয়েন্ট প্রোগ্রাম ডিজাইন করা সম্ভব।</p>
+<p>এখন আমরা Go স্লাইসের বৃদ্ধির পদ্ধতি বিশ্লেষণ করব:</p>
 <ul>
-<li>The doubling of capacity when the slice's <code>len</code> and <code>cap</code> are less than 1024.</li>
-<li>The 25% growth for slices when the <code>len</code> and <code>cap</code> exceed 1024.</li>
-<li>Why a slice doesn't grow by a fixed amount, such as increasing from 1024 to 1280, but instead grows by larger, more optimized blocks (e.g., 1536).</li>
+<li>যদি স্লাইসের <code>len</code> এবং <code>cap</code> <code>1024</code>-এর কম হয়, তাহলে এটি সাধারণত দ্বিগুণ (2x) বৃদ্ধি পায়।</li>
+<li><code>len</code> এবং <code>cap</code>, <code>1024</code> ছাড়িয়ে গেলে, এটি প্রায় 25% হারে বৃদ্ধি পায়।</li>
+<li>স্লাইস কেন নির্দিষ্ট পরিমাণে (যেমন 1024 থেকে 1280) না বাড়িয়ে বড় ব্লকে (যেমন 1536) বাড়ে, সেটিও ব্যাখ্যা করা হবে।</li>
 </ul>
-<h2 id="slice-growth-overview"><a class="header" href="#slice-growth-overview">Slice Growth Overview</a></h2>
-<p>In Go, slices are backed by arrays. When you append elements to a slice, Go may allocate a new, larger array and copy the old elements into it. The key to this resizing is how Go determines the new capacity and allocates memory.</p>
-<h3 id="1-doubling-the-capacity-for-small-slices-lencap--1024"><a class="header" href="#1-doubling-the-capacity-for-small-slices-lencap--1024">1. Doubling the Capacity for Small Slices (<code>len(cap) &lt; 1024</code>)</a></h3>
-<p>When the slice is relatively small (i.e., when the <code>len</code> and <code>cap</code> of the slice are both smaller than 1024), the growth strategy Go uses is to <strong>double</strong> the capacity. This means that when you append an element to the slice and the slice needs to resize, it will allocate a new array that is twice the size of the current capacity. The <code>len</code> of the slice will increase by one, but the <code>cap</code> will double.</p>
-<h4 id="example"><a class="header" href="#example">Example:</a></h4>
+<h2 id="সলাইস-বৃদধির-ধারণা-slice-growth-overview"><a class="header" href="#সলাইস-বৃদধির-ধারণা-slice-growth-overview">স্লাইস বৃদ্ধির ধারণা (Slice Growth Overview)</a></h2>
+<p>Go তে slice মূলত array এর উপরে ভিত্তি করে কাজ করে। যখন একটি slice-এ নতুন এলিমেন্ট অ্যাপেন্ড করা হয়, তখন প্রয়োজনে Go একটি বড় array তৈরি করে এবং পুরানো এলিমেন্টগুলো তাতে কপি করে। এই প্রসেসটি নির্ভর করে Go কিভাবে নতুন capacity নির্ধারণ করে এবং মেমরি বরাদ্দ করে।</p>
+<h3 id="১২১-ছোট-সলাইসের-কষেতরে-দবিগুণ-বৃদধি-lencap--1024"><a class="header" href="#১২১-ছোট-সলাইসের-কষেতরে-দবিগুণ-বৃদধি-lencap--1024">১২.১. ছোট স্লাইসের ক্ষেত্রে দ্বিগুণ বৃদ্ধি (<code>len(cap) &lt; 1024</code>)</a></h3>
+<p>যখন slice ছোট থাকে (অর্থাৎ, এর <code>len</code> এবং <code>cap</code> দুটোই 1024 এর কম), তখন Go সাধারণত capacity <strong>দ্বিগুণ</strong> করে। এর মানে, যখন slice এ একটি এলিমেন্ট যোগ করা হয় এবং নতুন মেমরি প্রয়োজন হয়, তখন Go আগের capacity এর দ্বিগুণ আকারের একটি নতুন array তৈরি করে এবং পুরানো এলিমেন্টগুলো সেখানে কপি করে। স্লাইসের <code>len</code> ১ বাড়বে, কিন্তু <code>cap</code> দ্বিগুণ হবে।</p>
+<h4 id="উদাহরণ"><a class="header" href="#উদাহরণ">উদাহরণ:</a></h4>
 <pre><code class="language-go">s := []int{1, 2, 3}
 fmt.Println(len(s), cap(s)) // len: 3, cap: 3
 
@@ -306,13 +303,13 @@ s = append(s, 5)
 fmt.Println(len(s), cap(s)) // len: 5, cap: 12
 </code></pre>
 <ul>
-<li>Initially, the slice has a length of 3 and a capacity of 3.</li>
-<li>When we append the fourth element, the slice grows to a capacity of 6 (doubling from 3).</li>
-<li>The next append results in the slice growing to a capacity of 12 (doubling from 6).</li>
+<li>প্রথমে, slice এর <code>len</code> ৩ এবং <code>cap</code> ৩ থাকে।</li>
+<li>চতুর্থ এলিমেন্ট যোগ করার সময়, slice এর capacity ৩ থেকে দ্বিগুণ হয়ে ৬ হয়ে যায়।</li>
+<li>পরবর্তী অ্যাপেন্ডে, slice-এর capacity ৬ থেকে দ্বিগুণ হয়ে ১২ হয়।</li>
 </ul>
-<h3 id="2-growth-by-25-for-larger-slices-lencap--1024"><a class="header" href="#2-growth-by-25-for-larger-slices-lencap--1024">2. Growth by 25% for Larger Slices (<code>len(cap) &gt;= 1024</code>)</a></h3>
-<p>Once the slice grows to a size where its <code>len</code> and <code>cap</code> exceed or are equal to 1024, Go switches from doubling the capacity to increasing the capacity by <strong>25%</strong> of the current capacity. This growth strategy helps to strike a balance between minimizing frequent reallocations and not wasting too much memory.</p>
-<h4 id="example-1"><a class="header" href="#example-1">Example:</a></h4>
+<h3 id="১২২-বড-সলাইসের-কষেতরে-২৫-বৃদধি-lencap--1024"><a class="header" href="#১২২-বড-সলাইসের-কষেতরে-২৫-বৃদধি-lencap--1024">১২.২. বড় স্লাইসের ক্ষেত্রে ২৫% বৃদ্ধি (<code>len(cap) &gt;= 1024</code>)</a></h3>
+<p>যখন slice-এর <code>len</code> এবং <code>cap</code> 1024 বা তার বেশি হয়, তখন Go দ্বিগুণের পরিবর্তে বর্তমান capacity এর <strong>২৫%</strong> বৃদ্ধি করে। এই কৌশলটি ঘন ঘন মেমরি পুনর্বণ্টন (reallocation) এড়াতে এবং অপ্রয়োজনীয় মেমরি অপচয় কমাতে সহায়তা করে।</p>
+<h4 id="উদাহরণ-1"><a class="header" href="#উদাহরণ-1">উদাহরণ:</a></h4>
 <pre><code class="language-go">s := make([]int, 1024)  // len: 1024, cap: 1024
 fmt.Println(len(s), cap(s))
 
@@ -323,16 +320,16 @@ s = append(s, 1300) // len: 1300, cap: 1600 (1280 + 25% of 1280)
 fmt.Println(len(s), cap(s))
 </code></pre>
 <ul>
-<li>Initially, we create a slice with a length and capacity of 1024.</li>
-<li>When appending the next element, the slice grows to a capacity of 1280, which is 1024 plus 25% of 1024.</li>
-<li>Another append results in a capacity of 1600 (1280 plus 25% of 1280).</li>
+<li>শুরুতে, আমরা length এবং capacity 1024 সহ একটি slice তৈরি করি।</li>
+<li>পরের এলিমেন্ট অ্যাপেন্ড করলে slice এর capacity 1024 থেকে 1280 হয়, যা 1024 এর সাথে ২৫% যোগ করে পাওয়া যায়।</li>
+<li>আরেকটি অ্যাপেন্ড করলে capacity 1600 হয় (1280 এর সাথে ২৫% যোগ করে)।</li>
 </ul>
-<h3 id="3-the-role-of-memory-blocks-eg-1536-for-a-slice"><a class="header" href="#3-the-role-of-memory-blocks-eg-1536-for-a-slice">3. The Role of Memory Blocks (e.g., 1536 for a Slice)</a></h3>
-<p>When the slice's <code>len</code> and <code>cap</code> are near the threshold of 1024 (and higher), Go doesn't always allocate memory blocks in neat, predictable sizes like 1280. Instead, it aligns to <strong>optimal memory blocks</strong> that align better with system memory allocation patterns.</p>
-<p>For example, if a slice's capacity is nearing 1024, the next allocation might not simply be an increment by 256 (i.e., from 1024 to 1280). Instead, Go will allocate memory in larger chunks to optimize memory usage and alignment. A common result of this optimization is the slice's capacity growing to <strong>1536</strong>, which is a more "perfect" memory block for larger sizes.</p>
-<h4 id="why-1536-instead-of-1280"><a class="header" href="#why-1536-instead-of-1280">Why 1536 Instead of 1280?</a></h4>
-<p>This behavior is largely based on <strong>hardware memory alignment</strong>. The number 1536 is chosen because it fits better with memory block sizes that are typically aligned in powers of 2 and optimized for modern CPUs and memory systems. Memory allocations are often made in chunks that align with the system’s memory page size or cache line, resulting in a more efficient memory access pattern.</p>
-<h4 id="example-memory-alignment"><a class="header" href="#example-memory-alignment">Example (Memory Alignment):</a></h4>
+<h3 id="১২৩-মেমরি-বলকের-ভূমিকা-যেমন-1536-কষমতার-সলাইস"><a class="header" href="#১২৩-মেমরি-বলকের-ভূমিকা-যেমন-1536-কষমতার-সলাইস">১২.৩. মেমরি ব্লকের ভূমিকা (যেমন, 1536 ক্ষমতার স্লাইস)</a></h3>
+<p>যখন slice-এর <code>len</code> এবং <code>cap</code> 1024 এর কাছাকাছি বা তার বেশি হয়, তখন Go সর্বদা নিখুঁত গণনা অনুযায়ী মেমরি বরাদ্দ করে না। এর পরিবর্তে এটি সিস্টেম মেমরি বরাদ্দের ধরণ অনুযায়ী <strong>অপ্টিমাল মেমরি ব্লক</strong> ব্যবহার করে।</p>
+<p>উদাহরণস্বরূপ, যদি একটি slice-এর capacity 1024 এর কাছাকাছি থাকে, পরবর্তী বরাদ্দ সরাসরি 256 যোগ করে 1280 না হয়ে, এর থেকে বড় 1536 এর মতো ব্লকে হতে পারে। এটি বড় মেমরি ব্লকের জন্য আরও কার্যকর মেমরি ব্যবহারে সহায়তা করে।</p>
+<h4 id="কেন-1536-এর-পরিবরতে-1280"><a class="header" href="#কেন-1536-এর-পরিবরতে-1280">কেন 1536 এর পরিবর্তে 1280?</a></h4>
+<p>এটি মূলত <strong>হার্ডওয়্যার মেমরি অ্যালাইনমেন্ট</strong> এর উপর নির্ভর করে। 1536 সংখ্যাটি বেছে নেওয়া হয় কারণ এটি সাধারণত 2-এর গুণিতক আকারের মেমরি ব্লকের সাথে ভালোভাবে মিলে যায় এবং আধুনিক CPU এবং মেমরি সিস্টেমের জন্য অপ্টিমাইজ করা। মেমরি অ্যালোকেশন সাধারণত সিস্টেমের মেমরি পেজ সাইজ বা ক্যাশ লাইনের সাথে সামঞ্জস্য রেখে বড় ব্লকে করা হয়, যা মেমরি অ্যাক্সেসকে আরও ইফিশিয়েন্ট করে তোলে।</p>
+<h4 id="উদাহরণ-মেমরি-অযালাইনমেনট"><a class="header" href="#উদাহরণ-মেমরি-অযালাইনমেনট">উদাহরণ (মেমরি অ্যালাইনমেন্ট)::</a></h4>
 <pre><code class="language-go">s := make([]int, 1024) // len: 1024, cap: 1024
 fmt.Println(len(s), cap(s)) // 1024, 1024
 
@@ -340,15 +337,15 @@ s = append(s, 1025) // len: 1025, cap: 1536 (next optimal block size)
 fmt.Println(len(s), cap(s)) // 1025, 1536
 </code></pre>
 <ul>
-<li>The capacity grows from 1024 to 1536 rather than 1280, as 1536 is a better memory block that optimizes system memory allocation.</li>
+<li>1024 থেকে 1536 এ capacity বৃদ্ধি হয়, কারণ 1536 একটি বেটার মেমরি ব্লক যা সিস্টেমের ইফিশিয়েন্ট মেমরি অ্যালোকেশন করে।</li>
 </ul>
-<h3 id="4-why-does-this-happen"><a class="header" href="#4-why-does-this-happen">4. Why Does This Happen?</a></h3>
-<p>The reason Go doesn't strictly grow the slice by 256 (as one might expect, like going from 1024 to 1280) is due to <strong>efficiency considerations</strong>. The allocation strategy aims to reduce the number of reallocations while not wasting memory. By allocating a larger chunk (1536 in this case), the Go runtime ensures that the slice has enough room to accommodate several more appends without needing to resize again too soon.</p>
-<p>This leads to better performance, especially in cases where slices grow rapidly.</p>
-<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
-<p>Understanding slice growth behavior can help you write more efficient Go code. When the slice is smaller, Go doubles its capacity to handle more elements with fewer reallocations. When the slice reaches a certain size (1024 and beyond), it increases capacity by 25%, and occasionally, it aligns the slice's capacity with optimal memory block sizes for better efficiency. This approach leads to smoother and more performant memory handling, ensuring that slices are both memory-efficient and fast to work with.</p>
+<h3 id="১২৪-কেন-এমন-হয"><a class="header" href="#১২৪-কেন-এমন-হয">১২.৪. কেন এমন হয়?</a></h3>
+<p><strong>ইফিশিয়েন্সি বিবেচনায় (efficiency considerations)</strong> Go সরাসরি 256 করে বৃদ্ধি করে না (যেমন আমরা মনে করি 1024 থেকে 1280)। কারণ এটি ইফিশিয়েন্সি বৃদ্ধির জন্য গুরুত্বপূর্ণ। এই অ্যালোকেশন স্ট্র্যাটেজির ফলে ঘন ঘন রি-অ্যালোকেশন এড়ানো যায় এবং অপ্রয়োজনীয় মেমরি অপচয় কমে যায়। বরং বড় ব্লকে (1536) মেমরি বরাদ্দ করে Go রানটাইম নিশ্চিত করে স্লাইসে পর্যাপ্ত capacity আছে আরও element এপেন্ড করার জন্য এবং খুব তাড়াতাড়ি স্লাইসকে বাড়াতে হবে না।</p>
+<p>এর ফলে আরও ভালো পারফরম্যান্স পাওয়া যায়, বিশেষ করে যখন slice দ্রুত বৃদ্ধি পায়।</p>
+<h2 id="উপসংহার"><a class="header" href="#উপসংহার">উপসংহার</a></h2>
+<p>Go-এর slice বৃদ্ধি কৌশল অনেক ইফিশিয়েন্ট কোড লিখা সম্ভব। ছোট সাইজের slice এর ক্ষেত্রে, Go capacity দ্বিগুণ করে যাতে কম রি-অ্যালোকেশনে আরও এলিমেন্ট ধারণ করতে পারে। বড় slice (1024 এবং এর বেশি) হলে, এটি capacity ২৫% বৃদ্ধি করে এবং মাঝে মাঝে অপ্টিমাল মেমরি ব্লকের সাথে সামঞ্জস্য রাখে। এই পদ্ধতিটি slice কে দ্রুত এবং মেমরি সাশ্রয়ী করে তোলে।</p>
 <hr />
-<h1 id="-13-interesting-interview-question-examples"><a class="header" href="#-13-interesting-interview-question-examples">🤯 13. Interesting Interview Question Examples</a></h1>
+<h1 id="১৩-কিছু-ইনটারেসটিং-ইনটারভিউ-পরশনের-উদাহরণ"><a class="header" href="#১৩-কিছু-ইনটারেসটিং-ইনটারভিউ-পরশনের-উদাহরণ">🤯১৩. কিছু ইন্টারেস্টিং ইন্টারভিউ প্রশ্নের উদাহরণ</a></h1>
 <h3 id="-same-underlying-array-trick"><a class="header" href="#-same-underlying-array-trick">⚡ Same Underlying Array Trick</a></h3>
 <pre><code class="language-go">var x []int
 x = append(x, 1)
@@ -363,23 +360,22 @@ x[0] = 10
 fmt.Println(x)
 fmt.Println(y)
 </code></pre>
+<p>-x এবং y একই backing array শেয়ার করে</p>
 <ul>
-<li><code>x</code> and <code>y</code> were sharing the same backing array.</li>
-<li>Mutating one could affect both.</li>
+<li>একটিতে পরিবর্তন (mutation) করলে দুটোরই মান পরিবর্তিত হতে পারে।</li>
 </ul>
-<p>After appending past the cap, they might split into their own arrays.</p>
-<hr />
-<h1 id="-14-variadic-functions"><a class="header" href="#-14-variadic-functions">🛠 14. Variadic Functions</a></h1>
-<p>Functions can accept an arbitrary number of arguments with <code>...</code>.</p>
+<p>কিন্তু <code>cap</code> অতিক্রম করে অ্যাপেন্ড করলে, তারা আলাদা অ্যারেতে বিভক্ত হতে পারে।</p>
+<h1 id="-১৪-ভযারিযাডিক-ফাংশন-variadic-functions"><a class="header" href="#-১৪-ভযারিযাডিক-ফাংশন-variadic-functions">🛠 ১৪. ভ্যারিয়াডিক ফাংশন (Variadic Functions)</a></h1>
+<p>কোন ফাংশন <code>...</code> (ellipsis) operator ব্যবহার করে অসংখ্য আর্গুমেন্ট গ্রহণ করতে পারে।</p>
 <pre><code class="language-go">func variadic(numbers ...int) {
     fmt.Println(numbers)
 }
 
 variadic(2, 3, 4, 6, 8, 10)
 </code></pre>
-<p>Internally, <code>numbers</code> is just a <strong>slice</strong>!</p>
+<p>এখানে <code>numbers</code> কিন্তু একটি <strong>slice</strong>!</p>
 <hr />
-<h1 id="-visualizing-slice-in-ram-for-arr-and-s"><a class="header" href="#-visualizing-slice-in-ram-for-arr-and-s">🧠 Visualizing Slice in RAM (for <code>arr</code> and <code>s</code>)</a></h1>
+<h1 id="-ram-এ-slice-এর-ভিজযুযালাইজেশন-arr-এবং-s-এর-জনয"><a class="header" href="#-ram-এ-slice-এর-ভিজযুযালাইজেশন-arr-এবং-s-এর-জনয">🧠 RAM এ Slice এর ভিজ্যুয়ালাইজেশন (arr এবং s এর জন্য)</a></h1>
 <pre><code>Array arr (indexes):
 [0] "This"
 [1] "is"  &lt;- s.ptr points here
@@ -393,7 +389,7 @@ Slice s:
 - len = 3 ("is", "a", "Go")
 - cap = 5 (from "is" to "Questions")
 </code></pre>
-<p>Memory Visualization:</p>
+<p>মেমরি ভিজ্যুয়ালাইজেশন:</p>
 <pre><code>+---+---+---+---+---+---+
 |This|is|a|Go|interview|Questions|
 +---+---+---+---+---+---+
@@ -498,8 +494,8 @@ func variadic(numbers ...int) {
 	fmt.Println(cap(numbers))
 }
 </code></pre>
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
+<p>[<strong>Author:</strong> @ifrunruhin12, @nazma98
+<strong>Date:</strong> 2025-05-01 - 2025-05-18
 <strong>Category:</strong> interview-qa/class-wise
 ]</p>
 

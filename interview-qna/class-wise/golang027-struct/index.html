@@ -158,10 +158,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="class-27-structs--memory-layout-in-go-"><a class="header" href="#class-27-structs--memory-layout-in-go-">Class 27: Structs &amp; Memory Layout in Go 🧱</a></h1>
-<p>Welcome to Class 27! Today we're diving into <strong>structs</strong>, how to define and instantiate them, and how they interact with Go's memory model. Let's visualize everything from scratch like pros. 🧠💡</p>
+                        <h1 id="কলাস-২৭-go-সটরাকট-এবং-মেমোরি-বিনযাস-"><a class="header" href="#কলাস-২৭-go-সটরাকট-এবং-মেমোরি-বিনযাস-">ক্লাস ২৭: Go স্ট্রাক্ট এবং মেমোরি বিন্যাস 🧱</a></h1>
+<p>এই ক্লাসে আমরা <strong>স্ট্রাক্ট</strong> কীভাবে ডিফাইন ও ইন্সট্যানশিয়েট করতে হয়, এবং এগুলো কীভাবে Go এর মেমোরি মডেলের সাথে কাজ করে তা শিখব। 🧠💡</p>
 <hr />
-<h2 id="-the-code"><a class="header" href="#-the-code">✍️ The Code</a></h2>
+<h2 id="-কলাস-২৭-এর-কোড"><a class="header" href="#-কলাস-২৭-এর-কোড">✍️ ক্লাস ২৭ এর কোড:</a></h2>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -192,42 +192,42 @@ func main() {
 }
 </code></pre>
 <hr />
-<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🧠 Key Concepts</a></h2>
-<h3 id="-what-is-a-struct"><a class="header" href="#-what-is-a-struct">🧩 What is a Struct?</a></h3>
-<p>A <strong>struct</strong> is a user-defined type in Go used to group related data together. It’s like a custom container for fields.</p>
+<h2 id="-মূল-ধারণা"><a class="header" href="#-মূল-ধারণা">🧠 মূল ধারণা</a></h2>
+<h3 id="-সটরাকট-struct-কী"><a class="header" href="#-সটরাকট-struct-কী">🧩 স্ট্রাক্ট (Struct) কী?</a></h3>
+<p>Go তে <strong>স্ট্রাক্ট</strong> হলো একটি ইউজার ডিফাইন্ড টাইপ(user-defined type), যা ব্যবহারকারী নিজের মতো করে তৈরি করতে পারে, যাতে সম্পর্কিত ডেটা একসাথে রাখা যায়। এটি মূলত বিভিন্ন ফিল্ডের জন্য একটি কাস্টম কন্টেইনার।</p>
 <pre><code class="language-go">type User struct {
 	Name string
 	Age  int
 }
 </code></pre>
-<p>This defines a new type called <code>User</code> with fields <code>Name</code> and <code>Age</code>.</p>
+<p>এটি <code>User</code> নামে একটি নতুন টাইপ ডিফাইন করে, যার ফিল্ড হলো <code>Name</code> এবং <code>Age</code>।</p>
 <hr />
-<h3 id="-creating-instances-instantiation"><a class="header" href="#-creating-instances-instantiation">🔨 Creating Instances (Instantiation)</a></h3>
-<p>When we create an actual value using a struct type, that’s called <strong>instantiating</strong>.</p>
+<h3 id="-ইনসটযানস-তৈরি-instantiation"><a class="header" href="#-ইনসটযানস-তৈরি-instantiation">🔨 ইনস্ট্যান্স তৈরি (Instantiation)</a></h3>
+<p>যখন আমরা স্ট্রাক্ট টাইপ ব্যবহার করে একটি আসল মান তৈরি করি, সেটাই <strong>ইনস্ট্যান্সিয়েশন (Instantiation)</strong>.।</p>
 <pre><code class="language-go">user1 := User{
 	Name: "Ruhin",
 	Age:  21,
 }
 </code></pre>
-<p>Here <code>user1</code> is an <strong>instance</strong> of <code>User</code>. This allocates memory to hold <code>Name</code> and <code>Age</code> values.</p>
+<p>এখানে <code>user1</code> হলো <code>User</code> টাইপের একটি <strong>ইনস্ট্যান্স</strong>। এটি <code>Name</code> এবং <code>Age</code> মানগুলো রাখার জন্য মেমোরি অ্যালোকেট করে।</p>
 <hr />
-<h2 id="-memory-layout-visualization"><a class="header" href="#-memory-layout-visualization">🧠 Memory Layout (Visualization)</a></h2>
+<h2 id="-মেমোরি-লেআউট-ভিজযুয়ালাইজেশন"><a class="header" href="#-মেমোরি-লেআউট-ভিজযুয়ালাইজেশন">🧠 মেমোরি লেআউট (ভিজ্যুয়ালাইজেশন)</a></h2>
 <pre><code>┌─────────────────────────────┐
-│       Code Segment          │
+│       কোড সেগমেন্ট         │
 │-----------------------------│
 │ main, printDetails,         │
 │ type User struct {...}      │
 └─────────────────────────────┘
           ↓
 ┌─────────────────────────────┐
-│       Data Segment          │
+│       ডেটা সেগমেন্ট         │
 │-----------------------------│
 │ -                           │
-│ (Global vars if present)    │
+│(গ্লোবাল ভেরিয়েবল থাকলে)    │
 └─────────────────────────────┘
           ↓
 ┌─────────────────────────────┐
-│           Stack             │
+│           স্ট্যাক             │
 │-----------------------------│
 │ main() frame →              │
 │   user1 → Name: "Ruhin"     │
@@ -237,10 +237,11 @@ func main() {
 └─────────────────────────────┘
 </code></pre>
 <blockquote>
-<p>⚠️ NOTE: If a struct is returned from a function or captured by a closure, it may escape to the heap instead of stack.</p>
+<p>⚠️ NOTE: If a struct is returned from a function or captured by a closure, it may escape to the heap instead of stack.
+⚠️ নোট: যদি কোনো স্ট্রাক্ট ফাংশন থেকে রিটার্ন হয় বা ক্লোজারে ব্যবহার হয়, তাহলে এটি স্ট্যাকের বদলে হিপে স্থানান্তরিত হতে পারে।</p>
 </blockquote>
 <hr />
-<h2 id="-example-use-case"><a class="header" href="#-example-use-case">📋 Example Use Case</a></h2>
+<h2 id="-উদাহরণ"><a class="header" href="#-উদাহরণ">📋 উদাহরণ</a></h2>
 <pre><code class="language-go">type Book struct {
 	Title  string
 	Author string
@@ -253,47 +254,46 @@ book1 := Book{
 	Pages: 328,
 }
 </code></pre>
-<p>This lets us build real-world models with multiple fields.</p>
+<p>এভাবে আমরা একাধিক তথ্য নিয়ে বাস্তব জীবনের মতো মডেল তৈরি করতে পারি।</p>
 <hr />
-<h2 id="-role-of-the-garbage-collector-gc"><a class="header" href="#-role-of-the-garbage-collector-gc">🧹 Role of the Garbage Collector (GC)</a></h2>
+<h2 id="-গারবেজ-কালেকটরের-ভূমিকা"><a class="header" href="#-গারবেজ-কালেকটরের-ভূমিকা">🧹 গারবেজ কালেক্টরের ভূমিকা</a></h2>
 <ul>
-<li>If a struct instance <strong>escapes</strong> (used outside the function, stored long-term, etc.), Go stores it on the <strong>heap</strong>.</li>
-<li>Go’s <strong>garbage collector</strong> then tracks and cleans it when it’s no longer in use.</li>
-<li>This means you don’t have to manually <code>free()</code> anything — Go handles memory cleanup for heap objects.</li>
+<li>যদি কোনো স্ট্রাক্ট ইনস্ট্যান্স <strong>এস্কেপ</strong> করে (ফাংশনের বাইরে ব্যবহার হয়, দীর্ঘ সময় ধরে রাখা হয়), তাহলে Go সেটি হিপে রাখে।</li>
+<li>Go এর <strong>গারবেজ কালেক্টর</strong> তখন সেটি ট্র্যাক করে আর ব্যবহার না হলে মেমোরি ফাঁকা করে দেয়।</li>
+<li>তাই ম্যানুয়ালি <code>free()</code> করার দরকার নেই, Go নিজেই হিপের মেমোরি পরিচ্ছন্ন করে।</li>
 </ul>
 <hr />
-<h2 id="-tldr"><a class="header" href="#-tldr">🚀 TL;DR</a></h2>
+<h2 id="-সংকষেপে"><a class="header" href="#-সংকষেপে">🚀 সংক্ষেপে</a></h2>
 <ul>
-<li><code>type User struct {...}</code> is metadata → stored in the <strong>Code Segment</strong>.</li>
-<li><code>user1 := User{...}</code> is runtime data → stored in <strong>Stack</strong> or <strong>Heap</strong> depending on usage.</li>
-<li>Structs bundle fields into one logical unit ✅</li>
-<li>Memory layout varies depending on usage → escape analysis decides 📦🧳</li>
-<li>GC only manages objects in the <strong>heap</strong>, not on the <strong>stack</strong> 🧹</li>
+<li><code>type User struct {...}</code> হলো টাইপের তথ্য → কোড সেগমেন্ট-এ থাকে।</li>
+<li><code>user1 := User{...}</code> হলো রানটাইম ডেটা → স্ট্যাক বা হিপের রাখা হয় ব্যবহার অনুযায়ী।</li>
+<li>স্ট্রাক্ট একসাথে অনেক ফিল্ডকে একটি লজিক্যাল ইউনিটে গুছিয়ে রাখে ✅</li>
+<li>মেমোরি লেআউট ব্যবহার অনুসারে বদলায় → এস্কেপ অ্যানালাইসিসের সিদ্ধান্ত অনুসারে 📦🧳</li>
+<li>গারবেজ কালেক্টর শুধু হিপের মেমোরি পরিষ্কার করে, স্ট্যাক নয় 🧹</li>
 </ul>
 <hr />
-<h3 id="q-is-struct-a-datatype"><a class="header" href="#q-is-struct-a-datatype">Q: Is struct a datatype?</a></h3>
-<p><strong>Ans:</strong>
-Yes, 100% — a struct in Go is a user-defined data type. Think of it like creating your own custom "blueprint" for a data object. 💡</p>
-<p><strong>Here's how it fits in:</strong></p>
-<p>-[] Go has primitive data types like <code>int</code>, <code>string</code>, <code>bool</code>, <code>etc</code>.</p>
-<p>-[] You can then use <code>struct</code> to define a custom data type that groups multiple fields together.</p>
-<p>For example:</p>
+<h3 id="পরশন-সটরাকট-কি-একটি-ডেটাটাইপ"><a class="header" href="#পরশন-সটরাকট-কি-একটি-ডেটাটাইপ">প্রশ্ন: স্ট্রাক্ট কি একটি ডেটাটাইপ?</a></h3>
+<p><strong>উত্তর:</strong> হ্যাঁ, ১০০% — Go-তে স্ট্রাক্ট হলো ব্যবহারকারীর তৈরি একটি ডেটাটাইপ। এটা এমন একটা "ব্লুপ্রিন্ট" যেটা দিয়ে তুমি নিজের মতো করে ডেটা অবজেক্ট বানাতে পারো। 💡</p>
+<p><strong>কিভাবে:</strong></p>
+<p>-[] Go তে <code>int</code>, <code>string</code>, <code>bool</code> ইত্যাদির মতো প্রিমিটিভ ডেটা টাইপ থাকে।
+-[] তুমি <code>struct</code> ব্যবহার করে নিজের কাস্টম টাইপ তৈরি করতে পারো, যাতে একাধিক ফিল্ড একসাথে থাকে।</p>
+<p>যেমন:</p>
 <pre><code class="language-go">type User struct {
 	Name string
 	Age  int
 }
 </code></pre>
-<p>This <code>User</code> struct becomes its own data type, and now you can create instances of it just like you would for <code>int</code> or <code>string</code>:</p>
+<p>এখন User নিজেই একটা ডেটাটাইপ এর মতো কাজ করবে, আর তুমি এর ইনস্ট্যান্স তৈরি করে কাজ করতে পারো ঠিক <code>int</code> বা <code>string</code> এর মতো:</p>
 <pre><code class="language-go">var u User
 u.Name = "Ruhin"
 u.Age = 21
 </code></pre>
-<p>It’s like building your own Lego brick with a custom shape, and then making as many copies of that brick as you want. 🧱✨</p>
+<p>এটা এমন যেন তুমি নিজের মতো একটা লেগো ব্রিক তৈরি করছো, আর যত খুশি কপি বানাতে পারো। 🧱✨</p>
 <blockquote>
-<p>You’re now struct-urally sound in Go! 😎 Next time you model data, flex your type muscles and track those memory segments like a boss.</p>
+<p>তোমার Go প্রোগ্রাম এখন স্ট্রাকচার্ড! 😎 পরের বার ডেটা মডেল করলে নিজের টাইপ তৈরি করো আর মেমোরি সেগমেন্ট বুঝে কাজ করো!</p>
 </blockquote>
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
+<p>[<strong>Author:</strong> @ifrunruhin12, @nazma98
+<strong>Date:</strong> 2025-05-01 - 2025-05-17
 <strong>Category:</strong> interview-qa/class-wise
 ]</p>
 

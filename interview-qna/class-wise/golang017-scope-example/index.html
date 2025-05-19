@@ -158,62 +158,49 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-class-17"><a class="header" href="#-class-17">📘 Class 17</a></h1>
-<p><strong>Video Name:</strong> Scope with another boring example 🙃</p>
+                        <h1 id="-class-17-scope-with-another-boring-example"><a class="header" href="#-class-17-scope-with-another-boring-example">🧠 Class 17: Scope with another boring example</a></h1>
 <hr />
-<h2 id="-code-written-in-this-class"><a class="header" href="#-code-written-in-this-class">🧑‍💻 Code written in this class</a></h2>
+<h2 id="-code-example-"><a class="header" href="#-code-example-">🧑‍💻 Code Example :</a></h2>
 <pre><code class="language-go">package main
 
 import "fmt"
 
 var (
-	a = 10
-	b = 20
+    a = 10
+    b = 20
 )
 
 func printNum(num int) {
-	fmt.Println(num)
+    fmt.Println(num)
 }
 
 func add(x int, y int) {
-	res := x + y
-	printNum(res)
+    res := x + y
+    printNum(res)
 }
 
 func main() {
-	add(a, b)
+    add(a, b)
 }
 </code></pre>
-<h2 id="-key-concepts"><a class="header" href="#-key-concepts">🧠 Key Concepts</a></h2>
-<ol>
-<li>
-<p><strong>✅ Order doesn't matter (for package-level stuff)</strong>
-The order of functions and globally declared variables does not matter in Go.
-Even if the functions and variables are defined after <code>main()</code>, Go will still recognize and compile everything correctly.</p>
-</li>
-<li>
-<p><strong>🤓 Go ≠ Functional Paradigm</strong>
-Although Go has borrowed some cool ideas from functional languages (like first-class functions, closures, etc.), <strong>Go is not a functional programming language.</strong></p>
-</li>
-<li>
-<p><strong>⚖️ What paradigm is Go really?</strong></p>
+<hr />
+<h2 id="-মূল-ধারণাসমূহ"><a class="header" href="#-মূল-ধারণাসমূহ">🧠 মূল ধারণাসমূহ</a></h2>
+<h3 id="-অরডার-মযাটার-করে-না-পযাকেজ-লেভেলের-জনয"><a class="header" href="#-অরডার-মযাটার-করে-না-পযাকেজ-লেভেলের-জনয">✅ অর্ডার ম্যাটার করে না (প্যাকেজ-লেভেলের জন্য)</a></h3>
+<p>Go তে ফাংশন এবং গ্লোবাল ভ্যারিয়েবলগুলোর অর্ডার (ক্রম) গুরুত্বপূর্ণ নয়। মানে <code>main()</code> ফাংশনের পরেও যদি অন্য ফাংশন বা ভ্যারিয়েবল ডিক্লেয়ার করা হয়, Go ঠিকই সব চিনে নেয় এবং কম্পাইল করে।</p>
+<h3 id="-go--ফাংশনাল-পরোগরামিং-পযারাডাইম"><a class="header" href="#-go--ফাংশনাল-পরোগরামিং-পযারাডাইম">🤓 Go ≠ ফাংশনাল প্রোগ্রামিং প্যারাডাইম</a></h3>
+<p>Go কিছু দারুণ ফিচার ধার করেছে ফাংশনাল ল্যাঙ্গুয়েজ থেকে (যেমন: ফার্স্ট-ক্লাস ফাংশন, ক্লোজার ইত্যাদি), কিন্তু Go নিজে ফাংশনাল প্রোগ্রামিং ল্যাঙ্গুয়েজ নয়।</p>
+<h3 id="-তাহলে-go-কোন-পযারাডাইমে-পডে"><a class="header" href="#-তাহলে-go-কোন-পযারাডাইমে-পডে">⚖️ তাহলে Go কোন প্যারাডাইমে পড়ে?</a></h3>
+<p>Go হলো একাধিক প্যারাডাইম সাপোর্ট করে এমন ভাষা, তবে এর মূল স্টাইল হচ্ছে <strong>imperative</strong> এবং <strong>procedural</strong>। এটি ক্লাসিক OOP-এর বদলে <strong>struct-based composition</strong> কে গুরুত্ব দেয়।</p>
 <blockquote>
-<p>Go is a <strong>multi-paradigm</strong> language, but its primary style is <strong>imperative</strong> and <strong>procedural</strong>, with <strong>struct-based composition</strong> over classic OOP.</p>
+<p>এটি ডিজাইন করা হয়েছে যাতে ভাষাটি হয়:</p>
 </blockquote>
-</li>
-</ol>
-<p>It's built to be:</p>
-<pre><code>✅ Simple
-
-🔍 Predictable
-
-📖 Readable
-</code></pre>
-<p>You can write in a functional-ish style, but Go wasn’t designed for heavy functional abstractions.</p>
-<p>[<strong>Author:</strong> @ifrunruhin12
-<strong>Date:</strong> 2025-05-01
-<strong>Category:</strong> interview-qa/class-wise
-]</p>
+<ul>
+<li>সহজ</li>
+<li>ভবিষ্যৎ অনুমানযোগ্য (Predictable)</li>
+<li>সহজে পড়া যায় এমন (Readable)</li>
+</ul>
+<p>তুমি চাইলে functional-এর মতো স্টাইলে কোড লিখতে পারো, কিন্তু Go কে ডিজাইন করা হয়নি অনেক জটিল functional abstraction-এর জন্য।</p>
+<p>[Author: @ifrunruhin12 @shahriar-em0n  Date: 2025-05-01 Category: interview-qa/class-wise ]</p>
 
                     </main>
 
